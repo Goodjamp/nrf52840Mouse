@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<EmBitz_project_file>
+	<EmBitzVersion release="1.11" revision="0" />
+	<FileVersion major="1" minor="0" />
+	<Project>
+		<Option title="nrf52840Mouse" />
+		<Option pch_mode="2" />
+		<Option compiler="armgcc_eb" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\nrf52840Mouse.elf" />
+				<Option object_output="obj\Debug\" />
+				<Option type="0" />
+				<Option compiler="armgcc_eb" />
+				<Option projectDeviceOptionsRelation="0" />
+				<Device>
+					<Add option="$device=cortex-m4" />
+					<Add option="$lscript=.\nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" />
+				</Device>
+				<Compiler>
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-Werror" />
+					<Add option="-Wall" />
+					<Add option="-fshort-enums" />
+					<Add option="-fdata-sections" />
+					<Add option="-ffunction-sections" />
+					<Add option="-O3" />
+					<Add option="-g2" />
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mthumb" />
+					<Add option="-mabi=aapcs" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-fno-strict-aliasing" />
+					<Add option="-fno-builtin" />
+					<Add symbol="BOARD_PCA10056" />
+					<Add symbol="CONFIG_GPIO_AS_PINRESET" />
+					<Add symbol="FLOAT_ABI_HARD" />
+					<Add symbol="NRF52840_XXAA" />
+					<Add symbol="NRF_SD_BLE_API_VERSION=5" />
+					<Add symbol="S140" />
+					<Add symbol="SOFTDEVICE_PRESENT" />
+					<Add symbol="SWI_DISABLE0" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\comp" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\twi_master" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_ancs_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_ias_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\pwm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\cdc\acm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\hid\generic" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\msc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\hid" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_gls" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\i2s" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\mutex" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\gpiote" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\gpiote" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\boards" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_memobj" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\common" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_bas_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hrs_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\queue" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\pwr_mgmt" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_dtm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\toolchain\cmsis\include" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_rscs_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\uart" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\common" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_lls" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\wdt" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\bsp" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_bas" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_section_vars" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_ans_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\slip" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\mem_manager" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\external\segger_rtt" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\cdc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_nus_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\rtc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\softdevice\common" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_ias" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\hid\mouse" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\ecc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\ppi" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_dfu" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\external\fprintf" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\twis_slave" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\atomic" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\scheduler" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\cli" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_lbs" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hts" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\delay" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\crc16" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\timer" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\util" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\pwm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\csense_drv" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\csense" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\balloc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\low_power_pwm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\hardfault" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_cscs" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\uart" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\hci" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\hid\kbd" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\spi_slave" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\lpcomp" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\timer" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\rng" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\power" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\config" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\toolchain" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\led_softblink" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\qdec" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_cts_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\spi_master" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_nus" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\twi_mngr" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hids" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\strerror" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\pdm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\crc32" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd\class\audio" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\sensorsim" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers\nrf52" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\swi" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_tps" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_dis" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\device" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\nrf_ble_gatt" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\nrf_ble_qwr" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\button" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\usbd" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\saadc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\atomic_fifo" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_lbs_c" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_racp" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\fds" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\libraries\twi" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\clock" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_rscs" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\usbd" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hrs" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config" />
+				</Compiler>
+				<Assembler>
+					<Add option="--defsym,BOARD_PCA10056" />
+					<Add option="--defsym,CONFIG_GPIO_AS_PINRESET" />
+					<Add option="--defsym,FLOAT_ABI_HARD" />
+					<Add option="--defsym,NRF52840_XXAA" />
+					<Add option="--defsym,NRF_SD_BLE_API_VERSION=5" />
+					<Add option="--defsym,S140" />
+					<Add option="--defsym,SOFTDEVICE_PRESENT" />
+					<Add option="--defsym,SWI_DISABLE0" />
+					<Add option="-g3" />
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mthumb" />
+					<Add option="-mabi=aapcs" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+				</Assembler>
+				<Linker>
+					<Add option="-eb_start_files" />
+					<Add option="-Wl,--gc-sections" />
+					<Add option="-mthumb" />
+					<Add option="-mabi=aapcs" />
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="--specs=nano.specs" />
+					<Add option="-lc" />
+					<Add option="-lnosys" />
+					<Add option="-lm" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\nrf52840Mouse.elf" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="armgcc_eb" />
+				<Option projectDeviceOptionsRelation="0" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-g2" />
+					<Add option="-fdata-sections" />
+					<Add option="-ffunction-sections" />
+				</Compiler>
+				<Linker>
+					<Add option="-Wl,--gc-sections" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add directory="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc" />
+		</Linker>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_bas\ble_bas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_dis\ble_dis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hids\ble_hids.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_advdata.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_conn_params.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_conn_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_srv_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\nrf_ble_gatt\nrf_ble_gatt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\gatt_cache_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\gatts_cache_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\id_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\peer_data_storage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\peer_database.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\peer_id.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\peer_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\pm_buffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\pm_mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\security_dispatcher.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\ble\peer_manager\security_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\boards\boards.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\clock\nrf_drv_clock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\common\nrf_drv_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\uart\nrf_drv_uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\atomic_fifo\nrf_atfifo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\balloc\nrf_balloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp_btn_ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp_nfc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\button\app_button.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\crc16\crc16.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_rtt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_serial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_default_backends.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_str_formatter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_memobj\nrf_memobj.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section_iter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fds\fds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_sd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\hardfault\hardfault_implementation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\pwr_mgmt\nrf_pwr_mgmt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\scheduler\app_scheduler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\sensorsim\sensorsim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\strerror\nrf_strerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\timer\app_timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_error_weak.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_util_platform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\util\nrf_assert.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\util\sdk_mapped_flags.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_soc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.S">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld" />
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\toolchain\system_nrf52840.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" />
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf_format.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT_printf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT_Syscalls_GCC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger>
+				<target_debugging_settings target="Debug" active_interface="J-link">
+					<debug_interface interface_id="Generic" ip_address="localhost" ip_port="4444" path="" executable="" description="" dont_start_server="false" backoff_time="2000" options="0" reg_filter="0" active_family="All" gdb_before_conn="" gdb_after_conn="">
+						<family_options family_id="All">
+							<option opt_id="ID_CMD_BEFORE" opt_value="" />
+							<option opt_id="ID_GDB_SERVER_CL" opt_value=" -device nRF52840_xxAA -endian little -if SWD -speed 4000 -noir -LocalhostOnly" />
+							<option opt_id="ID_CMD_RESET" opt_value="monitor reset" />
+							<option opt_id="ID_SERVER_TERMINATE" opt_value="0" />
+							<option opt_id="ID_CMD_AFTER" opt_value="mem 0x00000000 0x100000 r&#x0A;mem 0x20000000 0x40000 r&#x0A;set mem inaccessible-by-default on&#x0A;monitor endian little&#x0A;monitor flash device nRF52840_xxAA&#x0A;load&#x0A;monitor reset" />
+						</family_options>
+					</debug_interface>
+					<debug_interface interface_id="J-link" ip_address="localhost" ip_port="2331" path="%Software\SEGGER\J-Link:InstallPath%" executable="JLinkGDBServer.exe" description="" dont_start_server="false" backoff_time="2000" options="0" reg_filter="0" active_family="Generic" gdb_before_conn="" gdb_after_conn="">
+						<family_options family_id="Generic">
+							<option opt_id="ID_CMD_BEFORE" opt_value="" />
+							<option opt_id="ID_GDB_SERVER_CL" opt_value="-device nRF52840_xxAA -endian little -if SWD -speed 4000 -noir -LocalhostOnly" />
+							<option opt_id="ID_CMD_RESET" opt_value="monitor reset" />
+							<option opt_id="ID_CMD_AFTER" opt_value="mem 0x00000000 0x100000 r&#x0A;mem 0x20000000 0x40000 r&#x0A;set mem inaccessible-by-default on&#x0A;monitor endian little&#x0A;monitor flash device nRF52840_xxAA&#x0A;load&#x0A;monitor reset" />
+						</family_options>
+					</debug_interface>
+				</target_debugging_settings>
+			</debugger>
+			<envvars />
+		</Extensions>
+	</Project>
+</EmBitz_project_file>
