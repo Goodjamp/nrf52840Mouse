@@ -20,30 +20,4 @@ obj\debug\components\libraries\experimental_log\src\nrf_log_backend_uart.o: \
  nRF5_SDK_14.2.0_17b948a\components\device/nrf51_to_nrf52840.h \
  nRF5_SDK_14.2.0_17b948a\components\device/nrf52_to_nrf52840.h \
  nRF5_SDK_14.2.0_17b948a\components\device/compiler_abstraction.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/sdk_macros.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log/nrf_log_backend_uart.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log/nrf_log_backend_interface.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_memobj/nrf_memobj.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/sdk_errors.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\balloc/nrf_balloc.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_util_platform.h \
- nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers/nrf_soc.h \
- nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers/nrf_svc.h \
- nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers/nrf_error_soc.h \
- nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers/nrf_error.h \
- nRF5_SDK_14.2.0_17b948a\components\softdevice\s140\headers/nrf_nvic.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/nrf_assert.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_error.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_error_weak.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_util.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_serial.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log/nrf_log_backend_interface.h \
- nRF5_SDK_14.2.0_17b948a\external\fprintf/nrf_fprintf.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_internal.h \
- nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\uart/nrf_drv_uart.h \
- nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal/nrf_peripherals.h \
- nRF5_SDK_14.2.0_17b948a\components\device/nrf52840_peripherals.h \
- nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal/nrf_uart.h \
- nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal/nrf_peripherals.h \
- nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal/nrf_uarte.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_error.h
+ nRF5_SDK_14.2.0_17b948a\components\libraries\util/sdk_macros.h

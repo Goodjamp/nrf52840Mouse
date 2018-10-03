@@ -1399,3 +1399,1403 @@
 	<reent.h>
 	"SEGGER_RTT.h"
 
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
+	"sdk_common.h"
+	"ble_advdata.h"
+	"ble_advertising.h"
+	"nrf_soc.h"
+	"nrf_log.h"
+	"nrf_fstorage.h"
+	"sdk_errors.h"
+	"nrf_sdh_ble.h"
+	"nrf_sdh_soc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_common.h
+	<stdint.h>
+	<stdbool.h>
+	<string.h>
+	"sdk_config.h"
+	"nordic_common.h"
+	"compiler_abstraction.h"
+	"sdk_os.h"
+	"sdk_errors.h"
+	"app_util.h"
+	"sdk_macros.h"
+
+1538515900 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
+	"app_config.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nordic_common.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\compiler_abstraction.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_os.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_errors.h
+	<stdint.h>
+	"nrf_error.h"
+	"sdk_config.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_error.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_util.h
+	<stdint.h>
+	<stdbool.h>
+	<stddef.h>
+	"compiler_abstraction.h"
+	"nordic_common.h"
+	"nrf.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf.h
+	"nrf51.h"
+	"nrf51_bitfields.h"
+	"nrf51_deprecated.h"
+	"nrf52840.h"
+	"nrf52840_bitfields.h"
+	"nrf51_to_nrf52840.h"
+	"nrf52_to_nrf52840.h"
+	"nrf52.h"
+	"nrf52_bitfields.h"
+	"nrf51_to_nrf52.h"
+	"nrf52_name_change.h"
+	"nrf52810.h"
+	"nrf52810_bitfields.h"
+	"nrf51_to_nrf52810.h"
+	"nrf52_to_nrf52810.h"
+	"compiler_abstraction.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51.h
+	"core_cm0.h"
+	"system_nrf51.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\core_cm0.h
+	<stdint.h>
+	"core_cmInstr.h"
+	"core_cmFunc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\core_cminstr.h
+	"cmsis_armcc.h"
+	"cmsis_armcc_V6.h"
+	"cmsis_gcc.h"
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+	<cmsis_csm.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\cmsis_armcc.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\cmsis_armcc_v6.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\cmsis_gcc.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\core_cmfunc.h
+	"cmsis_armcc.h"
+	"cmsis_armcc_V6.h"
+	"cmsis_gcc.h"
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+	<cmsis_csm.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\system_nrf51.h
+	<stdint.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51_bitfields.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51_deprecated.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52840.h
+	"core_cm4.h"
+	"system_nrf52840.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\core_cm4.h
+	<stdint.h>
+	"core_cmInstr.h"
+	"core_cmFunc.h"
+	"core_cmSimd.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\cmsis\include\core_cmsimd.h
+	"cmsis_armcc.h"
+	"cmsis_armcc_V6.h"
+	"cmsis_gcc.h"
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+	<cmsis_csm.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\system_nrf52840.h
+	<stdint.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52840_bitfields.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51_to_nrf52840.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52_to_nrf52840.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52.h
+	"core_cm4.h"
+	"system_nrf52.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\system_nrf52.h
+	<stdint.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52_bitfields.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51_to_nrf52.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52_name_change.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52810.h
+	"core_cm4.h"
+	"system_nrf52810.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\system_nrf52810.h
+	<stdint.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52810_bitfields.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51_to_nrf52810.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52_to_nrf52810.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_macros.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_advdata.h
+	<stdint.h>
+	<stdbool.h>
+	<string.h>
+	"ble.h"
+	"app_util.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble.h
+	"ble_ranges.h"
+	"ble_types.h"
+	"ble_gap.h"
+	"ble_l2cap.h"
+	"ble_gatt.h"
+	"ble_gattc.h"
+	"ble_gatts.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_ranges.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_types.h
+	<stdint.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_gap.h
+	"ble_types.h"
+	"ble_ranges.h"
+	"nrf_svc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_svc.h
+	"stdint.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_l2cap.h
+	"ble_types.h"
+	"ble_ranges.h"
+	"ble_err.h"
+	"nrf_svc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_err.h
+	"nrf_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_gatt.h
+	"ble_types.h"
+	"ble_ranges.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_gattc.h
+	"ble_gatt.h"
+	"ble_types.h"
+	"ble_ranges.h"
+	"nrf_svc.h"
+	"nrf_error.h"
+	"nrf.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_gatts.h
+	"ble_types.h"
+	"ble_ranges.h"
+	"ble_l2cap.h"
+	"ble_gap.h"
+	"ble_gatt.h"
+	"nrf_svc.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.h
+	<stdint.h>
+	"nrf_error.h"
+	"ble.h"
+	"ble_gattc.h"
+	"ble_advdata.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_soc.h
+	<stdint.h>
+	<stdbool.h>
+	"nrf_svc.h"
+	"nrf.h"
+	"nrf_error_soc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_error_soc.h
+	"nrf_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log.h
+	"sdk_common.h"
+	"nrf_section.h"
+	"nrf_strerror.h"
+	"nrf_log_internal.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section.h
+	"nordic_common.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\strerror\nrf_strerror.h
+	"sdk_errors.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_internal.h
+	"sdk_common.h"
+	"nrf.h"
+	"nrf_error.h"
+	"app_util.h"
+	<stdint.h>
+	<stdbool.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.h
+	<stdint.h>
+	<stdbool.h>
+	"sdk_errors.h"
+	"nrf_section.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.h
+	"app_util.h"
+	"ble.h"
+	"nrf_section_iter.h"
+	"sdk_config.h"
+	"sdk_errors.h"
+	<stdint.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section_iter.h
+	<stddef.h>
+	"nrf_section.h"
+	"nrf_assert.h"
+	"app_util.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nrf_assert.h
+	<stdint.h>
+	"nrf.h"
+	"app_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_error.h
+	<stdint.h>
+	<stdio.h>
+	<stdbool.h>
+	"nrf.h"
+	"sdk_errors.h"
+	"nordic_common.h"
+	"app_error_weak.h"
+	"ant_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_error_weak.h
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh_soc.h
+	"app_util.h"
+	"nrf_section_iter.h"
+	"nrf_soc.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_bas\ble_bas.c
+	"sdk_common.h"
+	"ble_bas.h"
+	<string.h>
+	"ble_srv_common.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_bas\ble_bas.h
+	<stdint.h>
+	<stdbool.h>
+	"ble.h"
+	"ble_srv_common.h"
+	"nrf_sdh_ble.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_srv_common.h
+	<stdint.h>
+	<stdbool.h>
+	"ble_types.h"
+	"app_util.h"
+	"ble.h"
+	"ble_gap.h"
+	"ble_gatt.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_dis\ble_dis.c
+	"sdk_common.h"
+	"ble_dis.h"
+	<stdlib.h>
+	<string.h>
+	"app_error.h"
+	"ble_gatts.h"
+	"ble_srv_common.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_dis\ble_dis.h
+	<stdint.h>
+	"ble_srv_common.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_hids\ble_hids.c
+	"sdk_common.h"
+	"ble_hids.h"
+	<string.h>
+	"app_error.h"
+	"ble_srv_common.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_services\ble_hids\ble_hids.h
+	<stdint.h>
+	<stdbool.h>
+	"ble.h"
+	"ble_srv_common.h"
+	"nrf_sdh_ble.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_advdata.c
+	"ble_advdata.h"
+	"ble_gap.h"
+	"ble_srv_common.h"
+	"sdk_common.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_conn_params.c
+	"sdk_common.h"
+	<stdlib.h>
+	"nrf.h"
+	"sdk_errors.h"
+	"ble_hci.h"
+	"ble_err.h"
+	"ble_conn_params.h"
+	"ble_srv_common.h"
+	"ble_conn_state.h"
+	"nrf_sdh_ble.h"
+	"app_timer.h"
+	"app_util.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\ble_hci.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_conn_params.h
+	<stdint.h>
+	"ble.h"
+	"ble_srv_common.h"
+	"sdk_errors.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_conn_state.h
+	<stdbool.h>
+	<stdint.h>
+	"ble.h"
+	"sdk_mapped_flags.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_mapped_flags.h
+	<stdint.h>
+	<stdbool.h>
+	"app_util.h"
+	"compiler_abstraction.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\timer\app_timer.h
+	"sdk_config.h"
+	"app_error.h"
+	"app_util.h"
+	"compiler_abstraction.h"
+	"nordic_common.h"
+	<stdint.h>
+	<stdbool.h>
+	<stdio.h>
+	"FreeRTOSConfig.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_conn_state.c
+	"ble_conn_state.h"
+	<stdbool.h>
+	<stdint.h>
+	<string.h>
+	"ble.h"
+	"sdk_mapped_flags.h"
+	"app_error.h"
+	"nrf_sdh_ble.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_srv_common.c
+	"ble_srv_common.h"
+	<string.h>
+	"nordic_common.h"
+	"app_error.h"
+	"ble.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\nrf_ble_gatt\nrf_ble_gatt.c
+	"sdk_common.h"
+	"nrf_ble_gatt.h"
+	"nrf_log.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\nrf_ble_gatt\nrf_ble_gatt.h
+	<stdint.h>
+	<stdbool.h>
+	<string.h>
+	"ble.h"
+	"ble_gatt.h"
+	"sdk_config.h"
+	"sdk_errors.h"
+	"app_util.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\gatt_cache_manager.c
+	"sdk_common.h"
+	"gatt_cache_manager.h"
+	"ble_gap.h"
+	"ble_err.h"
+	"ble_conn_state.h"
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+	"id_manager.h"
+	"gatts_cache_manager.h"
+	"peer_database.h"
+	"pm_mutex.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\gatt_cache_manager.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_manager_types.h
+	<stdint.h>
+	<stdbool.h>
+	<stddef.h>
+	"nrf.h"
+	"ble_gap.h"
+	"ble_hci.h"
+	"ble_gatt_db.h"
+	"app_util.h"
+	"app_util_platform.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\common\ble_gatt_db.h
+	<stdint.h>
+	"ble.h"
+	"ble_gattc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_util_platform.h
+	<stdint.h>
+	"compiler_abstraction.h"
+	"nrf.h"
+	"nrf_soc.h"
+	"nrf_nvic.h"
+	"nrf_assert.h"
+	"app_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_nvic.h
+	<stdint.h>
+	"nrf.h"
+	"nrf_error_soc.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_manager_internal.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\id_manager.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\gatts_cache_manager.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_database.h
+	<stdint.h>
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+	"sdk_errors.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\pm_mutex.h
+	<stdint.h>
+	<stdbool.h>
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\gatts_cache_manager.c
+	"sdk_common.h"
+	"gatts_cache_manager.h"
+	<string.h>
+	"ble_gap.h"
+	"ble_err.h"
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+	"peer_database.h"
+	"id_manager.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\id_manager.c
+	"sdk_common.h"
+	"id_manager.h"
+	<string.h>
+	"ble.h"
+	"ble_gap.h"
+	"ble_err.h"
+	"ble_conn_state.h"
+	"peer_manager_types.h"
+	"peer_database.h"
+	"peer_data_storage.h"
+	"nrf_soc.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_data_storage.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_data_storage.c
+	"sdk_common.h"
+	"peer_data_storage.h"
+	<stdint.h>
+	<string.h>
+	"sdk_errors.h"
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+	"peer_id.h"
+	"fds.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_id.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fds\fds.h
+	<stdint.h>
+	<stdbool.h>
+	"sdk_errors.h"
+	"app_util_platform.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_database.c
+	"sdk_common.h"
+	"peer_database.h"
+	<string.h>
+	"peer_manager_types.h"
+	"peer_manager_internal.h"
+	"peer_data_storage.h"
+	"pm_buffer.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\pm_buffer.h
+	<stdint.h>
+	"compiler_abstraction.h"
+	"sdk_errors.h"
+	"pm_mutex.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_id.c
+	"sdk_common.h"
+	"peer_id.h"
+	<stdint.h>
+	<string.h>
+	"sdk_errors.h"
+	"peer_manager_types.h"
+	"pm_mutex.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_manager.c
+	"sdk_common.h"
+	"ble_err.h"
+	"peer_manager.h"
+	<string.h>
+	"security_manager.h"
+	"security_dispatcher.h"
+	"gatt_cache_manager.h"
+	"gatts_cache_manager.h"
+	"peer_database.h"
+	"peer_data_storage.h"
+	"id_manager.h"
+	"ble_conn_state.h"
+	"peer_manager_internal.h"
+	"nrf_sdh_ble.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\peer_manager.h
+	<stdint.h>
+	<stdbool.h>
+	"sdk_common.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+	"peer_database.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\security_manager.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+	"security_dispatcher.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\security_dispatcher.h
+	<stdint.h>
+	"sdk_errors.h"
+	"ble.h"
+	"ble_gap.h"
+	"peer_manager_types.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\pm_buffer.c
+	"sdk_common.h"
+	"pm_buffer.h"
+	<stdbool.h>
+	<string.h>
+	"nrf_error.h"
+	"pm_mutex.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\pm_mutex.c
+	"sdk_common.h"
+	"pm_mutex.h"
+	<stdbool.h>
+	<string.h>
+	"nrf_error.h"
+	"app_util_platform.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\security_dispatcher.c
+	"sdk_common.h"
+	"security_dispatcher.h"
+	<string.h>
+	"ble.h"
+	"ble_gap.h"
+	"ble_err.h"
+	"ble_conn_state.h"
+	"peer_manager_types.h"
+	"peer_database.h"
+	"id_manager.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\peer_manager\security_manager.c
+	"sdk_common.h"
+	"security_manager.h"
+	<string.h>
+	"ble_err.h"
+	"security_dispatcher.h"
+	"peer_database.h"
+	"ble_conn_state.h"
+	"id_manager.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\boards.c
+	"boards.h"
+	<stdint.h>
+	<stdbool.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\boards.h
+	"nrf_gpio.h"
+	"nrf6310.h"
+	"pca10000.h"
+	"pca10001.h"
+	"pca10000.h"
+	"pca10003.h"
+	"pca20006.h"
+	"pca10028.h"
+	"pca10031.h"
+	"pca10036.h"
+	"pca10040.h"
+	"pca10056.h"
+	"wt51822.h"
+	"n5_starterkit.h"
+	"d52_starterkit.h"
+	"arduino_primo.h"
+	"custom_board.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_gpio.h
+	"nrf.h"
+	"nrf_peripherals.h"
+	"nrf_assert.h"
+	<stdbool.h>
+	<stdlib.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_peripherals.h
+	"nrf51422_peripherals.h"
+	"nrf51802_peripherals.h"
+	"nrf51822_peripherals.h"
+	"nrf52810_peripherals.h"
+	"nrf52832_peripherals.h"
+	"nrf52840_peripherals.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51422_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51802_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf51822_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52810_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52832_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\device\nrf52840_peripherals.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\nrf6310.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10000.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10001.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10003.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca20006.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10028.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10031.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10036.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10040.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\pca10056.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\wt51822.h
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\n5_starterkit.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\d52_starterkit.h
+	"nrf_gpio.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\boards\arduino_primo.h
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\clock\nrf_drv_clock.c
+	"sdk_common.h"
+	"nrf_drv_clock.h"
+	"nrf_error.h"
+	"app_util_platform.h"
+	"nrf_sdh.h"
+	"nrf_sdh_soc.h"
+	"nrf_log.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\clock\nrf_drv_clock.h
+	<stdbool.h>
+	<stdint.h>
+	"sdk_errors.h"
+	"nrf_assert.h"
+	"nrf_clock.h"
+	"sdk_config.h"
+	"nrf_drv_common.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_clock.h
+	<stddef.h>
+	<stdbool.h>
+	"nrf.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\common\nrf_drv_common.h
+	<stdint.h>
+	<stdbool.h>
+	"nrf.h"
+	"sdk_errors.h"
+	"sdk_common.h"
+	"nrf_assert.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh.h
+	"sdk_config.h"
+	"sdk_errors.h"
+	"nrf_section_iter.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\common\nrf_drv_common.c
+	<stddef.h>
+	"nrf_drv_common.h"
+	"nrf_assert.h"
+	"app_util_platform.h"
+	"nrf_peripherals.h"
+	"nrf_drv_power.h"
+	"nrf_drv_clock.h"
+	"nrf_soc.h"
+	"nrf_log.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\power\nrf_drv_power.h
+	<stdbool.h>
+	<stdint.h>
+	"nrf_power.h"
+	"sdk_config.h"
+	"nrf_drv_common.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_power.h
+	"nrf.h"
+	"sdk_config.h"
+	"nordic_common.h"
+	"nrf_assert.h"
+	<stdint.h>
+	<stddef.h>
+	<stdbool.h>
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.c
+	"sdk_common.h"
+	"nrf_drv_gpiote.h"
+	"nrf_drv_common.h"
+	"app_util_platform.h"
+	"nrf_assert.h"
+	"nrf_bitmask.h"
+	<string.h>
+	"nrf_log.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.h
+	"nrf_gpiote.h"
+	"nrf_gpio.h"
+	"sdk_errors.h"
+	<stdint.h>
+	<stdbool.h>
+	"sdk_config.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_gpiote.h
+	"nrf_peripherals.h"
+	"nrf.h"
+	<stdint.h>
+	<stddef.h>
+	<stdbool.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nrf_bitmask.h
+	"compiler_abstraction.h"
+	<stdint.h>
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\uart\nrf_drv_uart.c
+	"sdk_common.h"
+	"nrf_drv_uart.h"
+	"nrf_assert.h"
+	"nrf_drv_common.h"
+	"nrf_gpio.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\uart\nrf_drv_uart.h
+	"nrf_peripherals.h"
+	"nrf_uart.h"
+	"nrf_uarte.h"
+	"sdk_errors.h"
+	"sdk_config.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_uart.h
+	"nrf.h"
+	"nrf_peripherals.h"
+	<stdint.h>
+	<stddef.h>
+	<stdbool.h>
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_uarte.h
+	"nrf.h"
+	"nrf_peripherals.h"
+	<stdint.h>
+	<stddef.h>
+	<stdbool.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\atomic_fifo\nrf_atfifo.c
+	<string.h>
+	"app_util.h"
+	"nrf_atfifo.h"
+	"nrf_atfifo_internal.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\atomic_fifo\nrf_atfifo.h
+	<stdint.h>
+	"nordic_common.h"
+	"nrf_assert.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\atomic_fifo\nrf_atfifo_internal.h
+	<stddef.h>
+	"nrf.h"
+	"app_util.h"
+	"nordic_common.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\balloc\nrf_balloc.c
+	"sdk_common.h"
+	"nrf_balloc.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\balloc\nrf_balloc.h
+	"sdk_errors.h"
+	"sdk_config.h"
+	"app_util_platform.h"
+	"app_util.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp.c
+	"bsp.h"
+	<stddef.h>
+	<stdio.h>
+	"nordic_common.h"
+	"nrf.h"
+	"nrf_gpio.h"
+	"nrf_error.h"
+	"bsp_config.h"
+	"boards.h"
+	"app_timer.h"
+	"app_button.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp.h
+	<stdint.h>
+	<stdbool.h>
+	"boards.h"
+	"app_button.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\button\app_button.h
+	<stdint.h>
+	<stdbool.h>
+	"nrf.h"
+	"app_error.h"
+	"nrf_gpio.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp_config.h
+	<stdint.h>
+	<stdbool.h>
+	"boards.h"
+	"app_button.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp_btn_ble.c
+	"bsp_btn_ble.h"
+	"nrf_sdh_ble.h"
+	"bsp.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp_btn_ble.h
+	<stdint.h>
+	"ble.h"
+	"bsp.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp_nfc.c
+	"bsp_nfc.h"
+	"bsp.h"
+	"nrf.h"
+	"app_util_platform.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\bsp\bsp_nfc.h
+	<stdint.h>
+	"sdk_errors.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\button\app_button.c
+	"sdk_common.h"
+	"app_button.h"
+	"app_timer.h"
+	"app_error.h"
+	"nrf_drv_gpiote.h"
+	"nrf_assert.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\crc16\crc16.c
+	"sdk_common.h"
+	"crc16.h"
+	<stdlib.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\crc16\crc16.h
+	<stdint.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_rtt.c
+	"sdk_common.h"
+	"nrf_log_backend_rtt.h"
+	"nrf_log_backend_serial.h"
+	"nrf_log_str_formatter.h"
+	"nrf_log_internal.h"
+	<SEGGER_RTT_Conf.h>
+	<SEGGER_RTT.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_backend_rtt.h
+	"nrf_log_backend_interface.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_backend_interface.h
+	"nrf_memobj.h"
+	<stdint.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_memobj\nrf_memobj.h
+	<stdint.h>
+	<stdlib.h>
+	"sdk_errors.h"
+	"nrf_balloc.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_serial.h
+	"nrf_log_backend_interface.h"
+	"nrf_fprintf.h"
+
+1538513116 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\fprintf\nrf_fprintf.h
+	<stdbool.h>
+	<stddef.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_str_formatter.h
+	<stdint.h>
+	"nrf_fprintf.h"
+	"nrf_log_ctrl.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_ctrl.h
+	"sdk_config.h"
+	"sdk_errors.h"
+	<stdint.h>
+	<stdbool.h>
+	"nrf_log_ctrl_internal.h"
+	"nrf_log_backend_interface.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_ctrl_internal.h
+	"sdk_common.h"
+
+1538513117 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\segger_rtt\segger_rtt_conf.h
+	"nordic_common.h"
+	"app_util_platform.h"
+	"sdk_config.h"
+	<intrinsics.h>
+
+1538513117 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\segger_rtt\segger_rtt.h
+	"SEGGER_RTT_Conf.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_serial.c
+	"sdk_common.h"
+	"nrf_log_backend_serial.h"
+	"nrf_log_str_formatter.h"
+	"nrf_log_internal.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_backend_uart.c
+	"sdk_common.h"
+	"nrf_log_backend_uart.h"
+	"nrf_log_backend_serial.h"
+	"nrf_log_internal.h"
+	"nrf_drv_uart.h"
+	"app_error.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_backend_uart.h
+	"nrf_log_backend_interface.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_default_backends.c
+	"sdk_common.h"
+	"nrf_log_default_backends.h"
+	"nrf_log_ctrl.h"
+	"nrf_log_internal.h"
+	"nrf_assert.h"
+	"nrf_log_backend_rtt.h"
+	"nrf_log_backend_uart.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\nrf_log_default_backends.h
+	"sdk_config.h"
+	"sdk_errors.h"
+	<stdbool.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c
+	"sdk_common.h"
+	"app_util.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+	"nrf_log_internal.h"
+	"nrf_log_ctrl.h"
+	"nrf_section.h"
+	"nrf_memobj.h"
+	"nrf_atomic.h"
+	<string.h>
+	"nrf_cli.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\atomic\nrf_atomic.h
+	"sdk_common.h"
+	"app_util_platform.h"
+	"nrf_atomic_internal.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\atomic\nrf_atomic_internal.h
+	"sdk_common.h"
+	<stdbool.h>
+	<stdint.h>
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\cli\nrf_cli.h
+	"sdk_common.h"
+	"nrf_cli_types.h"
+	"nrf_section.h"
+	"nrf_log_backend_interface.h"
+	"nrf_queue.h"
+	"nrf_log_ctrl.h"
+	"app_util_platform.h"
+	"task_manager.h"
+	"nrf_fprintf.h"
+	"nrf_fprintf_format.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\cli\nrf_cli_types.h
+	<inttypes.h>
+	"sdk_config.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\queue\nrf_queue.h
+	<stdint.h>
+	<stdint.h>
+	<string.h>
+	"nrf_assert.h"
+	"sdk_errors.h"
+	"app_util.h"
+	"app_util_platform.h"
+
+1538513116 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\fprintf\nrf_fprintf_format.h
+	<stdarg.h>
+	"nrf_fprintf.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_str_formatter.c
+	"sdk_common.h"
+	"nrf_log_str_formatter.h"
+	"nrf_log_internal.h"
+	"nrf_log_ctrl.h"
+	"nrf_fprintf.h"
+	<ctype.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_memobj\nrf_memobj.c
+	"nrf_memobj.h"
+	"nrf_atomic.h"
+	"nrf_assert.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section_iter.c
+	"sdk_common.h"
+	"nrf_section_iter.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fds\fds.c
+	"sdk_common.h"
+	"fds.h"
+	"fds_internal_defs.h"
+	<stdint.h>
+	<string.h>
+	<stdbool.h>
+	"nrf_error.h"
+	"nrf_atomic.h"
+	"nrf_atfifo.h"
+	"nrf_fstorage.h"
+	"nrf_fstorage_sd.h"
+	"nrf_fstorage_nvmc.h"
+	"crc16.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fds\fds_internal_defs.h
+	"sdk_config.h"
+	<stdint.h>
+	<stdbool.h>
+	"nrf_soc.h"
+	"app_util_platform.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_sd.h
+	"nrf_fstorage.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.h
+	"nrf_fstorage.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.c
+	"sdk_config.h"
+	"nrf_fstorage.h"
+	<stddef.h>
+	<stdint.h>
+	"sdk_errors.h"
+	"nrf_section.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_sd.c
+	"sdk_common.h"
+	"nrf_fstorage_sd.h"
+	<stdint.h>
+	<string.h>
+	<stdbool.h>
+	"nordic_common.h"
+	"nrf_soc.h"
+	"nrf_sdh.h"
+	"nrf_sdh_soc.h"
+	"nrf_atomic.h"
+	"nrf_atfifo.h"
+	"app_util_platform.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\hardfault\hardfault_implementation.c
+	"sdk_common.h"
+	"hardfault.h"
+	"nrf.h"
+	"compiler_abstraction.h"
+	"app_util_platform.h"
+	"nrf_soc.h"
+	"nrf_log.h"
+	"nrf_log_ctrl.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\hardfault\hardfault.h
+	<stdint.h>
+	<stddef.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\pwr_mgmt\nrf_pwr_mgmt.c
+	"sdk_common.h"
+	"nrf_pwr_mgmt.h"
+	"nrf.h"
+	"nrf_mtx.h"
+	"nrf_power.h"
+	"app_error.h"
+	"nrf_assert.h"
+	"nrf_log_ctrl.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+	"nrf_soc.h"
+	"nrf_sdh.h"
+	"app_scheduler.h"
+	"nrf_gpio.h"
+	"app_timer.h"
+	"app_timer.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\pwr_mgmt\nrf_pwr_mgmt.h
+	<stdbool.h>
+	<stdint.h>
+	<sdk_errors.h>
+	"nrf_section_iter.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\mutex\nrf_mtx.h
+	<stdint.h>
+	<stdbool.h>
+	"nrf.h"
+	"nrf_atomic.h"
+	"nrf_assert.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\scheduler\app_scheduler.h
+	"sdk_config.h"
+	<stdint.h>
+	"app_error.h"
+	"app_util.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\scheduler\app_scheduler.c
+	"sdk_common.h"
+	"app_scheduler.h"
+	<stdlib.h>
+	<stdint.h>
+	<string.h>
+	"nrf_soc.h"
+	"nrf_assert.h"
+	"app_util_platform.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\sensorsim\sensorsim.c
+	"sensorsim.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\sensorsim\sensorsim.h
+	<stdint.h>
+	<stdbool.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\strerror\nrf_strerror.c
+	"sdk_common.h"
+	"nrf_strerror.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\timer\app_timer.c
+	"sdk_common.h"
+	"app_timer.h"
+	<stdlib.h>
+	"nrf.h"
+	"nrf_soc.h"
+	"app_error.h"
+	"nrf_delay.h"
+	"app_util_platform.h"
+	"app_scheduler.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\delay\nrf_delay.h
+	"nrf.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_error.c
+	"nrf.h"
+	<stdio.h>
+	"app_error.h"
+	"nordic_common.h"
+	"sdk_errors.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_error_weak.c
+	"app_error.h"
+	"nrf_log.h"
+	"nrf_log_ctrl.h"
+	"nrf_strerror.h"
+	"nrf_sdm.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_sdm.h
+	"nrf_svc.h"
+	"nrf.h"
+	"nrf_soc.h"
+	"nrf_error_sdm.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\s140\headers\nrf_error_sdm.h
+	"nrf_error.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\app_util_platform.c
+	"app_util_platform.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nrf_assert.c
+	"nrf_assert.h"
+	"app_error.h"
+	"nordic_common.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\sdk_mapped_flags.c
+	"sdk_mapped_flags.h"
+	<stdint.h>
+	<stdbool.h>
+	<stddef.h>
+	"compiler_abstraction.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh.c
+	"sdk_common.h"
+	"nrf_sdh.h"
+	<stdint.h>
+	"nrf_sdm.h"
+	"nrf_nvic.h"
+	"sdk_config.h"
+	"app_error.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+	"app_scheduler.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c
+	"sdk_common.h"
+	"nrf_sdh_ble.h"
+	"nrf_sdh.h"
+	"app_error.h"
+	"nrf_strerror.h"
+	"nrf_log.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\softdevice\common\nrf_sdh_soc.c
+	"sdk_common.h"
+	"nrf_sdh_soc.h"
+	"nrf_sdh.h"
+	"nrf_soc.h"
+	"app_error.h"
+	"nrf_log.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.s
+	"startup_config.h"
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\toolchain\system_nrf52840.c
+	<stdint.h>
+	<stdbool.h>
+	"nrf.h"
+	"system_nrf52840.h"
+
+1538518793 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+	<stdint.h>
+	<string.h>
+	"nordic_common.h"
+	"nrf.h"
+	"nrf_sdm.h"
+	"app_error.h"
+	"ble.h"
+	"ble_err.h"
+	"ble_hci.h"
+	"ble_srv_common.h"
+	"ble_advdata.h"
+	"ble_hids.h"
+	"ble_bas.h"
+	"ble_dis.h"
+	"ble_conn_params.h"
+	"sensorsim.h"
+	"bsp_btn_ble.h"
+	"app_scheduler.h"
+	"nrf_sdh.h"
+	"nrf_sdh_soc.h"
+	"nrf_sdh_ble.h"
+	"app_timer.h"
+	"peer_manager.h"
+	"ble_advertising.h"
+	"fds.h"
+	"ble_conn_state.h"
+	"nrf_ble_gatt.h"
+	"nrf_log.h"
+	"nrf_log_ctrl.h"
+	"nrf_log_default_backends.h"
+
+1538513116 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\fprintf\nrf_fprintf.c
+	"sdk_common.h"
+	<stdarg.h>
+	"nrf_assert.h"
+	"nrf_fprintf_format.h"
+
+1538513116 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\fprintf\nrf_fprintf_format.c
+	"sdk_common.h"
+	<stdarg.h>
+	"nrf_assert.h"
+	"nrf_fprintf.h"
+	"nrf_fprintf_format.h"
+
+1538513117 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\segger_rtt\segger_rtt.c
+	"SEGGER_RTT.h"
+	<string.h>
+
+1538513117 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\segger_rtt\segger_rtt_printf.c
+	"SEGGER_RTT.h"
+	"SEGGER_RTT_Conf.h"
+	<stdlib.h>
+	<stdarg.h>
+
+1538513117 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\segger_rtt\segger_rtt_syscalls_gcc.c
+	"sdk_config.h"
+	<reent.h>
+	"SEGGER_RTT.h"
+

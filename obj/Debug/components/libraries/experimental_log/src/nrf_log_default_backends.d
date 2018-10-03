@@ -40,4 +40,4 @@ obj\debug\components\libraries\experimental_log\src\nrf_log_default_backends.o: 
  nRF5_SDK_14.2.0_17b948a\components\libraries\util/app_util.h \
  nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_internal.h \
  nRF5_SDK_14.2.0_17b948a\components\libraries\util/nrf_assert.h \
- nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log/nrf_log_backend_uart.h
+ nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log/nrf_log_backend_rtt.h

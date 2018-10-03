@@ -12,7 +12,6 @@
 				<Option object_output="obj\Debug\" />
 				<Option type="0" />
 				<Option compiler="armgcc_eb" />
-				<Option projectDeviceOptionsRelation="0" />
 				<Device>
 					<Add option="$device=cortex-m4" />
 					<Add option="$lscript=.\nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" />
@@ -182,6 +181,8 @@
 					<Add option="-lc" />
 					<Add option="-lnosys" />
 					<Add option="-lm" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc" />
+					<Add directory="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc" />
 				</Linker>
 			</Target>
 			<Target title="Release">
