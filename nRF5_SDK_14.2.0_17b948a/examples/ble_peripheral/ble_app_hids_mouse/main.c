@@ -172,6 +172,19 @@ static ble_uuid_t        m_adv_uuids[] =                                        
 
 static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
 
+static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
+static void pm_evt_handler(pm_evt_t const * p_evt);
+
+
+struct
+{
+    bool remConnet;
+}advState =
+{
+    .remConnet = false
+};
+
+
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -246,6 +259,8 @@ static void advertising_start(bool erase_bonds)
 
         peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
 
+         NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
+
         ret = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
         APP_ERROR_CHECK(ret);
 
@@ -262,136 +277,6 @@ static void advertising_start(bool erase_bonds)
     }
 }
 
-
-/**@brief Function for handling Peer Manager events.
- *
- * @param[in] p_evt  Peer Manager event.
- */
-static void pm_evt_handler(pm_evt_t const * p_evt)
-{
-    ret_code_t err_code;
-
-    switch (p_evt->evt_id)
-    {
-        case PM_EVT_BONDED_PEER_CONNECTED:
-        {
-            NRF_LOG_INFO("Connected to a previously bonded device.");
-        } break;
-
-        case PM_EVT_CONN_SEC_SUCCEEDED:
-        {
-            NRF_LOG_INFO("Connection secured: role: %d, conn_handle: 0x%x, procedure: %d.",
-                         ble_conn_state_role(p_evt->conn_handle),
-                         p_evt->conn_handle,
-                         p_evt->params.conn_sec_succeeded.procedure);
-
-            m_peer_id = p_evt->peer_id;
-        } break;
-
-        case PM_EVT_CONN_SEC_FAILED:
-        {
-            /* Often, when securing fails, it shouldn't be restarted, for security reasons.
-             * Other times, it can be restarted directly.
-             * Sometimes it can be restarted, but only after changing some Security Parameters.
-             * Sometimes, it cannot be restarted until the link is disconnected and reconnected.
-             * Sometimes it is impossible, to secure the link, or the peer device does not support it.
-             * How to handle this error is highly application dependent. */
-        } break;
-
-        case PM_EVT_CONN_SEC_CONFIG_REQ:
-        {
-            // Reject pairing request from an already bonded peer.
-            pm_conn_sec_config_t conn_sec_config = {.allow_repairing = false};
-            pm_conn_sec_config_reply(p_evt->conn_handle, &conn_sec_config);
-        } break;
-
-        case PM_EVT_STORAGE_FULL:
-        {
-            // Run garbage collection on the flash.
-            err_code = fds_gc();
-            if (err_code == FDS_ERR_BUSY || err_code == FDS_ERR_NO_SPACE_IN_QUEUES)
-            {
-                // Retry.
-            }
-            else
-            {
-                APP_ERROR_CHECK(err_code);
-            }
-        } break;
-
-        case PM_EVT_PEERS_DELETE_SUCCEEDED:
-        {
-            advertising_start(false);
-        } break;
-
-        case PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED:
-        {
-            // The local database has likely changed, send service changed indications.
-            pm_local_database_has_changed();
-        } break;
-
-        case PM_EVT_PEER_DATA_UPDATE_SUCCEEDED:
-        {
-            if (     p_evt->params.peer_data_update_succeeded.flash_changed
-                 && (p_evt->params.peer_data_update_succeeded.data_id == PM_PEER_DATA_ID_BONDING))
-            {
-                NRF_LOG_INFO("New Bond, add the peer to the whitelist if possible");
-                NRF_LOG_INFO("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d",
-                               m_whitelist_peer_cnt + 1,
-                               BLE_GAP_WHITELIST_ADDR_MAX_COUNT);
-                // Note: You should check on what kind of white list policy your application should use.
-
-                if (m_whitelist_peer_cnt < BLE_GAP_WHITELIST_ADDR_MAX_COUNT)
-                {
-                    // Bonded to a new peer, add it to the whitelist.
-                    m_whitelist_peers[m_whitelist_peer_cnt++] = m_peer_id;
-
-                    // The whitelist has been modified, update it in the Peer Manager.
-                    err_code = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
-                    APP_ERROR_CHECK(err_code);
-
-                    err_code = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
-                    if (err_code != NRF_ERROR_NOT_SUPPORTED)
-                    {
-                        APP_ERROR_CHECK(err_code);
-                    }
-                }
-            }
-        } break;
-
-        case PM_EVT_PEER_DATA_UPDATE_FAILED:
-        {
-            // Assert.
-            APP_ERROR_CHECK(p_evt->params.peer_data_update_failed.error);
-        } break;
-
-        case PM_EVT_PEER_DELETE_FAILED:
-        {
-            // Assert.
-            APP_ERROR_CHECK(p_evt->params.peer_delete_failed.error);
-        } break;
-
-        case PM_EVT_PEERS_DELETE_FAILED:
-        {
-            // Assert.
-            APP_ERROR_CHECK(p_evt->params.peers_delete_failed_evt.error);
-        } break;
-
-        case PM_EVT_ERROR_UNEXPECTED:
-        {
-            // Assert.
-            APP_ERROR_CHECK(p_evt->params.error_unexpected.error);
-        } break;
-
-        case PM_EVT_CONN_SEC_START:
-        case PM_EVT_PEER_DELETE_SUCCEEDED:
-        case PM_EVT_LOCAL_DB_CACHE_APPLIED:
-        case PM_EVT_SERVICE_CHANGED_IND_SENT:
-        case PM_EVT_SERVICE_CHANGED_IND_CONFIRMED:
-        default:
-            break;
-    }
-}
 
 
 /**@brief Function for handling Service errors.
@@ -948,102 +833,6 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 }
 
 
-/**@brief Function for handling BLE events.
- *
- * @param[in]   p_ble_evt   Bluetooth stack event.
- * @param[in]   p_context   Unused.
- */
-static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
-{
-    ret_code_t err_code;
-
-    switch (p_ble_evt->header.evt_id)
-    {
-        case BLE_GAP_EVT_CONNECTED:
-            NRF_LOG_INFO("Connected");
-            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
-            APP_ERROR_CHECK(err_code);
-
-            m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-            break;
-
-        case BLE_GAP_EVT_DISCONNECTED:
-            NRF_LOG_INFO("Disconnected");
-            // LED indication will be changed when advertising starts.
-
-            m_conn_handle = BLE_CONN_HANDLE_INVALID;
-            break;
-
-#ifndef S140
-        case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
-        {
-            NRF_LOG_DEBUG("PHY update request.");
-            ble_gap_phys_t const phys =
-            {
-                .rx_phys = BLE_GAP_PHY_AUTO,
-                .tx_phys = BLE_GAP_PHY_AUTO,
-            };
-            err_code = sd_ble_gap_phy_update(p_ble_evt->evt.gap_evt.conn_handle, &phys);
-            APP_ERROR_CHECK(err_code);
-        } break;
-#endif
-
-        case BLE_GATTC_EVT_TIMEOUT:
-            // Disconnect on GATT Client timeout event.
-            NRF_LOG_DEBUG("GATT Client Timeout.");
-            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gattc_evt.conn_handle,
-                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_GATTS_EVT_TIMEOUT:
-            // Disconnect on GATT Server timeout event.
-            NRF_LOG_DEBUG("GATT Server Timeout.");
-            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gatts_evt.conn_handle,
-                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_EVT_USER_MEM_REQUEST:
-            err_code = sd_ble_user_mem_reply(m_conn_handle, NULL);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST:
-        {
-            ble_gatts_evt_rw_authorize_request_t  req;
-            ble_gatts_rw_authorize_reply_params_t auth_reply;
-
-            req = p_ble_evt->evt.gatts_evt.params.authorize_request;
-
-            if (req.type != BLE_GATTS_AUTHORIZE_TYPE_INVALID)
-            {
-                if ((req.request.write.op == BLE_GATTS_OP_PREP_WRITE_REQ)     ||
-                    (req.request.write.op == BLE_GATTS_OP_EXEC_WRITE_REQ_NOW) ||
-                    (req.request.write.op == BLE_GATTS_OP_EXEC_WRITE_REQ_CANCEL))
-                {
-                    if (req.type == BLE_GATTS_AUTHORIZE_TYPE_WRITE)
-                    {
-                        auth_reply.type = BLE_GATTS_AUTHORIZE_TYPE_WRITE;
-                    }
-                    else
-                    {
-                        auth_reply.type = BLE_GATTS_AUTHORIZE_TYPE_READ;
-                    }
-                    auth_reply.params.write.gatt_status = APP_FEATURE_NOT_SUPPORTED;
-                    err_code = sd_ble_gatts_rw_authorize_reply(p_ble_evt->evt.gatts_evt.conn_handle,
-                                                               &auth_reply);
-                    APP_ERROR_CHECK(err_code);
-                }
-            }
-        } break; // BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
-
-        default:
-            // No implementation needed.
-            break;
-    }
-}
-
 
 /**@brief Function for initializing the BLE stack.
  *
@@ -1238,6 +1027,7 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_0:
+            NRF_LOG_INFO("KEY_0");
             if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
             {
                 mouse_movement_send(-MOVEMENT_SPEED, 0);
@@ -1245,6 +1035,7 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_1:
+            NRF_LOG_INFO("KEY_1");
             if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
             {
                 mouse_movement_send(0, -MOVEMENT_SPEED);
@@ -1252,6 +1043,7 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_2:
+            NRF_LOG_INFO("KEY_2");
             if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
             {
                 mouse_movement_send(MOVEMENT_SPEED, 0);
@@ -1259,9 +1051,14 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_3:
-            if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
+            NRF_LOG_INFO("clear White List");
+           if (m_conn_handle == BLE_CONN_HANDLE_INVALID)
             {
-                mouse_movement_send(0, MOVEMENT_SPEED);
+                err_code = ble_advertising_restart_without_whitelist(&m_advertising);
+                if (err_code != NRF_ERROR_INVALID_STATE)
+                {
+                    APP_ERROR_CHECK(err_code);
+                }
             }
             break;
 
@@ -1330,7 +1127,7 @@ int main(void)
     sensor_simulator_init();
     conn_params_init();
     peer_manager_init();
-
+    // sd_ble_gap_disconnect
     // Start execution.
     NRF_LOG_INFO("Gerasimchuk started.");
     timers_start();
@@ -1352,3 +1149,295 @@ int main(void)
 /**
  * @}
  */
+
+
+/**@brief Function for handling BLE events.
+ *
+ * @param[in]   p_ble_evt   Bluetooth stack event.
+ * @param[in]   p_context   Unused.
+ */
+static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
+{
+    ret_code_t err_code;
+
+
+    switch(p_ble_evt->header.evt_id)
+    {
+         case BLE_GAP_EVT_CONNECTED:                  NRF_LOG_INFO("CONNECTED");                  break;
+         case BLE_GAP_EVT_DISCONNECTED:               NRF_LOG_INFO("DISCONNECTED");               break;
+         case BLE_GAP_EVT_CONN_PARAM_UPDATE:          NRF_LOG_INFO("CONN_PARAM_UPDATE");          break;
+         case BLE_GAP_EVT_SEC_PARAMS_REQUEST:         NRF_LOG_INFO("SEC_PARAMS_REQUEST");         break;
+         case BLE_GAP_EVT_SEC_INFO_REQUEST:           NRF_LOG_INFO("SEC_INFO_REQUEST");           break;
+         case BLE_GAP_EVT_PASSKEY_DISPLAY:            NRF_LOG_INFO("PASSKEY_DISPLAY");            break;
+         case BLE_GAP_EVT_KEY_PRESSED:                NRF_LOG_INFO("KEY_PRESSED");                break;
+         case BLE_GAP_EVT_AUTH_KEY_REQUEST:           NRF_LOG_INFO("AUTH_KEY_REQUEST");           break;
+         case BLE_GAP_EVT_LESC_DHKEY_REQUEST:         NRF_LOG_INFO("LESC_DHKEY_REQUEST");         break;
+         case BLE_GAP_EVT_AUTH_STATUS:                NRF_LOG_INFO("AUTH_STATUS");                break;
+         case BLE_GAP_EVT_CONN_SEC_UPDATE:            NRF_LOG_INFO("CONN_SEC_UPDATE");            break;
+         case BLE_GAP_EVT_TIMEOUT:                    NRF_LOG_INFO("TIMEOUT");                    break;
+         case BLE_GAP_EVT_RSSI_CHANGED:               NRF_LOG_INFO("RSSI_CHANGED");               break;
+         case BLE_GAP_EVT_ADV_REPORT:                 NRF_LOG_INFO("ADV_REPORT");                 break;
+         case BLE_GAP_EVT_SEC_REQUEST:                NRF_LOG_INFO("SEC_REQUEST");                break;
+         case BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST:  NRF_LOG_INFO("CONN_PARAM_UPDATE_REQUEST");  break;
+         case BLE_GAP_EVT_SCAN_REQ_REPORT:            NRF_LOG_INFO("SCAN_REQ_REPORT");            break;
+         case BLE_GAP_EVT_PHY_UPDATE:                 NRF_LOG_INFO("PHY_UPDATE");                 break;
+         case BLE_GAP_EVT_DATA_LENGTH_UPDATE_REQUEST: NRF_LOG_INFO("DATA_LENGTH_UPDATE_REQUEST"); break;
+         case BLE_GAP_EVT_DATA_LENGTH_UPDATE:         NRF_LOG_INFO("DATA_LENGTH_UPDATE");         break;
+    }
+
+    switch (p_ble_evt->header.evt_id)
+    {
+        case BLE_GAP_EVT_CONNECTED:
+
+            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
+            APP_ERROR_CHECK(err_code);
+
+            m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            break;
+
+        case BLE_GAP_EVT_DISCONNECTED:
+            NRF_LOG_INFO("Disconnected");
+            // LED indication will be changed when advertising starts.
+
+            m_conn_handle = BLE_CONN_HANDLE_INVALID;
+            break;
+
+#ifndef S140
+        case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
+        {
+            NRF_LOG_DEBUG("PHY update request.");
+            ble_gap_phys_t const phys =
+            {
+                .rx_phys = BLE_GAP_PHY_AUTO,
+                .tx_phys = BLE_GAP_PHY_AUTO,
+            };
+            err_code = sd_ble_gap_phy_update(p_ble_evt->evt.gap_evt.conn_handle, &phys);
+            APP_ERROR_CHECK(err_code);
+        } break;
+#endif
+
+        case BLE_GATTC_EVT_TIMEOUT:
+            // Disconnect on GATT Client timeout event.
+            NRF_LOG_DEBUG("GATT Client Timeout.");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gattc_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GATTS_EVT_TIMEOUT:
+            // Disconnect on GATT Server timeout event.
+            NRF_LOG_DEBUG("GATT Server Timeout.");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gatts_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_EVT_USER_MEM_REQUEST:
+            err_code = sd_ble_user_mem_reply(m_conn_handle, NULL);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST:
+        {
+            ble_gatts_evt_rw_authorize_request_t  req;
+            ble_gatts_rw_authorize_reply_params_t auth_reply;
+
+            req = p_ble_evt->evt.gatts_evt.params.authorize_request;
+
+            if (req.type != BLE_GATTS_AUTHORIZE_TYPE_INVALID)
+            {
+                if ((req.request.write.op == BLE_GATTS_OP_PREP_WRITE_REQ)     ||
+                    (req.request.write.op == BLE_GATTS_OP_EXEC_WRITE_REQ_NOW) ||
+                    (req.request.write.op == BLE_GATTS_OP_EXEC_WRITE_REQ_CANCEL))
+                {
+                    if (req.type == BLE_GATTS_AUTHORIZE_TYPE_WRITE)
+                    {
+                        auth_reply.type = BLE_GATTS_AUTHORIZE_TYPE_WRITE;
+                    }
+                    else
+                    {
+                        auth_reply.type = BLE_GATTS_AUTHORIZE_TYPE_READ;
+                    }
+                    auth_reply.params.write.gatt_status = APP_FEATURE_NOT_SUPPORTED;
+                    err_code = sd_ble_gatts_rw_authorize_reply(p_ble_evt->evt.gatts_evt.conn_handle,
+                                                               &auth_reply);
+                    APP_ERROR_CHECK(err_code);
+                }
+            }
+        } break; // BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
+
+        default:
+            // No implementation needed.
+            break;
+    }
+}
+
+
+
+
+/**@brief Function for handling Peer Manager events.
+ *
+ * @param[in] p_evt  Peer Manager event.
+ */
+static void pm_evt_handler(pm_evt_t const * p_evt)
+{
+    ret_code_t err_code;
+
+    switch(p_evt->evt_id)
+    {
+        case PM_EVT_BONDED_PEER_CONNECTED:         NRF_LOG_INFO("PM_EVT_BONDED_PEER_CONNECTED");         break;
+        case PM_EVT_CONN_SEC_START:                NRF_LOG_INFO("PM_EVT_CONN_SEC_START");                break;
+        case PM_EVT_CONN_SEC_SUCCEEDED:            NRF_LOG_INFO("PM_EVT_CONN_SEC_SUCCEEDED");            break;
+        case PM_EVT_CONN_SEC_FAILED:               NRF_LOG_INFO("PM_EVT_CONN_SEC_FAILED");               break;
+        case PM_EVT_CONN_SEC_CONFIG_REQ:           NRF_LOG_INFO("PM_EVT_CONN_SEC_CONFIG_REQ");           break;
+        case PM_EVT_CONN_SEC_PARAMS_REQ:           NRF_LOG_INFO("PM_EVT_CONN_SEC_PARAMS_REQ");           break;
+        case PM_EVT_STORAGE_FULL:                  NRF_LOG_INFO("PM_EVT_STORAGE_FULL");                  break;
+        case PM_EVT_ERROR_UNEXPECTED:              NRF_LOG_INFO("PM_EVT_ERROR_UNEXPECTED");              break;
+        case PM_EVT_PEER_DATA_UPDATE_SUCCEEDED:    NRF_LOG_INFO("PM_EVT_PEER_DATA_UPDATE_SUCCEEDED");    break;
+        case PM_EVT_PEER_DATA_UPDATE_FAILED:       NRF_LOG_INFO("PM_EVT_PEER_DATA_UPDATE_FAILED");       break;
+        case PM_EVT_PEER_DELETE_SUCCEEDED:         NRF_LOG_INFO("PM_EVT_PEER_DELETE_SUCCEEDED");         break;
+        case PM_EVT_PEER_DELETE_FAILED:            NRF_LOG_INFO("PM_EVT_PEER_DELETE_FAILED");            break;
+        case PM_EVT_PEERS_DELETE_SUCCEEDED:        NRF_LOG_INFO("PM_EVT_PEERS_DELETE_SUCCEEDED");        break;
+        case PM_EVT_PEERS_DELETE_FAILED:           NRF_LOG_INFO("PM_EVT_PEERS_DELETE_FAILED");           break;
+        case PM_EVT_LOCAL_DB_CACHE_APPLIED:        NRF_LOG_INFO("PM_EVT_LOCAL_DB_CACHE_APPLIED");        break;
+        case PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED:   NRF_LOG_INFO("PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED");   break;
+        case PM_EVT_SERVICE_CHANGED_IND_SENT:      NRF_LOG_INFO("PM_EVT_SERVICE_CHANGED_IND_SENT");      break;
+        case PM_EVT_SERVICE_CHANGED_IND_CONFIRMED: NRF_LOG_INFO("PM_EVT_SERVICE_CHANGED_IND_CONFIRMED"); break;
+        case PM_EVT_SLAVE_SECURITY_REQ:            NRF_LOG_INFO("PM_EVT_SLAVE_SECURITY_REQ");            break;
+        case PM_EVT_FLASH_GARBAGE_COLLECTED:       NRF_LOG_INFO("PM_EVT_FLASH_GARBAGE_COLLECTED");       break;
+    }
+
+    switch (p_evt->evt_id)
+    {
+        case PM_EVT_BONDED_PEER_CONNECTED:
+        {
+
+            if(!advState.remConnet)
+            {
+                NRF_LOG_INFO("Connected to a previously bonded.");
+                advState.remConnet = true;
+            }
+            else
+            {
+                NRF_LOG_INFO("Reject connection");
+                err_code = sd_ble_gap_disconnect(p_evt->conn_handle,
+                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            }
+
+        } break;
+
+        case PM_EVT_CONN_SEC_SUCCEEDED:
+        {
+            NRF_LOG_INFO("Connection secured: role: %d, conn_handle: 0x%x, procedure: %d.",
+                         ble_conn_state_role(p_evt->conn_handle),
+                         p_evt->conn_handle,
+                         p_evt->params.conn_sec_succeeded.procedure);
+
+
+            m_peer_id = p_evt->peer_id;
+        } break;
+
+        case PM_EVT_CONN_SEC_FAILED:
+        {
+            /* Often, when securing fails, it shouldn't be restarted, for security reasons.
+             * Other times, it can be restarted directly.
+             * Sometimes it can be restarted, but only after changing some Security Parameters.
+             * Sometimes, it cannot be restarted until the link is disconnected and reconnected.
+             * Sometimes it is impossible, to secure the link, or the peer device does not support it.
+             * How to handle this error is highly application dependent. */
+        } break;
+
+        case PM_EVT_CONN_SEC_CONFIG_REQ:
+        {
+            // Reject pairing request from an already bonded peer.
+            pm_conn_sec_config_t conn_sec_config = {.allow_repairing = false};
+            pm_conn_sec_config_reply(p_evt->conn_handle, &conn_sec_config);
+        } break;
+
+        case PM_EVT_STORAGE_FULL:
+        {
+            // Run garbage collection on the flash.
+            err_code = fds_gc();
+            if (err_code == FDS_ERR_BUSY || err_code == FDS_ERR_NO_SPACE_IN_QUEUES)
+            {
+                // Retry.
+            }
+            else
+            {
+                APP_ERROR_CHECK(err_code);
+            }
+        } break;
+
+        case PM_EVT_PEERS_DELETE_SUCCEEDED:
+        {
+            advertising_start(false);
+        } break;
+
+        case PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED:
+        {
+            // The local database has likely changed, send service changed indications.
+            pm_local_database_has_changed();
+        } break;
+
+        case PM_EVT_PEER_DATA_UPDATE_SUCCEEDED:
+        {
+            if (     p_evt->params.peer_data_update_succeeded.flash_changed
+                 && (p_evt->params.peer_data_update_succeeded.data_id == PM_PEER_DATA_ID_BONDING))
+            {
+                NRF_LOG_INFO("New Bond, add the peer to the whitelist if possible");
+                NRF_LOG_INFO("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d",
+                               m_whitelist_peer_cnt + 1,
+                               BLE_GAP_WHITELIST_ADDR_MAX_COUNT);
+                // Note: You should check on what kind of white list policy your application should use.
+
+                if (m_whitelist_peer_cnt < BLE_GAP_WHITELIST_ADDR_MAX_COUNT)
+                {
+                    // Bonded to a new peer, add it to the whitelist.
+                    m_whitelist_peers[m_whitelist_peer_cnt++] = m_peer_id;
+
+                    // The whitelist has been modified, update it in the Peer Manager.
+                    err_code = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
+                    APP_ERROR_CHECK(err_code);
+
+                    err_code = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
+                    if (err_code != NRF_ERROR_NOT_SUPPORTED)
+                    {
+                        APP_ERROR_CHECK(err_code);
+                    }
+                }
+            }
+        } break;
+
+        case PM_EVT_PEER_DATA_UPDATE_FAILED:
+        {
+            // Assert.
+            APP_ERROR_CHECK(p_evt->params.peer_data_update_failed.error);
+        } break;
+
+        case PM_EVT_PEER_DELETE_FAILED:
+        {
+            // Assert.
+            APP_ERROR_CHECK(p_evt->params.peer_delete_failed.error);
+        } break;
+
+        case PM_EVT_PEERS_DELETE_FAILED:
+        {
+            // Assert.
+            APP_ERROR_CHECK(p_evt->params.peers_delete_failed_evt.error);
+        } break;
+
+        case PM_EVT_ERROR_UNEXPECTED:
+        {
+            // Assert.
+            APP_ERROR_CHECK(p_evt->params.error_unexpected.error);
+        } break;
+
+        case PM_EVT_CONN_SEC_START:
+        case PM_EVT_PEER_DELETE_SUCCEEDED:
+        case PM_EVT_LOCAL_DB_CACHE_APPLIED:
+        case PM_EVT_SERVICE_CHANGED_IND_SENT:
+        case PM_EVT_SERVICE_CHANGED_IND_CONFIRMED:
+        default:
+            break;
+    }
+}

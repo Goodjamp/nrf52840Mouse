@@ -56,6 +56,7 @@
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c"
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_soc.c"
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.S"
+"C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld"
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\toolchain\system_nrf52840.c"
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c"
 "C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld"
