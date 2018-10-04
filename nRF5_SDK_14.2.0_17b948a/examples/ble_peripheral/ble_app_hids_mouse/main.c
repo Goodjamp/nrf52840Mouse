@@ -147,8 +147,8 @@
 
 #define APP_ADV_FAST_INTERVAL           0x0028                                      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 25 ms.). */
 #define APP_ADV_SLOW_INTERVAL           0x0C80                                      /**< Slow advertising interval (in units of 0.625 ms. This value corrsponds to 2 seconds). */
-#define APP_ADV_FAST_TIMEOUT            30                                          /**< The duration of the fast advertising period (in seconds). */
-#define APP_ADV_SLOW_TIMEOUT            180                                         /**< The duration of the slow advertising period (in seconds). */
+#define APP_ADV_FAST_TIMEOUT            5                                          /**< The duration of the fast advertising period (in seconds). */
+#define APP_ADV_SLOW_TIMEOUT            10                                         /**< The duration of the slow advertising period (in seconds). */
 
 
 APP_TIMER_DEF(m_battery_timer_id);                                                  /**< Battery timer. */
@@ -174,6 +174,7 @@ static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
 
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
 static void pm_evt_handler(pm_evt_t const * p_evt);
+static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 
 
 struct
@@ -272,7 +273,7 @@ static void advertising_start(bool erase_bonds)
             APP_ERROR_CHECK(ret);
         }
 
-        ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+        ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
         APP_ERROR_CHECK(ret);
     }
 }
@@ -731,108 +732,6 @@ static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt)
 }
 
 
-/**@brief Function for handling advertising events.
- *
- * @details This function will be called for advertising events which are passed to the application.
- *
- * @param[in] ble_adv_evt  Advertising event.
- */
-static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
-{
-    ret_code_t err_code;
-
-    switch (ble_adv_evt)
-    {
-        case BLE_ADV_EVT_DIRECTED:
-            NRF_LOG_INFO("Directed advertising.");
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_DIRECTED);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_ADV_EVT_FAST:
-            NRF_LOG_INFO("Fast advertising.");
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_ADV_EVT_SLOW:
-            NRF_LOG_INFO("Slow advertising.");
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_SLOW);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_ADV_EVT_FAST_WHITELIST:
-            NRF_LOG_INFO("Fast advertising with whitelist.");
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_WHITELIST);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_ADV_EVT_SLOW_WHITELIST:
-            NRF_LOG_INFO("Slow advertising with whitelist.");
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_WHITELIST);
-            APP_ERROR_CHECK(err_code);
-            err_code = ble_advertising_restart_without_whitelist(&m_advertising);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_ADV_EVT_IDLE:
-            err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-            APP_ERROR_CHECK(err_code);
-            sleep_mode_enter();
-            break;
-
-        case BLE_ADV_EVT_WHITELIST_REQUEST:
-        {
-            ble_gap_addr_t whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
-            ble_gap_irk_t  whitelist_irks[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
-            uint32_t       addr_cnt = BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
-            uint32_t       irk_cnt  = BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
-
-            err_code = pm_whitelist_get(whitelist_addrs, &addr_cnt,
-                                        whitelist_irks,  &irk_cnt);
-            APP_ERROR_CHECK(err_code);
-            NRF_LOG_DEBUG("pm_whitelist_get returns %d addr in whitelist and %d irk whitelist",
-                           addr_cnt,
-                           irk_cnt);
-
-            // Apply the whitelist.
-            err_code = ble_advertising_whitelist_reply(&m_advertising,
-                                                       whitelist_addrs,
-                                                       addr_cnt,
-                                                       whitelist_irks,
-                                                       irk_cnt);
-            APP_ERROR_CHECK(err_code);
-        }
-        break;
-
-        case BLE_ADV_EVT_PEER_ADDR_REQUEST:
-        {
-            pm_peer_data_bonding_t peer_bonding_data;
-
-            // Only Give peer address if we have a handle to the bonded peer.
-            if (m_peer_id != PM_PEER_ID_INVALID)
-            {
-
-                err_code = pm_peer_data_bonding_load(m_peer_id, &peer_bonding_data);
-                if (err_code != NRF_ERROR_NOT_FOUND)
-                {
-                    APP_ERROR_CHECK(err_code);
-
-                    ble_gap_addr_t * p_peer_addr = &(peer_bonding_data.peer_ble_id.id_addr_info);
-                    err_code = ble_advertising_peer_addr_reply(&m_advertising, p_peer_addr);
-                    APP_ERROR_CHECK(err_code);
-                }
-
-            }
-            break;
-        }
-
-        default:
-            break;
-    }
-}
-
-
 
 /**@brief Function for initializing the BLE stack.
  *
@@ -912,10 +811,10 @@ static void advertising_init(void)
     init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
     init.config.ble_adv_whitelist_enabled      = true;
-    init.config.ble_adv_directed_enabled       = true;
+    init.config.ble_adv_directed_enabled       = false;
     init.config.ble_adv_directed_slow_enabled  = false;
-    init.config.ble_adv_directed_slow_interval = 0;
-    init.config.ble_adv_directed_slow_timeout  = 0;
+    init.config.ble_adv_directed_slow_interval = APP_ADV_FAST_INTERVAL;
+    init.config.ble_adv_directed_slow_timeout  = APP_ADV_FAST_TIMEOUT;
     init.config.ble_adv_fast_enabled           = true;
     init.config.ble_adv_fast_interval          = APP_ADV_FAST_INTERVAL;
     init.config.ble_adv_fast_timeout           = APP_ADV_FAST_TIMEOUT;
@@ -1051,15 +950,13 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_3:
-            NRF_LOG_INFO("clear White List");
-           if (m_conn_handle == BLE_CONN_HANDLE_INVALID)
-            {
+           NRF_LOG_INFO("Start general advert");
+
                 err_code = ble_advertising_restart_without_whitelist(&m_advertising);
                 if (err_code != NRF_ERROR_INVALID_STATE)
                 {
                     APP_ERROR_CHECK(err_code);
                 }
-            }
             break;
 
         default:
@@ -1320,8 +1217,8 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
             else
             {
                 NRF_LOG_INFO("Reject connection");
-                err_code = sd_ble_gap_disconnect(p_evt->conn_handle,
-                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+               // err_code = sd_ble_gap_disconnect(p_evt->conn_handle,
+               //              BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
             }
 
         } break;
@@ -1441,3 +1338,111 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
             break;
     }
 }
+
+
+
+/**@brief Function for handling advertising events.
+ *
+ * @details This function will be called for advertising events which are passed to the application.
+ *
+ * @param[in] ble_adv_evt  Advertising event.
+ */
+static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
+{
+    ret_code_t err_code;
+
+    NRF_LOG_INFO("ADV_EV %d", ble_adv_evt);
+
+    switch (ble_adv_evt)
+    {
+        case BLE_ADV_EVT_DIRECTED:
+            NRF_LOG_INFO("Directed advertising.");
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_DIRECTED);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_ADV_EVT_FAST:
+            NRF_LOG_INFO("Fast advertising.");
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_ADV_EVT_SLOW:
+            NRF_LOG_INFO("Slow advertising.");
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_SLOW);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_ADV_EVT_FAST_WHITELIST:
+            NRF_LOG_INFO("Fast advertising with whitelist.");
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_WHITELIST);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_ADV_EVT_SLOW_WHITELIST:
+            NRF_LOG_INFO("Slow advertising with whitelist.");
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_WHITELIST);
+            APP_ERROR_CHECK(err_code);
+            err_code = ble_advertising_restart_without_whitelist(&m_advertising);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_ADV_EVT_IDLE:
+            err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+            APP_ERROR_CHECK(err_code);
+            //sleep_mode_enter();
+            break;
+
+        case BLE_ADV_EVT_WHITELIST_REQUEST:
+        {
+            ble_gap_addr_t whitelist_addrs[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+            ble_gap_irk_t  whitelist_irks[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+            uint32_t       addr_cnt = BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
+            uint32_t       irk_cnt  = BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
+
+            err_code = pm_whitelist_get(whitelist_addrs, &addr_cnt,
+                                        whitelist_irks,  &irk_cnt);
+            APP_ERROR_CHECK(err_code);
+            NRF_LOG_INFO("pm_whitelist_get returns %d addr in whitelist and %d irk whitelist",
+                           addr_cnt,
+                           irk_cnt);
+
+            // Apply the whitelist.
+            err_code = ble_advertising_whitelist_reply(&m_advertising,
+                                                       whitelist_addrs,
+                                                       addr_cnt,
+                                                       whitelist_irks,
+                                                       irk_cnt);
+            APP_ERROR_CHECK(err_code);
+        }
+        break;
+
+        case BLE_ADV_EVT_PEER_ADDR_REQUEST:
+        {
+            pm_peer_data_bonding_t peer_bonding_data;
+            NRF_LOG_INFO("Dir_next");
+
+            // Only Give peer address if we have a handle to the bonded peer.
+            if (m_peer_id != PM_PEER_ID_INVALID)
+            {
+
+                err_code = pm_peer_data_bonding_load(m_peer_id, &peer_bonding_data);
+                if (err_code != NRF_ERROR_NOT_FOUND)
+                {
+                    APP_ERROR_CHECK(err_code);
+
+                    ble_gap_addr_t * p_peer_addr = &(peer_bonding_data.peer_ble_id.id_addr_info);
+                    err_code = ble_advertising_peer_addr_reply(&m_advertising, p_peer_addr);
+                    APP_ERROR_CHECK(err_code);
+                }
+
+            }
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+
