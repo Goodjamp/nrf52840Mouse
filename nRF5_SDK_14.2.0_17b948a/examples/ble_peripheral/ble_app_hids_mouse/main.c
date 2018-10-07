@@ -84,6 +84,8 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
+#include "orderProcessing.h"
+
 
 #define DEVICE_NAME                     "Nordic_Mouse"                              /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME               "NordicSemiconductor"                       /**< Manufacturer. Will be passed to Device Information Service. */
@@ -147,7 +149,7 @@
 
 #define APP_ADV_FAST_INTERVAL           0x0028                                      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 25 ms.). */
 #define APP_ADV_SLOW_INTERVAL           0x0C80                                      /**< Slow advertising interval (in units of 0.625 ms. This value corrsponds to 2 seconds). */
-#define APP_ADV_FAST_TIMEOUT            5                                          /**< The duration of the fast advertising period (in seconds). */
+#define APP_ADV_FAST_TIMEOUT            10                                          /**< The duration of the fast advertising period (in seconds). */
 #define APP_ADV_SLOW_TIMEOUT            10                                         /**< The duration of the slow advertising period (in seconds). */
 
 
@@ -810,7 +812,7 @@ static void advertising_init(void)
     init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
-    init.config.ble_adv_whitelist_enabled      = true;
+    init.config.ble_adv_whitelist_enabled      = false;
     init.config.ble_adv_directed_enabled       = false;
     init.config.ble_adv_directed_slow_enabled  = false;
     init.config.ble_adv_directed_slow_interval = APP_ADV_FAST_INTERVAL;
@@ -818,7 +820,7 @@ static void advertising_init(void)
     init.config.ble_adv_fast_enabled           = true;
     init.config.ble_adv_fast_interval          = APP_ADV_FAST_INTERVAL;
     init.config.ble_adv_fast_timeout           = APP_ADV_FAST_TIMEOUT;
-    init.config.ble_adv_slow_enabled           = true;
+    init.config.ble_adv_slow_enabled           = false;
     init.config.ble_adv_slow_interval          = APP_ADV_SLOW_INTERVAL;
     init.config.ble_adv_slow_timeout           = APP_ADV_SLOW_TIMEOUT;
 
@@ -951,13 +953,8 @@ static void bsp_event_handler(bsp_event_t event)
 
         case BSP_EVENT_KEY_3:
            NRF_LOG_INFO("Start general advert");
-
-                err_code = ble_advertising_restart_without_whitelist(&m_advertising);
-                if (err_code != NRF_ERROR_INVALID_STATE)
-                {
-                    APP_ERROR_CHECK(err_code);
-                }
-            break;
+           advertising_start(false);
+           break;
 
         default:
             break;
@@ -1005,11 +1002,25 @@ static void power_manage(void)
 }
 
 
+orderT remDeviceOrder;
+
+
 /**@brief Function for application main entry.
  */
 int main(void)
 {
     bool erase_bonds;
+
+    bool deviceRez;
+    uint8_t pos;
+    uint8_t numItem;
+    remDeviceOrder = orderMalloc();
+    numItem   = orderGetQuantity(remDeviceOrder);
+
+    if(deviceRez == 0 && numItem == 10)
+    {
+        return 0;
+    }
 
     // Initialize.
     log_init();
@@ -1029,7 +1040,7 @@ int main(void)
     NRF_LOG_INFO("Gerasimchuk started.");
     timers_start();
 
-    advertising_start(erase_bonds);
+    advertising_start(false);
 
     // Enter main loop.
     for (;;)
@@ -1041,6 +1052,7 @@ int main(void)
         }
     }
 }
+
 
 
 /**
@@ -1206,17 +1218,18 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
     switch (p_evt->evt_id)
     {
+
         case PM_EVT_BONDED_PEER_CONNECTED:
         {
-
+            NRF_LOG_INFO("Previouss peer con: %d", p_evt->peer_id);
             if(!advState.remConnet)
             {
-                NRF_LOG_INFO("Connected to a previously bonded.");
+                //NRF_LOG_INFO("Connected to a previously bonded.");
                 advState.remConnet = true;
             }
             else
             {
-                NRF_LOG_INFO("Reject connection");
+                //NRF_LOG_INFO("Reject connection");
                // err_code = sd_ble_gap_disconnect(p_evt->conn_handle,
                //              BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
             }

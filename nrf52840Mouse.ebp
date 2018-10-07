@@ -23,7 +23,7 @@
 					<Add option="-fshort-enums" />
 					<Add option="-fdata-sections" />
 					<Add option="-ffunction-sections" />
-					<Add option="-O3" />
+					<Add option="-O0" />
 					<Add option="-g2" />
 					<Add option="-mcpu=cortex-m4" />
 					<Add option="-mthumb" />
@@ -152,6 +152,7 @@
 					<Add directory="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\usbd" />
 					<Add directory="nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_hrs" />
 					<Add directory="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config" />
+					<Add directory="..\nrf52840Mouse" />
 				</Compiler>
 				<Assembler>
 					<Add option="--defsym,BOARD_PCA10056" />
@@ -405,6 +406,10 @@
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT_Syscalls_GCC.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="orderProcessing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="orderProcessing.h" />
 		<Extensions>
 			<code_completion />
 			<debugger>
