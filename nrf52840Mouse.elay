@@ -6,9 +6,14 @@
 			<Cursor1 position="0" topLine="57" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_conn_params.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7146" topLine="1099" />
+			<Cursor1 position="10270" topLine="200" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7167" topLine="155" />
 		</Cursor>
 	</File>
 	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -16,27 +21,37 @@
 			<Cursor1 position="6934" topLine="218" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\pwr_mgmt\nrf_pwr_mgmt.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_error_weak.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2602" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="7306" topLine="194" />
 		</Cursor>
 	</File>
 	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.S" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8555" topLine="207" />
+			<Cursor1 position="9603" topLine="265" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3503" topLine="108" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="49689" topLine="1177" />
+			<Cursor1 position="9824" topLine="102" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2218" topLine="54" />
 		</Cursor>

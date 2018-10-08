@@ -180,6 +180,7 @@ static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
 static void pm_evt_handler(pm_evt_t const * p_evt);
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
+static void ble_advertising_error_handler(uint32_t nrf_error);
 
 
 struct
@@ -292,95 +293,113 @@ static void advertising_start(bool erase_bonds)
           On processing of power On adv I should switch phase of adv.
  */
 
+#define DETECTED_DEV_FREE    0xFF
+#define DIRECT_CONN_QUANTITY 0x3
+
+#define APP_ADV_FAST_SCANING_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
+#define APP_ADV_FAST_SCANING_TIMEOUT                 5     /**< The duration of the fast advertising period (in seconds). */
+
+#define APP_ADV_FAST_CONNECT_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
+#define APP_ADV_FAST_CONNECT_TIMEOUT                 5     /**< The duration of the fast advertising period (in seconds). */
+
+#define APP_ADV_FAST_SEARCH_INTERVAL           0x0140      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 200 ms.). */
+#define APP_ADV_FAST_SEARCH_TIMEOUT                60     /**< The duration of the fast advertising period (in seconds). */
 
 typedef enum
 {
     ADV_PROC_START_CONNECT,
-    ADV_PROC_STOP_ADV
+    ADV_PROC_STOP_ADV,
     ADV_PROC_CONNECT,
-}advProcEvT
+}advProcEvT;
 
 typedef enum
 {
     DEV_SCANNING,
     DEV_CONNECTION,
-}advDirOrdConnPhase;
+}connPhase;
 
 struct
 {
-    advDirOrdConnPhase phase;
-    uint16_t detectedDev[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+    connPhase phase;
+    uint16_t  listDetectedDev[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+    uint8_t   quantityDetectedDev;
+    uint8_t   connectCnt;
+    uint8_t   loopCnt;
 }advDirOrdConnState;
 
-//remDeviceOrder
-void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
+
+/**@brief Function for initializing the Advertising functionality.
+ */
+static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds )
 {
-    //for now I begin with add only one type of adv:  advertisingDirectOrderConnect
-    switch(inEv)
-    {
-        case: ADV_PROC_START_CONNECT:
-            switch(advDirOrdConnState.phase)
-            {
-                case: DEV_SCANNING:
-                    {
-                        uint8_t pos;
-                        orderGetPos(remDeviceOrder, peerId, &pos);
-                        advDirOrdConnState.detectedDev[pos] = peerId;
-                        sd_ble_gattc_di
-                    // - save peer ID
-                    // - disconnect input connection
-                    }
-                    break;
-                case: DEV_CONNECTION:
-                    // DO NOTHING (continue connection processing)
-                    break;
-            }
-            break;
-        case: ADV_PROC_STOP_ADV:
-            switch(advDirOrdConnState.phase)
-            {
-                case: DEV_SCANNING:
-                    // begin advertising with found devices
-                    break;
-                case: DEV_CONNECTION:
-                    // if cnt of loop scanning/connection more than predefined: start SLOW advertising
-                    break;
-            }
-            break;
-        case: ADV_PROC_CONNECTED:
-            switch(advDirOrdConnState.phase)
-            {
-                case: DEV_SCANNING:
-                    // do nothing
-                    break;
-                case: DEV_CONNECTION:
-                    // do nothing
-                    break;
-            }
-            break;
-    }
+    ret_code_t err_code;
+    uint8_t    adv_flags;
+    ble_advertising_init_t init;
+
+    memset(&init, 0, sizeof(init));
+
+    adv_flags                            = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+    init.advdata.name_type               = BLE_ADVDATA_FULL_NAME;
+    init.advdata.include_appearance      = true;
+    init.advdata.flags                   = adv_flags;
+    init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
+    init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
+
+    init.config.ble_adv_whitelist_enabled      = false;
+    init.config.ble_adv_directed_enabled       = false;
+    init.config.ble_adv_directed_slow_enabled  = false;
+    init.config.ble_adv_directed_slow_interval = APP_ADV_FAST_INTERVAL;
+    init.config.ble_adv_directed_slow_timeout  = APP_ADV_FAST_TIMEOUT;
+    init.config.ble_adv_fast_enabled           = true;
+    init.config.ble_adv_fast_interval          = intervalMSeconds;
+    init.config.ble_adv_fast_timeout           = periodSeconds;
+    init.config.ble_adv_slow_enabled           = false;
+    init.config.ble_adv_slow_interval          = APP_ADV_SLOW_INTERVAL;
+    init.config.ble_adv_slow_timeout           = APP_ADV_SLOW_TIMEOUT;
+
+    init.evt_handler   = on_adv_evt;
+    init.error_handler = ble_advertising_error_handler;
+
+    err_code = ble_advertising_init(&m_advertising, &init);
+    APP_ERROR_CHECK(err_code);
+
+    ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
 }
 
 
-
-static void advertisingDirectOrderStart(void)
+/**@brief Function for starting advertising.
+ */
+static void advertisingApStart(uint16_t intervalMSeconds, uint16_t periodSeconds, bool useWhiteList, bool whiteListOneRemote, uint16_t peerId)
 {
 
     ret_code_t ret;
 
-    memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
-    m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
+    // set adv timing properties
+    advertising_init(intervalMSeconds, periodSeconds);
 
-    peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+    if(useWhiteList)
+    {
+        if(whiteListOneRemote)
+        {
+            NRF_LOG_INFO("Adv WL one dev");
+            m_whitelist_peers[0] = peerId;
+            m_whitelist_peer_cnt = 1;
+        }
+        else
+        {
+            memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
+            m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
+            peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+            NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
+        }
+    }
 
-    NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
-
-    ret = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
+    ret = pm_whitelist_set((useWhiteList) ? (m_whitelist_peers):(NULL), (useWhiteList) ? (m_whitelist_peer_cnt):(0));
     APP_ERROR_CHECK(ret);
-
     // Setup the device identies list.
     // Some SoftDevices do not support this feature.
-    ret = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
+    ret = pm_device_identities_list_set((useWhiteList) ? (m_whitelist_peers):(NULL), (useWhiteList) ? (m_whitelist_peer_cnt):(0));
+
     if (ret != NRF_ERROR_NOT_SUPPORTED)
     {
         APP_ERROR_CHECK(ret);
@@ -388,6 +407,84 @@ static void advertisingDirectOrderStart(void)
 
     ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
     APP_ERROR_CHECK(ret);
+}
+
+
+void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
+{
+    ret_code_t err_code;
+    switch(inEv)
+    {
+    case ADV_PROC_START_CONNECT:
+        switch(advDirOrdConnState.phase)
+        {
+        case DEV_SCANNING:  // add device to the list of device that was detected
+        {
+            uint8_t pos;
+            orderGetPos(remDeviceOrder, peerId, &pos);
+            // save peer ID
+            advDirOrdConnState.listDetectedDev[pos] = peerId;
+            advDirOrdConnState.quantityDetectedDev++;
+            // disconnect input connection
+            err_code = sd_ble_gap_disconnect(connHandle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            if (err_code != NRF_ERROR_INVALID_STATE)
+            {
+                APP_ERROR_CHECK(err_code);
+            }
+        }
+        break;
+        case DEV_CONNECTION:// DO NOTHING (continue connection processing)
+            break;
+        }
+        break;
+    case ADV_PROC_STOP_ADV:
+        switch(advDirOrdConnState.phase)
+        {
+        case DEV_SCANNING: // start connection to detected devices
+        {
+            uint8_t cnt_1 = 0;
+            uint8_t cnt_2 = 0;
+            for(cnt_1 = 0; cnt_1 < BLE_GAP_WHITELIST_ADDR_MAX_COUNT - 1; cnt_1++)
+            {
+                for(cnt_2 = BLE_GAP_WHITELIST_ADDR_MAX_COUNT-1; cnt_2 > 0; cnt_2--)
+                {
+                    if(advDirOrdConnState.listDetectedDev[cnt_2 - 1] == DETECTED_DEV_FREE &&
+                            advDirOrdConnState.listDetectedDev[cnt_2 ]    != DETECTED_DEV_FREE)
+                    {
+                        advDirOrdConnState.listDetectedDev[cnt_2 - 1] = advDirOrdConnState.listDetectedDev[cnt_2 ];
+                        advDirOrdConnState.listDetectedDev[cnt_2 ]    = DETECTED_DEV_FREE;
+                    }
+                }
+            }
+            advDirOrdConnState.connectCnt = 0;
+            advertisingApStart(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true, true, advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
+        }
+        break;
+        case DEV_CONNECTION:   //  continue connection to next device
+            if(advDirOrdConnState.connectCnt >= advDirOrdConnState.quantityDetectedDev)
+            {
+
+                advDirOrdConnState.loopCnt++;
+
+                if(advDirOrdConnState.loopCnt >= DIRECT_CONN_QUANTITY)
+                {
+                    break;
+                }
+                // start scanning
+                memset(advDirOrdConnState.listDetectedDev, DETECTED_DEV_FREE, sizeof(advDirOrdConnState.listDetectedDev));
+                advDirOrdConnState.connectCnt = 0;
+                advDirOrdConnState.phase      = DEV_SCANNING;
+                advertisingApStart(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, true, false, 0);
+            }
+            // shift to next detected device
+            advDirOrdConnState.connectCnt++;
+            advertisingApStart(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true, true, advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
+            break;
+        }
+        break;
+    default:
+        break;
+    }
 }
 
 
@@ -904,43 +1001,7 @@ static void peer_manager_init(void)
 }
 
 
-/**@brief Function for initializing the Advertising functionality.
- */
-static void advertising_init(void)
-{
-    ret_code_t             err_code;
-    uint8_t                adv_flags;
-    ble_advertising_init_t init;
 
-    memset(&init, 0, sizeof(init));
-
-    adv_flags                            = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
-    init.advdata.name_type               = BLE_ADVDATA_FULL_NAME;
-    init.advdata.include_appearance      = true;
-    init.advdata.flags                   = adv_flags;
-    init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
-    init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
-
-    init.config.ble_adv_whitelist_enabled      = false;
-    init.config.ble_adv_directed_enabled       = false;
-    init.config.ble_adv_directed_slow_enabled  = false;
-    init.config.ble_adv_directed_slow_interval = APP_ADV_FAST_INTERVAL;
-    init.config.ble_adv_directed_slow_timeout  = APP_ADV_FAST_TIMEOUT;
-    init.config.ble_adv_fast_enabled           = true;
-    init.config.ble_adv_fast_interval          = APP_ADV_FAST_INTERVAL;
-    init.config.ble_adv_fast_timeout           = APP_ADV_FAST_TIMEOUT;
-    init.config.ble_adv_slow_enabled           = false;
-    init.config.ble_adv_slow_interval          = APP_ADV_SLOW_INTERVAL;
-    init.config.ble_adv_slow_timeout           = APP_ADV_SLOW_TIMEOUT;
-
-    init.evt_handler   = on_adv_evt;
-    init.error_handler = ble_advertising_error_handler;
-
-    err_code = ble_advertising_init(&m_advertising, &init);
-    APP_ERROR_CHECK(err_code);
-
-    ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
-}
 
 
 /**@brief Function for the Event Scheduler initialization.
@@ -1116,17 +1177,6 @@ static void power_manage(void)
 int main(void)
 {
     bool erase_bonds;
-
-    bool deviceRez;
-    uint8_t pos;
-    uint8_t numItem;
-    remDeviceOrder = orderMalloc();
-    numItem   = orderGetQuantity(remDeviceOrder);
-
-    if(deviceRez == 0 && numItem == 10)
-    {
-        return 0;
-    }
 
     // Initialize.
     log_init();
