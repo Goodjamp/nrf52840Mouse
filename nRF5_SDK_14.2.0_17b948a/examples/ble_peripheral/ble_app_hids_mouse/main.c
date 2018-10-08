@@ -171,6 +171,9 @@ static ble_uuid_t        m_adv_uuids[] =                                        
     {BLE_UUID_HUMAN_INTERFACE_DEVICE_SERVICE, BLE_UUID_TYPE_BLE}
 };
 
+/* My variable
+*/
+orderT remDeviceOrder;
 
 static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
 
@@ -280,6 +283,112 @@ static void advertising_start(bool erase_bonds)
     }
 }
 
+
+/**@brief Function for starting advertising for direct connect to device according order.
+ *        This process include two phase: scanning, one item white list advertising
+          - scanning:   high density advertising with rejection ALL input connection for detect device from white list around
+          - connection: advertising with ONE WHITE LIST device and serially switch device on white list
+          I should add state machine for global control advertising process: power on adv, normal adv and so on
+          On processing of power On adv I should switch phase of adv.
+ */
+
+
+typedef enum
+{
+    ADV_PROC_START_CONNECT,
+    ADV_PROC_STOP_ADV
+    ADV_PROC_CONNECT,
+}advProcEvT
+
+typedef enum
+{
+    DEV_SCANNING,
+    DEV_CONNECTION,
+}advDirOrdConnPhase;
+
+struct
+{
+    advDirOrdConnPhase phase;
+    uint16_t detectedDev[BLE_GAP_WHITELIST_ADDR_MAX_COUNT];
+}advDirOrdConnState;
+
+//remDeviceOrder
+void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
+{
+    //for now I begin with add only one type of adv:  advertisingDirectOrderConnect
+    switch(inEv)
+    {
+        case: ADV_PROC_START_CONNECT:
+            switch(advDirOrdConnState.phase)
+            {
+                case: DEV_SCANNING:
+                    {
+                        uint8_t pos;
+                        orderGetPos(remDeviceOrder, peerId, &pos);
+                        advDirOrdConnState.detectedDev[pos] = peerId;
+                        sd_ble_gattc_di
+                    // - save peer ID
+                    // - disconnect input connection
+                    }
+                    break;
+                case: DEV_CONNECTION:
+                    // DO NOTHING (continue connection processing)
+                    break;
+            }
+            break;
+        case: ADV_PROC_STOP_ADV:
+            switch(advDirOrdConnState.phase)
+            {
+                case: DEV_SCANNING:
+                    // begin advertising with found devices
+                    break;
+                case: DEV_CONNECTION:
+                    // if cnt of loop scanning/connection more than predefined: start SLOW advertising
+                    break;
+            }
+            break;
+        case: ADV_PROC_CONNECTED:
+            switch(advDirOrdConnState.phase)
+            {
+                case: DEV_SCANNING:
+                    // do nothing
+                    break;
+                case: DEV_CONNECTION:
+                    // do nothing
+                    break;
+            }
+            break;
+    }
+}
+
+
+
+static void advertisingDirectOrderStart(void)
+{
+
+    ret_code_t ret;
+
+    memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
+    m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
+
+    peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+
+    NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
+
+    ret = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
+    APP_ERROR_CHECK(ret);
+
+    // Setup the device identies list.
+    // Some SoftDevices do not support this feature.
+    ret = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
+    if (ret != NRF_ERROR_NOT_SUPPORTED)
+    {
+        APP_ERROR_CHECK(ret);
+    }
+
+    ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
+    APP_ERROR_CHECK(ret);
+}
 
 
 /**@brief Function for handling Service errors.
@@ -1000,9 +1109,6 @@ static void power_manage(void)
     ret_code_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
-
-
-orderT remDeviceOrder;
 
 
 /**@brief Function for application main entry.
