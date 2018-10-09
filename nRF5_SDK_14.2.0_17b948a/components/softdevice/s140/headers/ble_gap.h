@@ -466,11 +466,11 @@ enum BLE_GAP_CFGS
 
 
 /**@brief Maximum amount of addresses in the whitelist. */
-#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (8)
+#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (3)
 
 
 /**@brief Maximum amount of identities in the device identities list. */
-#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (8)
+#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (3)
 
 
 /**@brief Default connection count for a configuration. */
@@ -2130,7 +2130,7 @@ SVCALL(SD_BLE_GAP_CONNECT_CANCEL, uint32_t, sd_ble_gap_connect_cancel(void));
  * @details   This function is used to request a new PHY configuration for a central or a peripheral connection. It will always generate a
  *            @ref BLE_GAP_EVT_PHY_UPDATE event if successfully executed. If @ref ble_gap_phys_t::tx_phys or @ref ble_gap_phys_t::rx_phys
  *            is 0, then the stack will select PHYs based on the peer requirements on that specific direction. If the peer does not support
- *            the PHY Update procedure, then the resulting @ref BLE_GAP_EVT_PHY_UPDATE event will have a status different from 
+ *            the PHY Update procedure, then the resulting @ref BLE_GAP_EVT_PHY_UPDATE event will have a status different from
  *            @ref BLE_HCI_STATUS_CODE_SUCCESS.
  *
  * @note      The requested PHYs does not have to be within the set of the preferred PHYs.

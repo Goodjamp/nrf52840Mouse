@@ -18,6 +18,6 @@ bool    orderFree       (orderT orderIn);
 bool    orderSetFirst   (orderT orderIn, uint8_t inItem);
 bool    orderGetPos     (const orderT orderIn, uint8_t deviceID, uint8_t *pos);
 uint8_t orderGetQuantity(const orderT orderIn);
-void    orderClear      (orderT orderIn);
+void    orderClean      (orderT orderIn);
 
 #endif

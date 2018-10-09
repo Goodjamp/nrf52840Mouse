@@ -127,7 +127,7 @@ uint8_t orderGetQuantity(const orderT orderIn)
 }
 
 
-void orderClear(orderT orderIn)
+void orderClean(orderT orderIn)
 {
     memset(orderIn->order, ORDER_ITEM_FREE, sizeof(orderIn->order));
 }
