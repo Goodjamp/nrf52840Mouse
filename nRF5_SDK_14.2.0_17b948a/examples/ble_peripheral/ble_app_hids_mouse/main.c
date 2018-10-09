@@ -318,6 +318,16 @@ typedef enum
     DEV_CONNECTION,
 }connPhase;
 
+typedef enum
+{
+    ADV_GENERAL,      // after power on without bonds OR after erase all bonds
+    ADV_ADD_NEW,      // after press connect pushbutton
+    ADV_RECONNECT_SCAN,  // after power on with bonds    OR after disconnect
+    ADV_RECONNECT_CONNECT,
+}advTypeT;
+
+advTypeT currentAdv;
+
 struct
 {
     connPhase phase;
@@ -369,36 +379,55 @@ static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds )
 
 /**@brief Function for starting advertising.
  */
-static void advertisingApStart(uint16_t intervalMSeconds, uint16_t periodSeconds, bool useWhiteList, bool whiteListOneRemote, uint16_t peerId)
+static void advertisingApStart(advTypeT advType, uint16_t peerId)
 {
-
     ret_code_t ret;
 
-    // set adv timing properties
-    advertising_init(intervalMSeconds, periodSeconds);
-
-    if(useWhiteList)
+    switch(advType)
     {
-        if(whiteListOneRemote)
-        {
-            NRF_LOG_INFO("Adv WL one dev");
-            m_whitelist_peers[0] = peerId;
-            m_whitelist_peer_cnt = 1;
-        }
-        else
-        {
-            memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
-            m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
-            peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
-            NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
-        }
+    case ADV_GENERAL:
+        // set timeout and period of advertising
+        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT);
+        // scanning without white list
+        currentAdv = ADV_GENERAL;
+        break;
+    case ADV_ADD_NEW:
+        // set timeout and period of advertising
+        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT);
+        // scanning without white list, but REJECT connection all current peers
+        currentAdv = ADV_ADD_NEW;
+        break;
+    case ADV_RECONNECT_SCAN:
+        // set timeout and period of advertising
+        advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT);
+        // set white list parameters
+        memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
+        m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
+        peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+
+        NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
+
+        currentAdv = (m_whitelist_peer_cnt == 0) ? (ADV_GENERAL) : (ADV_RECONNECT_SCAN);
+        break;
+    case ADV_RECONNECT_CONNECT:
+        // set timeout and period of advertising
+        advertising_init(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT);
+        // set white list parameters
+        NRF_LOG_INFO("Adv WL one dev");
+        m_whitelist_peers[0] = peerId;
+        m_whitelist_peer_cnt = 1;
+
+        currentAdv = ADV_RECONNECT_SCAN;
+        break;
     }
 
-    ret = pm_whitelist_set((useWhiteList) ? (m_whitelist_peers):(NULL), (useWhiteList) ? (m_whitelist_peer_cnt):(0));
+    ret = pm_whitelist_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
+                           (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
     APP_ERROR_CHECK(ret);
     // Setup the device identies list.
     // Some SoftDevices do not support this feature.
-    ret = pm_device_identities_list_set((useWhiteList) ? (m_whitelist_peers):(NULL), (useWhiteList) ? (m_whitelist_peer_cnt):(0));
+    ret = pm_device_identities_list_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
+                                        (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
 
     if (ret != NRF_ERROR_NOT_SUPPORTED)
     {
@@ -410,7 +439,8 @@ static void advertisingApStart(uint16_t intervalMSeconds, uint16_t periodSeconds
 }
 
 
-void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
+
+void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
 {
     ret_code_t err_code;
     switch(inEv)
@@ -457,7 +487,7 @@ void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t p
                 }
             }
             advDirOrdConnState.connectCnt = 0;
-            advertisingApStart(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true, true, advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
+            advertisingApStart(ADV_RECONNECT_CONNECT , advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
         }
         break;
         case DEV_CONNECTION:   //  continue connection to next device
@@ -468,17 +498,18 @@ void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t p
 
                 if(advDirOrdConnState.loopCnt >= DIRECT_CONN_QUANTITY)
                 {
+                    // start general advertising
                     break;
                 }
                 // start scanning
                 memset(advDirOrdConnState.listDetectedDev, DETECTED_DEV_FREE, sizeof(advDirOrdConnState.listDetectedDev));
                 advDirOrdConnState.connectCnt = 0;
                 advDirOrdConnState.phase      = DEV_SCANNING;
-                advertisingApStart(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, true, false, 0);
+                advertisingApStart(ADV_RECONNECT_SCAN, 0);
             }
             // shift to next detected device
             advDirOrdConnState.connectCnt++;
-            advertisingApStart(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true, true, advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
+            advertisingApStart(ADV_RECONNECT_CONNECT, advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
             break;
         }
         break;
@@ -487,6 +518,25 @@ void advertismentProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t p
     }
 }
 
+
+void advertisingProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
+{
+    switch(currentAdv)
+    {
+    case ADV_GENERAL:
+        break;
+    case ADV_ADD_NEW:
+
+        break;
+    case ADV_RECONNECT_SCAN:
+        advertisingDirectProc(inEv, connHandle, peerId);
+        break;
+    case ADV_RECONNECT_CONNECT:
+        advertisingDirectProc(inEv, connHandle, peerId);
+        break;
+    }
+
+}
 
 /**@brief Function for handling Service errors.
  *
@@ -1186,7 +1236,7 @@ int main(void)
     scheduler_init();
     gap_params_init();
     gatt_init();
-    advertising_init();
+//    advertising_init();
     services_init();
     sensor_simulator_init();
     conn_params_init();
@@ -1196,7 +1246,7 @@ int main(void)
     NRF_LOG_INFO("Gerasimchuk started.");
     timers_start();
 
-    advertising_start(false);
+    advertisingApStart(ADV_RECONNECT_SCAN, 0);
 
     // Enter main loop.
     for (;;)
