@@ -1,30 +1,30 @@
 /**
  * Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
- * 
+ *
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form, except as embedded into a Nordic
  *    Semiconductor ASA integrated circuit in a product or a software update for
  *    such product, must reproduce the above copyright notice, this list of
  *    conditions and the following disclaimer in the documentation and/or other
  *    materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of Nordic Semiconductor ASA nor the names of its
  *    contributors may be used to endorse or promote products derived from this
  *    software without specific prior written permission.
- * 
+ *
  * 4. This software, with or without modification, must only be used with a
  *    Nordic Semiconductor ASA integrated circuit.
- * 
+ *
  * 5. Any software provided in binary form under this license must not be reverse
  *    engineered, decompiled, modified and/or disassembled.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS
  * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -35,7 +35,7 @@
  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  */
 #include  "sdk_common.h"
 #if NRF_MODULE_ENABLED(BLE_ADVERTISING)
@@ -117,6 +117,7 @@ static void on_disconnected(ble_advertising_t * const p_advertising, ble_evt_t c
     if (p_ble_evt->evt.gap_evt.conn_handle == p_advertising->current_slave_link_conn_handle &&
         p_advertising->adv_modes_config.ble_adv_on_disconnect_disabled == false)
     {
+       NRF_LOG_INFO("------start adv2-------");
        ret = ble_advertising_start(p_advertising, BLE_ADV_MODE_DIRECTED);
        if ((ret != NRF_SUCCESS) && (p_advertising->error_handler != NULL))
        {
@@ -142,6 +143,7 @@ static void on_timeout(ble_advertising_t * const p_advertising, ble_evt_t const 
     }
 
     // Start advertising in the next mode.
+    NRF_LOG_INFO("------start adv3-------");
     ret = ble_advertising_start(p_advertising, adv_mode_next_get(p_advertising->adv_mode_current));
 
     if ((ret != NRF_SUCCESS) && (p_advertising->error_handler != NULL))
@@ -584,6 +586,7 @@ void ble_advertising_on_sys_evt(uint32_t evt_id, void * p_context)
             if (p_advertising->advertising_start_pending)
             {
                 p_advertising->advertising_start_pending = false;
+                NRF_LOG_INFO("------start adv4-------");
                 ret_code_t ret = ble_advertising_start(p_advertising,
                                                        p_advertising->adv_mode_current);
 
@@ -674,7 +677,7 @@ uint32_t ble_advertising_restart_without_whitelist(ble_advertising_t * const p_a
     {
         return ret;
     }
-
+    NRF_LOG_INFO("------start adv5-------");
     ret = ble_advertising_start(p_advertising, p_advertising->adv_mode_current);
     if ((ret != NRF_SUCCESS) && (p_advertising->error_handler != NULL))
     {

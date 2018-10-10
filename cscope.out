@@ -1,4 +1,4 @@
-cscope 15 C:\Private\Programing\Nordic\NRF52840Mouse"               0000587678
+cscope 15 C:\Private\Programing\Nordic\NRF52840Mouse"               0000598374
 	@C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
 
 40 
@@ -252,6 +252,10 @@ bÀ_adv_⁄_disc⁄√˘_dißbÀd
 )
 
 120 
+	`NRF_LOG_INFO
+("------startádv2-------");
+
+121 
 ªt
  = 
 	`bÀ_advîtisög_°¨t
@@ -261,7 +265,7 @@ p_advîtisög
 BLE_ADV_MODE_DIRECTED
 );
 
-121 i‡((
+122 i‡((
 ªt
  !
 NRF_SUCCESS
@@ -273,7 +277,7 @@ p_advîtisög
 NULL
 ))
 
-123 
+124 
 p_advîtisög
 ->
 	`îr‹_h™dÀr
@@ -281,11 +285,11 @@ p_advîtisög
 ªt
 );
 
-126 
+127 
 	}
 }
 
-134 
+135 
 	$⁄_timeout
 (
 bÀ_advîtisög_t
@@ -297,13 +301,13 @@ bÀ_evt_t
 p_bÀ_evt
 )
 
-136 
+137 
 ªt_code_t
  
 ªt
 ;
 
-138 i‡(
+139 i‡(
 p_bÀ_evt
 ->
 evt
@@ -319,7 +323,11 @@ timeout
 BLE_GAP_TIMEOUT_SRC_ADVERTISING
 )
 
-145 
+146 
+	`NRF_LOG_INFO
+("------startádv3-------");
+
+147 
 ªt
  = 
 	`bÀ_advîtisög_°¨t
@@ -331,7 +339,7 @@ p_advîtisög
 adv_mode_cuºít
 ));
 
-147 i‡((
+149 i‡((
 ªt
  !
 NRF_SUCCESS
@@ -343,7 +351,7 @@ p_advîtisög
 NULL
 ))
 
-149 
+151 
 p_advîtisög
 ->
 	`îr‹_h™dÀr
@@ -351,27 +359,27 @@ p_advîtisög
 ªt
 );
 
-151 
+153 
 	}
 }
 
-158 
+160 
 boﬁ
  
 	$Êash_ac˚ss_ö_¥ogªss
 ()
 
-160  
+162  
 	`ƒf_f°‹age_is_busy
 (
 NULL
 );
 
-161 
+163 
 	}
 }
 
-171 
+173 
 bÀ_adv_mode_t
  
 	$adv_mode_√xt_avaû_gë
@@ -381,13 +389,13 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-172 
+174 
 bÀ_adv_mode_t
  
 adv_mode
 )
 
-174 
+176 
 boﬁ
  
 ≥î_addr_is_vÆid
@@ -401,15 +409,15 @@ p_advîtisög
 addr
 );
 
-178 
+180 
 adv_mode
 )
 
-180 
+182 
 BLE_ADV_MODE_DIRECTED
 :
 
-181 i‡((
+183 i‡((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -419,15 +427,15 @@ bÀ_adv_dúe˘ed_íabÀd
 ≥î_addr_is_vÆid
 )
 
-183  
+185  
 BLE_ADV_MODE_DIRECTED
 ;
 
-187 
+189 
 BLE_ADV_MODE_DIRECTED_SLOW
 :
 
-188 i‡((
+190 i‡((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -437,15 +445,15 @@ bÀ_adv_dúe˘ed_¶ow_íabÀd
 ≥î_addr_is_vÆid
 )
 
-190  
+192  
 BLE_ADV_MODE_DIRECTED_SLOW
 ;
 
-194 
+196 
 BLE_ADV_MODE_FAST
 :
 
-195 i‡(
+197 i‡(
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -453,15 +461,15 @@ adv_modes_c⁄fig
 bÀ_adv_Á°_íabÀd
 )
 
-197  
+199  
 BLE_ADV_MODE_FAST
 ;
 
-201 
+203 
 BLE_ADV_MODE_SLOW
 :
 
-202 i‡(
+204 i‡(
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -469,19 +477,19 @@ adv_modes_c⁄fig
 bÀ_adv_¶ow_íabÀd
 )
 
-204  
+206  
 BLE_ADV_MODE_SLOW
 ;
 
-209  
+211  
 BLE_ADV_MODE_IDLE
 ;
 
-211 
+213 
 	}
 }
 
-221 
+223 
 ªt_code_t
  
 	$£t_adv_mode_dúe˘ed
@@ -491,13 +499,13 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-222 
+224 
 bÀ_g≠_adv_∑øms_t
  * 
 p_adv_∑øms
 )
 
-224 
+226 
 p_advîtisög
 ->
 adv_evt
@@ -505,7 +513,7 @@ adv_evt
 BLE_ADV_EVT_DIRECTED
 ;
 
-226 
+228 
 p_adv_∑øms
 ->
 p_≥î_addr
@@ -515,7 +523,7 @@ p_advîtisög
 ≥î_addªss
 );
 
-227 
+229 
 p_adv_∑øms
 ->
 ty≥
@@ -523,27 +531,27 @@ ty≥
 BLE_GAP_ADV_TYPE_ADV_DIRECT_IND
 ;
 
-228 
+230 
 p_adv_∑øms
 ->
 timeout
  = 0;
 
-229 
+231 
 p_adv_∑øms
 ->
 öãrvÆ
  = 0;
 
-231  
+233  
 NRF_SUCCESS
 ;
 
-232 
+234 
 	}
 }
 
-242 
+244 
 ªt_code_t
  
 	$£t_adv_mode_dúe˘ed_¶ow
@@ -553,13 +561,13 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-243 
+245 
 bÀ_g≠_adv_∑øms_t
  * 
 p_adv_∑øms
 )
 
-245 
+247 
 p_advîtisög
 ->
 adv_evt
@@ -567,7 +575,7 @@ adv_evt
 BLE_ADV_EVT_DIRECTED_SLOW
 ;
 
-247 
+249 
 p_adv_∑øms
 ->
 p_≥î_addr
@@ -577,7 +585,7 @@ p_advîtisög
 ≥î_addªss
 ;
 
-248 
+250 
 p_adv_∑øms
 ->
 ty≥
@@ -585,7 +593,7 @@ ty≥
 BLE_GAP_ADV_TYPE_ADV_DIRECT_IND
 ;
 
-249 
+251 
 p_adv_∑øms
 ->
 timeout
@@ -597,7 +605,7 @@ adv_modes_c⁄fig
 bÀ_adv_dúe˘ed_¶ow_timeout
 ;
 
-250 
+252 
 p_adv_∑øms
 ->
 öãrvÆ
@@ -609,15 +617,15 @@ adv_modes_c⁄fig
 bÀ_adv_dúe˘ed_¶ow_öãrvÆ
 ;
 
-252  
+254  
 NRF_SUCCESS
 ;
 
-253 
+255 
 	}
 }
 
-263 
+265 
 ªt_code_t
  
 	$£t_adv_mode_Á°
@@ -627,19 +635,19 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-264 
+266 
 bÀ_g≠_adv_∑øms_t
  * 
 p_adv_∑øms
 )
 
-266 
+268 
 ªt_code_t
  
 ªt
 ;
 
-268 
+270 
 p_adv_∑øms
 ->
 öãrvÆ
@@ -651,7 +659,7 @@ adv_modes_c⁄fig
 bÀ_adv_Á°_öãrvÆ
 ;
 
-269 
+271 
 p_adv_∑øms
 ->
 timeout
@@ -663,7 +671,7 @@ adv_modes_c⁄fig
 bÀ_adv_Á°_timeout
 ;
 
-271 i‡((
+273 i‡((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -671,23 +679,23 @@ adv_modes_c⁄fig
 bÀ_adv_whôñi°_íabÀd
 ) &&
 
-272 (!
+274 (!
 p_advîtisög
 ->
 whôñi°_ãmp‹¨ûy_dißbÀd
 ) &&
 
-273 (
+275 (
 	`whôñi°_has_íåõs
 (
 p_advîtisög
 )))
 
-275 #i‡(
+277 #i‡(
 NRF_SD_BLE_API_VERSION
  <= 2)
 
-276 
+278 
 p_adv_∑øms
 ->
 p_whôñi°
@@ -695,7 +703,7 @@ p_whôñi°
 m_whôñi°
 ;
 
-279 
+281 
 p_adv_∑øms
 ->
 Â
@@ -703,7 +711,7 @@ p_adv_∑øms
 BLE_GAP_ADV_FP_FILTER_CONNREQ
 ;
 
-280 
+282 
 p_advîtisög
 ->
 advd©a
@@ -713,7 +721,7 @@ advd©a
 BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED
 ;
 
-282 
+284 
 ªt
  = 
 	`bÀ_advd©a_£t
@@ -725,17 +733,17 @@ advd©a
 NULL
 );
 
-283 i‡(
+285 i‡(
 ªt
  !
 NRF_SUCCESS
 )
 
-285  
+287  
 ªt
 ;
 
-288 
+290 
 p_advîtisög
 ->
 adv_evt
@@ -743,7 +751,7 @@ adv_evt
 BLE_ADV_EVT_FAST_WHITELIST
 ;
 
-292 
+294 
 p_advîtisög
 ->
 adv_evt
@@ -751,15 +759,15 @@ adv_evt
 BLE_ADV_EVT_FAST
 ;
 
-295  
+297  
 NRF_SUCCESS
 ;
 
-296 
+298 
 	}
 }
 
-306 
+308 
 ªt_code_t
  
 	$£t_adv_mode_¶ow
@@ -769,19 +777,19 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-307 
+309 
 bÀ_g≠_adv_∑øms_t
  * 
 p_adv_∑øms
 )
 
-309 
+311 
 ªt_code_t
  
 ªt
 ;
 
-311 
+313 
 p_adv_∑øms
 ->
 öãrvÆ
@@ -793,7 +801,7 @@ adv_modes_c⁄fig
 bÀ_adv_¶ow_öãrvÆ
 ;
 
-312 
+314 
 p_adv_∑øms
 ->
 timeout
@@ -805,7 +813,7 @@ adv_modes_c⁄fig
 bÀ_adv_¶ow_timeout
 ;
 
-314 i‡((
+316 i‡((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -813,23 +821,23 @@ adv_modes_c⁄fig
 bÀ_adv_whôñi°_íabÀd
 ) &&
 
-315 (!
+317 (!
 p_advîtisög
 ->
 whôñi°_ãmp‹¨ûy_dißbÀd
 ) &&
 
-316 (
+318 (
 	`whôñi°_has_íåõs
 (
 p_advîtisög
 )))
 
-318 #i‡(
+320 #i‡(
 NRF_SD_BLE_API_VERSION
  <= 2)
 
-320 
+322 
 p_adv_∑øms
 ->
 p_whôñi°
@@ -839,7 +847,7 @@ p_advîtisög
 whôñi°
 ;
 
-324 
+326 
 p_adv_∑øms
 ->
 Â
@@ -847,7 +855,7 @@ p_adv_∑øms
 BLE_GAP_ADV_FP_FILTER_CONNREQ
 ;
 
-325 
+327 
 p_advîtisög
 ->
 advd©a
@@ -857,7 +865,7 @@ advd©a
 BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED
 ;
 
-327 
+329 
 ªt
  = 
 	`bÀ_advd©a_£t
@@ -869,17 +877,17 @@ advd©a
 NULL
 );
 
-328 i‡(
+330 i‡(
 ªt
  !
 NRF_SUCCESS
 )
 
-330  
+332  
 ªt
 ;
 
-333 
+335 
 p_advîtisög
 ->
 adv_evt
@@ -887,7 +895,7 @@ adv_evt
 BLE_ADV_EVT_SLOW_WHITELIST
 ;
 
-337 
+339 
 p_advîtisög
 ->
 adv_evt
@@ -895,15 +903,15 @@ adv_evt
 BLE_ADV_EVT_SLOW
 ;
 
-340  
+342  
 NRF_SUCCESS
 ;
 
-341 
+343 
 	}
 }
 
-344 
+346 
 	$bÀ_advîtisög_c⁄n_cfg_èg_£t
 (
 bÀ_advîtisög_t
@@ -911,13 +919,13 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-345 
+347 
 uöt8_t
  
 bÀ_cfg_èg
 )
 
-347 
+349 
 p_advîtisög
 ->
 c⁄n_cfg_èg
@@ -925,11 +933,11 @@ c⁄n_cfg_èg
 bÀ_cfg_èg
 ;
 
-348 
+350 
 	}
 }
 
-351 
+353 
 uöt32_t
  
 	$bÀ_advîtisög_öô
@@ -939,19 +947,19 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-352 
+354 
 bÀ_advîtisög_öô_t
  c⁄° * c⁄° 
 p_öô
 )
 
-354 
+356 
 uöt32_t
  
 ªt
 ;
 
-355 i‡((
+357 i‡((
 p_öô
  =
 NULL
@@ -959,11 +967,11 @@ NULL
 p_advîtisög
  == NULL))
 
-357  
+359  
 NRF_ERROR_NULL
 ;
 
-360 
+362 
 p_advîtisög
 ->
 öôülized
@@ -971,7 +979,7 @@ p_advîtisög
 åue
 ;
 
-361 
+363 
 p_advîtisög
 ->
 adv_mode_cuºít
@@ -979,7 +987,7 @@ adv_mode_cuºít
 BLE_ADV_MODE_IDLE
 ;
 
-362 
+364 
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -989,7 +997,7 @@ p_öô
 c⁄fig
 ;
 
-363 
+365 
 p_advîtisög
 ->
 c⁄n_cfg_èg
@@ -997,7 +1005,7 @@ c⁄n_cfg_èg
 BLE_CONN_CFG_TAG_DEFAULT
 ;
 
-364 
+366 
 p_advîtisög
 ->
 evt_h™dÀr
@@ -1005,7 +1013,7 @@ evt_h™dÀr
 p_öô
 ->evt_handler;
 
-365 
+367 
 p_advîtisög
 ->
 îr‹_h™dÀr
@@ -1013,7 +1021,7 @@ p_advîtisög
 p_öô
 ->error_handler;
 
-366 
+368 
 p_advîtisög
 ->
 cuºít_¶ave_lök_c⁄n_h™dÀ
@@ -1021,7 +1029,7 @@ cuºít_¶ave_lök_c⁄n_h™dÀ
 BLE_CONN_HANDLE_INVALID
 ;
 
-368 
+370 
 	`mem£t
 (&
 p_advîtisög
@@ -1029,7 +1037,7 @@ p_advîtisög
 ≥î_addªss
 , 0, (p_advertising->peer_address));
 
-369 
+371 
 	`mem£t
 (&
 p_advîtisög
@@ -1037,7 +1045,7 @@ p_advîtisög
 advd©a
 , 0, (p_advertising->advdata));
 
-372 
+374 
 p_advîtisög
 ->
 advd©a
@@ -1047,7 +1055,7 @@ advd©a
 p_öô
 ->advdata.name_type;
 
-373 
+375 
 p_advîtisög
 ->
 advd©a
@@ -1057,7 +1065,7 @@ advd©a
 p_öô
 ->advdata.include_appearance;
 
-374 
+376 
 p_advîtisög
 ->
 advd©a
@@ -1067,7 +1075,7 @@ advd©a
 p_öô
 ->advdata.flags;
 
-375 
+377 
 p_advîtisög
 ->
 advd©a
@@ -1077,7 +1085,7 @@ sh‹t_«me_Àn
 p_öô
 ->advdata.short_name_len;
 
-377 
+379 
 p_advîtisög
 ->
 advd©a
@@ -1087,7 +1095,7 @@ uuids_com∂ëe
 p_öô
 ->advdata.uuids_complete;
 
-378 
+380 
 p_advîtisög
 ->
 advd©a
@@ -1097,7 +1105,7 @@ uuids_m‹e_avaûabÀ
 p_öô
 ->advdata.uuids_more_available;
 
-379 
+381 
 p_advîtisög
 ->
 advd©a
@@ -1107,7 +1115,7 @@ uuids_sﬁicôed
 p_öô
 ->advdata.uuids_solicited;
 
-380 
+382 
 p_advîtisög
 ->
 advd©a
@@ -1117,7 +1125,7 @@ advd©a
 p_öô
 ->advdata.include_ble_device_addr;
 
-382 i‡(
+384 i‡(
 p_öô
 ->
 advd©a
@@ -1127,7 +1135,7 @@ p_m™uf_•ecific_d©a
 NULL
 )
 
-384 
+386 
 p_advîtisög
 ->
 advd©a
@@ -1137,7 +1145,7 @@ p_m™uf_•ecific_d©a
 m™uf_•ecific_d©a
 );
 
-385 
+387 
 p_advîtisög
 ->
 m™uf_•ecific_d©a
@@ -1149,7 +1157,7 @@ p_d©a
 m™uf_d©a_¨øy
 ;
 
-386 
+388 
 p_advîtisög
 ->
 advd©a
@@ -1159,7 +1167,7 @@ p_m™uf_•ecific_d©a
 com∑ny_idítifõr
  =
 
-387 
+389 
 p_öô
 ->
 advd©a
@@ -1169,7 +1177,7 @@ p_m™uf_•ecific_d©a
 com∑ny_idítifõr
 ;
 
-388 
+390 
 p_advîtisög
 ->
 advd©a
@@ -1183,7 +1191,7 @@ size
 p_öô
 ->advdata.p_manuf_specific_data->data.size;
 
-390 
+392 
 uöt32_t
  
 i
@@ -1199,7 +1207,7 @@ d©a
 size
 ; i++)
 
-392 
+394 
 p_advîtisög
 ->
 m™uf_d©a_¨øy
@@ -1217,7 +1225,7 @@ d©a
 p_d©a
 [i];
 
-396 i‡(
+398 i‡(
 p_öô
 ->
 advd©a
@@ -1227,35 +1235,11 @@ p_£rvi˚_d©a_¨øy
 NULL
 )
 
-398 
-p_advîtisög
-->
-£rvi˚_d©a
-.
-d©a
-.
-p_d©a
- =Ö_advîtisög->
-£rvi˚_d©a_¨øy
-;
-
-399 
-p_advîtisög
-->
-advd©a
-.
-p_£rvi˚_d©a_¨øy
- = &’_advîtisög->
-£rvi˚_d©a
-);
-
 400 
 p_advîtisög
 ->
-advd©a
+£rvi˚_d©a
 .
-p_£rvi˚_d©a_¨øy
-->
 d©a
 .
 p_d©a
@@ -1269,6 +1253,30 @@ p_advîtisög
 advd©a
 .
 p_£rvi˚_d©a_¨øy
+ = &’_advîtisög->
+£rvi˚_d©a
+);
+
+402 
+p_advîtisög
+->
+advd©a
+.
+p_£rvi˚_d©a_¨øy
+->
+d©a
+.
+p_d©a
+ =Ö_advîtisög->
+£rvi˚_d©a_¨øy
+;
+
+403 
+p_advîtisög
+->
+advd©a
+.
+p_£rvi˚_d©a_¨øy
 ->
 d©a
 .
@@ -1277,7 +1285,7 @@ size
 p_öô
 ->advdata.p_service_data_array->data.size;
 
-402 
+404 
 p_advîtisög
 ->
 advd©a
@@ -1289,7 +1297,7 @@ p_£rvi˚_d©a_¨øy
 p_öô
 ->advdata.p_service_data_array->service_uuid;
 
-404 
+406 
 uöt32_t
  
 i
@@ -1305,7 +1313,7 @@ d©a
 size
 ; i++)
 
-406 
+408 
 p_advîtisög
 ->
 £rvi˚_d©a_¨øy
@@ -1323,7 +1331,7 @@ d©a
 p_d©a
 [i];
 
-409 
+411 
 p_advîtisög
 ->
 advd©a
@@ -1333,7 +1341,7 @@ advd©a
 p_öô
 ->advdata.service_data_count;
 
-412 i‡(
+414 i‡(
 p_öô
 ->
 advd©a
@@ -1343,7 +1351,7 @@ p_¶ave_c⁄n_öt
 NULL
 )
 
-414 
+416 
 p_advîtisög
 ->
 advd©a
@@ -1353,7 +1361,7 @@ p_¶ave_c⁄n_öt
 ¶ave_c⁄n_öt
 );
 
-415 
+417 
 p_advîtisög
 ->
 advd©a
@@ -1365,7 +1373,7 @@ max_c⁄n_öãrvÆ
 p_öô
 ->advdata.p_slave_conn_int->max_conn_interval;
 
-416 
+418 
 p_advîtisög
 ->
 advd©a
@@ -1377,7 +1385,7 @@ mö_c⁄n_öãrvÆ
 p_öô
 ->advdata.p_slave_conn_int->min_conn_interval;
 
-419 i‡(
+421 i‡(
 p_öô
 ->
 advd©a
@@ -1387,7 +1395,7 @@ p_tx_powî_Àvñ
 NULL
 )
 
-421 
+423 
 p_advîtisög
 ->
 advd©a
@@ -1397,17 +1405,17 @@ p_tx_powî_Àvñ
 p_öô
 ->advdata.p_tx_power_level;
 
-424 #i‡(
+426 #i‡(
 NRF_SD_BLE_API_VERSION
  <= 2)
 
-425 
+427 
 i
  = 0; i <
 BLE_GAP_WHITELIST_ADDR_MAX_COUNT
  ; i++)
 
-427 
+429 
 p_advîtisög
 ->
 whôñi°
@@ -1419,13 +1427,13 @@ i
 whôñi°_addrs
 [i];
 
-430 
+432 
 i
  = 0; i <
 BLE_GAP_WHITELIST_IRK_MAX_COUNT
  ; i++)
 
-432 
+434 
 p_advîtisög
 ->
 whôñi°
@@ -1437,7 +1445,7 @@ i
 whôñi°_úks
 [i];
 
-435 
+437 
 ªt
  = 
 	`bÀ_advd©a_£t
@@ -1451,15 +1459,15 @@ p_öô
 §d©a
 ));
 
-436  
+438  
 ªt
 ;
 
-437 
+439 
 	}
 }
 
-440 
+442 
 uöt32_t
  
 	$bÀ_advîtisög_°¨t
@@ -1469,25 +1477,25 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-441 
+443 
 bÀ_adv_mode_t
  
 advîtisög_mode
 )
 
-443 
+445 
 uöt32_t
  
 ªt
 ;
 
-444 
+446 
 bÀ_g≠_adv_∑øms_t
  
 adv_∑øms
 ;
 
-446 i‡(
+448 i‡(
 p_advîtisög
 ->
 öôülized
@@ -1495,11 +1503,11 @@ p_advîtisög
 Ál£
 )
 
-448  
+450  
 NRF_ERROR_INVALID_STATE
 ;
 
-451 
+453 
 p_advîtisög
 ->
 adv_mode_cuºít
@@ -1507,11 +1515,11 @@ adv_mode_cuºít
 advîtisög_mode
 ;
 
-454 i‡(
+456 i‡(
 	`Êash_ac˚ss_ö_¥ogªss
 ())
 
-456 
+458 
 p_advîtisög
 ->
 advîtisög_°¨t_≥ndög
@@ -1519,11 +1527,11 @@ advîtisög_°¨t_≥ndög
 åue
 ;
 
-457  
+459  
 NRF_SUCCESS
 ;
 
-460 
+462 
 	`mem£t
 (&
 p_advîtisög
@@ -1531,7 +1539,7 @@ p_advîtisög
 ≥î_addªss
 , 0, (p_advertising->peer_address));
 
-462 i‡–((
+464 i‡–((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -1543,7 +1551,7 @@ adv_mode_cuºít
 BLE_ADV_MODE_DIRECTED
 ))
 
-463 ||((
+465 ||((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -1555,7 +1563,7 @@ adv_mode_cuºít
 BLE_ADV_MODE_DIRECTED
 ))
 
-464 ||((
+466 ||((
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -1567,7 +1575,7 @@ adv_mode_cuºít
 BLE_ADV_MODE_DIRECTED_SLOW
 ))
 
-467 i‡(
+469 i‡(
 p_advîtisög
 ->
 evt_h™dÀr
@@ -1575,7 +1583,7 @@ evt_h™dÀr
 NULL
 )
 
-469 
+471 
 p_advîtisög
 ->
 ≥î_addr_ª∂y_ex≥˘ed
@@ -1583,7 +1591,7 @@ p_advîtisög
 åue
 ;
 
-470 
+472 
 p_advîtisög
 ->
 	`evt_h™dÀr
@@ -1591,7 +1599,7 @@ p_advîtisög
 BLE_ADV_EVT_PEER_ADDR_REQUEST
 );
 
-474 
+476 
 p_advîtisög
 ->
 ≥î_addr_ª∂y_ex≥˘ed
@@ -1599,7 +1607,7 @@ p_advîtisög
 Ál£
 ;
 
-478 
+480 
 p_advîtisög
 ->
 adv_mode_cuºít
@@ -1609,7 +1617,7 @@ adv_mode_cuºít
 advîtisög_mode
 );
 
-481 i‡((
+483 i‡((
 p_advîtisög
 ->
 evt_h™dÀr
@@ -1617,7 +1625,7 @@ evt_h™dÀr
 NULL
 ) &&
 
-482 (
+484 (
 p_advîtisög
 ->
 adv_mode_cuºít
@@ -1627,7 +1635,7 @@ BLE_ADV_MODE_FAST
 BLE_ADV_MODE_SLOW
 ) &&
 
-483 (
+485 (
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -1635,17 +1643,17 @@ adv_modes_c⁄fig
 bÀ_adv_whôñi°_íabÀd
 ) &&
 
-484 (!
+486 (!
 p_advîtisög
 ->
 whôñi°_ãmp‹¨ûy_dißbÀd
 ))
 
-486 #i‡(
+488 #i‡(
 NRF_SD_BLE_API_VERSION
  >= 3)
 
-487 
+489 
 p_advîtisög
 ->
 whôñi°_ö_u£
@@ -1653,7 +1661,7 @@ whôñi°_ö_u£
 Ál£
 ;
 
-489 
+491 
 p_advîtisög
 ->
 whôñi°_ª∂y_ex≥˘ed
@@ -1661,7 +1669,7 @@ whôñi°_ª∂y_ex≥˘ed
 åue
 ;
 
-490 
+492 
 p_advîtisög
 ->
 	`evt_h™dÀr
@@ -1669,7 +1677,7 @@ p_advîtisög
 BLE_ADV_EVT_WHITELIST_REQUEST
 );
 
-494 
+496 
 p_advîtisög
 ->
 whôñi°_ª∂y_ex≥˘ed
@@ -1677,13 +1685,13 @@ whôñi°_ª∂y_ex≥˘ed
 Ál£
 ;
 
-498 
+500 
 	`mem£t
 (&
 adv_∑øms
 , 0, (adv_params));
 
-500 
+502 
 adv_∑øms
 .
 ty≥
@@ -1691,7 +1699,7 @@ ty≥
 BLE_GAP_ADV_TYPE_ADV_IND
 ;
 
-501 
+503 
 adv_∑øms
 .
 Â
@@ -1699,17 +1707,17 @@ adv_∑øms
 BLE_GAP_ADV_FP_ANY
 ;
 
-504 
+506 
 p_advîtisög
 ->
 adv_mode_cuºít
 )
 
-506 
+508 
 BLE_ADV_MODE_DIRECTED
 :
 
-507 
+509 
 ªt
  = 
 	`£t_adv_mode_dúe˘ed
@@ -1719,11 +1727,11 @@ p_advîtisög
 adv_∑øms
 );
 
-510 
+512 
 BLE_ADV_MODE_DIRECTED_SLOW
 :
 
-511 
+513 
 ªt
  = 
 	`£t_adv_mode_dúe˘ed_¶ow
@@ -1733,11 +1741,11 @@ p_advîtisög
 adv_∑øms
 );
 
-514 
+516 
 BLE_ADV_MODE_FAST
 :
 
-515 
+517 
 ªt
  = 
 	`£t_adv_mode_Á°
@@ -1747,11 +1755,11 @@ p_advîtisög
 adv_∑øms
 );
 
-518 
+520 
 BLE_ADV_MODE_SLOW
 :
 
-519 
+521 
 ªt
  = 
 	`£t_adv_mode_¶ow
@@ -1761,11 +1769,11 @@ p_advîtisög
 adv_∑øms
 );
 
-522 
+524 
 BLE_ADV_MODE_IDLE
 :
 
-523 
+525 
 p_advîtisög
 ->
 adv_evt
@@ -1773,7 +1781,7 @@ adv_evt
 BLE_ADV_EVT_IDLE
 ;
 
-530 i‡(
+532 i‡(
 p_advîtisög
 ->
 adv_mode_cuºít
@@ -1781,7 +1789,7 @@ adv_mode_cuºít
 BLE_ADV_MODE_IDLE
 )
 
-532 
+534 
 ªt
  = 
 	`sd_bÀ_g≠_adv_°¨t
@@ -1793,17 +1801,17 @@ p_advîtisög
 c⁄n_cfg_èg
 );
 
-533 i‡(
+535 i‡(
 ªt
  !
 NRF_SUCCESS
 )
 
-535  
+537  
 ªt
 ;
 
-539 i‡(
+541 i‡(
 p_advîtisög
 ->
 evt_h™dÀr
@@ -1811,7 +1819,7 @@ evt_h™dÀr
 NULL
 )
 
-541 
+543 
 p_advîtisög
 ->
 	`evt_h™dÀr
@@ -1819,15 +1827,15 @@ p_advîtisög
 adv_evt
 );
 
-544  
+546  
 NRF_SUCCESS
 ;
 
-545 
+547 
 	}
 }
 
-548 
+550 
 	$bÀ_advîtisög_⁄_bÀ_evt
 (
 bÀ_evt_t
@@ -1837,7 +1845,7 @@ p_bÀ_evt
 p_c⁄ãxt
 )
 
-550 
+552 
 bÀ_advîtisög_t
  * 
 p_advîtisög
@@ -1845,7 +1853,7 @@ p_advîtisög
 p_c⁄ãxt
 ;
 
-552 
+554 
 p_bÀ_evt
 ->
 hódî
@@ -1853,11 +1861,11 @@ hódî
 evt_id
 )
 
-554 
+556 
 BLE_GAP_EVT_CONNECTED
 :
 
-555 
+557 
 	`⁄_c⁄√˘ed
 (
 p_advîtisög
@@ -1865,11 +1873,11 @@ p_advîtisög
 p_bÀ_evt
 );
 
-559 
+561 
 BLE_GAP_EVT_DISCONNECTED
 :
 
-560 
+562 
 	`⁄_disc⁄√˘ed
 (
 p_advîtisög
@@ -1877,11 +1885,11 @@ p_advîtisög
 p_bÀ_evt
 );
 
-564 
+566 
 BLE_GAP_EVT_TIMEOUT
 :
 
-565 
+567 
 	`⁄_timeout
 (
 p_advîtisög
@@ -1889,11 +1897,11 @@ p_advîtisög
 p_bÀ_evt
 );
 
-571 
+573 
 	}
 }
 
-574 
+576 
 	$bÀ_advîtisög_⁄_sys_evt
 (
 uöt32_t
@@ -1903,7 +1911,7 @@ evt_id
 p_c⁄ãxt
 )
 
-576 
+578 
 bÀ_advîtisög_t
  * 
 p_advîtisög
@@ -1911,25 +1919,25 @@ p_advîtisög
 p_c⁄ãxt
 ;
 
-578 
+580 
 evt_id
 )
 
-581 
+583 
 NRF_EVT_FLASH_OPERATION_SUCCESS
 :
 
-582 
+584 
 NRF_EVT_FLASH_OPERATION_ERROR
 :
 
-584 i‡(
+586 i‡(
 p_advîtisög
 ->
 advîtisög_°¨t_≥ndög
 )
 
-586 
+588 
 p_advîtisög
 ->
 advîtisög_°¨t_≥ndög
@@ -1937,7 +1945,11 @@ advîtisög_°¨t_≥ndög
 Ál£
 ;
 
-587 
+589 
+	`NRF_LOG_INFO
+("------startádv4-------");
+
+590 
 ªt_code_t
  
 ªt
@@ -1947,13 +1959,13 @@ advîtisög_°¨t_≥ndög
 p_advîtisög
 ,
 
-588 
+591 
 p_advîtisög
 ->
 adv_mode_cuºít
 );
 
-590 i‡((
+593 i‡((
 ªt
  !
 NRF_SUCCESS
@@ -1965,7 +1977,7 @@ p_advîtisög
 NULL
 ))
 
-592 
+595 
 p_advîtisög
 ->
 	`îr‹_h™dÀr
@@ -1973,11 +1985,11 @@ p_advîtisög
 ªt
 );
 
-601 
+604 
 	}
 }
 
-604 
+607 
 uöt32_t
  
 	$bÀ_advîtisög_≥î_addr_ª∂y
@@ -1987,23 +1999,23 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-605 
+608 
 bÀ_g≠_addr_t
  * 
 p_≥î_addªss
 )
 
-607 i‡(!
+610 i‡(!
 p_advîtisög
 ->
 ≥î_addr_ª∂y_ex≥˘ed
 )
 
-609  
+612  
 NRF_ERROR_INVALID_STATE
 ;
 
-612 
+615 
 p_advîtisög
 ->
 ≥î_addr_ª∂y_ex≥˘ed
@@ -2011,7 +2023,7 @@ p_advîtisög
 Ál£
 ;
 
-614 
+617 
 	`mem˝y
 (&
 p_advîtisög
@@ -2021,15 +2033,15 @@ p_advîtisög
 p_≥î_addªss
 , (p_advertising->peer_address));
 
-616  
+619  
 NRF_SUCCESS
 ;
 
-617 
+620 
 	}
 }
 
-620 
+623 
 uöt32_t
  
 	$bÀ_advîtisög_whôñi°_ª∂y
@@ -2039,41 +2051,41 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-621 
+624 
 bÀ_g≠_addr_t
  c⁄° * 
 p_g≠_addrs
 ,
 
-622 
+625 
 uöt32_t
  
 addr_˙t
 ,
 
-623 
+626 
 bÀ_g≠_úk_t
  c⁄° * 
 p_g≠_úks
 ,
 
-624 
+627 
 uöt32_t
  
 úk_˙t
 )
 
-626 i‡(!
+629 i‡(!
 p_advîtisög
 ->
 whôñi°_ª∂y_ex≥˘ed
 )
 
-628  
+631  
 NRF_ERROR_INVALID_STATE
 ;
 
-631 
+634 
 p_advîtisög
 ->
 whôñi°_ª∂y_ex≥˘ed
@@ -2081,11 +2093,11 @@ whôñi°_ª∂y_ex≥˘ed
 Ál£
 ;
 
-633 #i‡(
+636 #i‡(
 NRF_SD_BLE_API_VERSION
  <= 2)
 
-635 
+638 
 p_advîtisög
 ->
 whôñi°
@@ -2095,7 +2107,7 @@ addr_cou¡
 addr_˙t
 ;
 
-636 
+639 
 p_advîtisög
 ->
 whôñi°
@@ -2105,7 +2117,7 @@ whôñi°
 úk_˙t
 ;
 
-638 
+641 
 uöt32_t
  
 i
@@ -2113,7 +2125,7 @@ i
 addr_˙t
 ; i++)
 
-640 *
+643 *
 p_advîtisög
 ->
 whôñi°
@@ -2125,7 +2137,7 @@ i
 p_g≠_addrs
 [i];
 
-643 
+646 
 uöt32_t
  
 i
@@ -2133,7 +2145,7 @@ i
 úk_˙t
 ; i++)
 
-645 *
+648 *
 p_advîtisög
 ->
 whôñi°
@@ -2145,7 +2157,7 @@ i
 p_g≠_úks
 [i];
 
-650 
+653 
 p_advîtisög
 ->
 whôñi°_ö_u£
@@ -2155,15 +2167,15 @@ addr_˙t
 úk_˙t
  > 0));
 
-654  
+657  
 NRF_SUCCESS
 ;
 
-655 
+658 
 	}
 }
 
-658 
+661 
 uöt32_t
  
 	$bÀ_advîtisög_ª°¨t_wôhout_whôñi°
@@ -2173,17 +2185,17 @@ bÀ_advîtisög_t
 p_advîtisög
 )
 
-660 
+663 
 uöt32_t
  
 ªt
 ;
 
-662 (Ë
+665 (Ë
 	`sd_bÀ_g≠_adv_°›
 ();
 
-664 
+667 
 p_advîtisög
 ->
 whôñi°_ãmp‹¨ûy_dißbÀd
@@ -2191,11 +2203,11 @@ whôñi°_ãmp‹¨ûy_dißbÀd
 åue
 ;
 
-666 #i‡(
+669 #i‡(
 NRF_SD_BLE_API_VERSION
  >= 3)
 
-667 
+670 
 p_advîtisög
 ->
 whôñi°_ö_u£
@@ -2203,7 +2215,7 @@ whôñi°_ö_u£
 Ál£
 ;
 
-670 
+673 
 p_advîtisög
 ->
 advd©a
@@ -2213,7 +2225,7 @@ advd©a
 BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE
 ;
 
-672 
+675 
 ªt
  = 
 	`bÀ_advd©a_£t
@@ -2225,17 +2237,21 @@ advd©a
 NULL
 );
 
-673 i‡(
+676 i‡(
 ªt
  !
 NRF_SUCCESS
 )
 
-675  
+678  
 ªt
 ;
 
-678 
+680 
+	`NRF_LOG_INFO
+("------startádv5-------");
+
+681 
 ªt
  = 
 	`bÀ_advîtisög_°¨t
@@ -2245,7 +2261,7 @@ p_advîtisög
 adv_mode_cuºít
 );
 
-679 i‡((
+682 i‡((
 ªt
  !
 NRF_SUCCESS
@@ -2257,7 +2273,7 @@ p_advîtisög
 NULL
 ))
 
-681 
+684 
 p_advîtisög
 ->
 	`îr‹_h™dÀr
@@ -2265,15 +2281,15 @@ p_advîtisög
 ªt
 );
 
-684  
+687  
 NRF_SUCCESS
 ;
 
-685 
+688 
 	}
 }
 
-688 
+691 
 	$bÀ_advîtisög_modes_c⁄fig_£t
 (
 bÀ_advîtisög_t
@@ -2281,13 +2297,13 @@ bÀ_advîtisög_t
 p_advîtisög
 ,
 
-689 
+692 
 bÀ_adv_modes_c⁄fig_t
  c⁄° * c⁄° 
 p_adv_modes_c⁄fig
 )
 
-691 
+694 
 p_advîtisög
 ->
 adv_modes_c⁄fig
@@ -2295,7 +2311,7 @@ adv_modes_c⁄fig
 p_adv_modes_c⁄fig
 ;
 
-692 
+695 
 	}
 }
 
@@ -82341,31 +82357,35 @@ uöt32_t
 	~"ƒf_log_deÁu…_backíds.h
 "
 
-88 
+87 
+	~"‹dîPro˚ssög.h
+"
+
+90 
 	#DEVICE_NAME
  "N‹dic_Mou£"
 
 	)
 
-89 
+91 
 	#MANUFACTURER_NAME
  "N‹dicSemic⁄du˘‹"
 
 	)
 
-91 
+93 
 	#APP_BLE_OBSERVER_PRIO
  3
 
 	)
 
-92 
+94 
 	#APP_BLE_CONN_CFG_TAG
  1
 
 	)
 
-94 
+96 
 	#BATTERY_LEVEL_MEAS_INTERVAL
  
 	`APP_TIMER_TICKS
@@ -82373,49 +82393,49 @@ uöt32_t
 
 	)
 
-95 
+97 
 	#MIN_BATTERY_LEVEL
  81
 
 	)
 
-96 
+98 
 	#MAX_BATTERY_LEVEL
  100
 
 	)
 
-97 
+99 
 	#BATTERY_LEVEL_INCREMENT
  1
 
 	)
 
-99 
+101 
 	#PNP_ID_VENDOR_ID_SOURCE
  0x02
 
 	)
 
-100 
+102 
 	#PNP_ID_VENDOR_ID
  0x1915
 
 	)
 
-101 
+103 
 	#PNP_ID_PRODUCT_ID
  0xEEEE
 
 	)
 
-102 
+104 
 	#PNP_ID_PRODUCT_VERSION
  0x0001
 
 	)
 
-105 
+107 
 	#MIN_CONN_INTERVAL
  
 	`MSEC_TO_UNITS
@@ -82425,7 +82445,7 @@ UNIT_1_25_MS
 
 	)
 
-106 
+108 
 	#MAX_CONN_INTERVAL
  
 	`MSEC_TO_UNITS
@@ -82435,13 +82455,13 @@ UNIT_1_25_MS
 
 	)
 
-107 
+109 
 	#SLAVE_LATENCY
  20
 
 	)
 
-108 
+110 
 	#CONN_SUP_TIMEOUT
  
 	`MSEC_TO_UNITS
@@ -82451,7 +82471,7 @@ UNIT_10_MS
 
 	)
 
-110 
+112 
 	#FIRST_CONN_PARAMS_UPDATE_DELAY
  
 	`APP_TIMER_TICKS
@@ -82459,7 +82479,7 @@ UNIT_10_MS
 
 	)
 
-111 
+113 
 	#NEXT_CONN_PARAMS_UPDATE_DELAY
  
 	`APP_TIMER_TICKS
@@ -82467,37 +82487,37 @@ UNIT_10_MS
 
 	)
 
-112 
+114 
 	#MAX_CONN_PARAM_UPDATE_COUNT
  3
 
 	)
 
-114 
+116 
 	#SEC_PARAM_BOND
  1
 
 	)
 
-115 
+117 
 	#SEC_PARAM_MITM
  0
 
 	)
 
-116 
+118 
 	#SEC_PARAM_LESC
  0
 
 	)
 
-117 
+119 
 	#SEC_PARAM_KEYPRESS
  0
 
 	)
 
-118 
+120 
 	#SEC_PARAM_IO_CAPABILITIES
  
 BLE_GAP_IO_CAPS_NONE
@@ -82505,97 +82525,97 @@ BLE_GAP_IO_CAPS_NONE
 
 	)
 
-119 
+121 
 	#SEC_PARAM_OOB
  0
 
 	)
 
-120 
+122 
 	#SEC_PARAM_MIN_KEY_SIZE
  7
 
 	)
 
-121 
+123 
 	#SEC_PARAM_MAX_KEY_SIZE
  16
 
 	)
 
-123 
+125 
 	#MOVEMENT_SPEED
  5
 
 	)
 
-124 
+126 
 	#INPUT_REPORT_COUNT
  3
 
 	)
 
-125 
+127 
 	#INPUT_REP_BUTTONS_LEN
  3
 
 	)
 
-126 
+128 
 	#INPUT_REP_MOVEMENT_LEN
  3
 
 	)
 
-127 
+129 
 	#INPUT_REP_MEDIA_PLAYER_LEN
  1
 
 	)
 
-128 
+130 
 	#INPUT_REP_BUTTONS_INDEX
  0
 
 	)
 
-129 
+131 
 	#INPUT_REP_MOVEMENT_INDEX
  1
 
 	)
 
-130 
+132 
 	#INPUT_REP_MPLAYER_INDEX
  2
 
 	)
 
-131 
+133 
 	#INPUT_REP_REF_BUTTONS_ID
  1
 
 	)
 
-132 
+134 
 	#INPUT_REP_REF_MOVEMENT_ID
  2
 
 	)
 
-133 
+135 
 	#INPUT_REP_REF_MPLAYER_ID
  3
 
 	)
 
-135 
+137 
 	#BASE_USB_HID_SPEC_VERSION
  0x0101
 
 	)
 
-137 
+139 
 	#SCHED_MAX_EVENT_DATA_SIZE
  
 APP_TIMER_SCHED_EVENT_DATA_SIZE
@@ -82603,29 +82623,29 @@ APP_TIMER_SCHED_EVENT_DATA_SIZE
 
 	)
 
-138 #ifde‡
+140 #ifde‡
 SVCALL_AS_NORMAL_FUNCTION
 
 
-139 
+141 
 	#SCHED_QUEUE_SIZE
  20
 
 	)
 
-141 
+143 
 	#SCHED_QUEUE_SIZE
  10
 
 	)
 
-144 
+146 
 	#DEAD_BEEF
  0xDEADBEEF
 
 	)
 
-146 
+148 
 	#APP_FEATURE_NOT_SUPPORTED
  
 BLE_GATT_STATUS_ATTERR_APP_BEGIN
@@ -82633,61 +82653,61 @@ BLE_GATT_STATUS_ATTERR_APP_BEGIN
 
 	)
 
-148 
+150 
 	#APP_ADV_FAST_INTERVAL
  0x0028
 
 	)
 
-149 
+151 
 	#APP_ADV_SLOW_INTERVAL
  0x0C80
 
 	)
 
-150 
+152 
 	#APP_ADV_FAST_TIMEOUT
- 30
+ 10
 
 	)
 
-151 
+153 
 	#APP_ADV_SLOW_TIMEOUT
- 180
+ 10
 
 	)
 
-154 
+156 
 APP_TIMER_DEF
 (
 m_b©ãry_timî_id
 );
 
-155 
+157 
 BLE_BAS_DEF
 (
 m_bas
 );
 
-156 
+158 
 BLE_HIDS_DEF
 (
 m_hids
 );
 
-157 
+159 
 NRF_BLE_GATT_DEF
 (
 m_g©t
 );
 
-158 
+160 
 BLE_ADVERTISING_DEF
 (
 m_advîtisög
 );
 
-160 
+162 
 boﬁ
  
 	gm_ö_boŸ_mode
@@ -82695,7 +82715,7 @@ boﬁ
 Ál£
 ;
 
-161 
+163 
 uöt16_t
  
 	gm_c⁄n_h™dÀ
@@ -82703,25 +82723,25 @@ uöt16_t
 BLE_CONN_HANDLE_INVALID
 ;
 
-162 
+164 
 pm_≥î_id_t
  
 	gm_≥î_id
 ;
 
-163 
+165 
 £ns‹sim_cfg_t
  
 	gm_b©ãry_sim_cfg
 ;
 
-164 
+166 
 £ns‹sim_°©e_t
  
 	gm_b©ãry_sim_°©e
 ;
 
-165 
+167 
 pm_≥î_id_t
  
 	gm_whôñi°_≥îs
@@ -82729,25 +82749,31 @@ pm_≥î_id_t
 BLE_GAP_WHITELIST_ADDR_MAX_COUNT
 ];
 
-166 
+168 
 uöt32_t
  
 	gm_whôñi°_≥î_˙t
 ;
 
-167 
+169 
 bÀ_uuid_t
  
 	gm_adv_uuids
 [] =
 
-169 {
+171 {
 BLE_UUID_HUMAN_INTERFACE_DEVICE_SERVICE
 , 
 BLE_UUID_TYPE_BLE
 }
 
-173 
+176 
+‹dîT
+ 
+	gªmDevi˚Ordî
+;
+
+178 
 ⁄_hids_evt
 (
 bÀ_hids_t
@@ -82759,7 +82785,57 @@ bÀ_hids_evt_t
 p_evt
 );
 
-187 
+180 
+bÀ_evt_h™dÀr
+(
+bÀ_evt_t
+ c⁄° * 
+p_bÀ_evt
+, * 
+p_c⁄ãxt
+);
+
+181 
+pm_evt_h™dÀr
+(
+pm_evt_t
+ c⁄° * 
+p_evt
+);
+
+182 
+⁄_adv_evt
+(
+bÀ_adv_evt_t
+ 
+bÀ_adv_evt
+);
+
+183 
+bÀ_advîtisög_îr‹_h™dÀr
+(
+uöt32_t
+ 
+ƒf_îr‹
+);
+
+188 
+boﬁ
+ 
+	mªmC⁄√t
+;
+
+189 }
+	gadvSèã
+ =
+
+191 .
+ªmC⁄√t
+ = 
+Ál£
+
+
+207 
 	$as£π_ƒf_ˇŒback
 (
 uöt16_t
@@ -82771,7 +82847,7 @@ uöt8_t
 p_fûe_«me
 )
 
-189 
+209 
 	`≠p_îr‹_h™dÀr
 (
 DEAD_BEEF
@@ -82781,11 +82857,11 @@ löe_num
 p_fûe_«me
 );
 
-190 
+210 
 	}
 }
 
-199 
+219 
 	$≥î_li°_gë
 (
 pm_≥î_id_t
@@ -82797,19 +82873,19 @@ uöt32_t
 p_size
 )
 
-201 
+221 
 pm_≥î_id_t
  
 ≥î_id
 ;
 
-202 
+222 
 uöt32_t
  
 ≥îs_to_c›y
 ;
 
-204 
+224 
 ≥îs_to_c›y
  = (*
 p_size
@@ -82817,13 +82893,13 @@ p_size
 BLE_GAP_WHITELIST_ADDR_MAX_COUNT
 ) ?
 
-205 *
+225 *
 p_size
  : 
 BLE_GAP_WHITELIST_ADDR_MAX_COUNT
 ;
 
-207 
+227 
 ≥î_id
  = 
 	`pm_√xt_≥î_id_gë
@@ -82831,11 +82907,11 @@ BLE_GAP_WHITELIST_ADDR_MAX_COUNT
 PM_PEER_ID_INVALID
 );
 
-208 *
+228 *
 p_size
  = 0;
 
-210 (
+230 (
 ≥î_id
  !
 PM_PEER_ID_INVALID
@@ -82843,7 +82919,7 @@ PM_PEER_ID_INVALID
 ≥îs_to_c›y
 --))
 
-212 
+232 
 p_≥îs
 [(*
 p_size
@@ -82851,47 +82927,47 @@ p_size
 ≥î_id
 ;
 
-213 
+233 
 ≥î_id
  = 
 	`pm_√xt_≥î_id_gë
 (peer_id);
 
-215 
+235 
 	}
 }
 
-220 
+240 
 	$dñëe_b⁄ds
 ()
 
-222 
+242 
 ªt_code_t
  
 îr_code
 ;
 
-224 
+244 
 	`NRF_LOG_INFO
 ("Erase bonds!");
 
-226 
+246 
 îr_code
  = 
 	`pm_≥îs_dñëe
 ();
 
-227 
+247 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-228 
+248 
 	}
 }
 
-233 
+253 
 	$advîtisög_°¨t
 (
 boﬁ
@@ -82899,23 +82975,23 @@ boﬁ
 îa£_b⁄ds
 )
 
-235 i‡(
+255 i‡(
 îa£_b⁄ds
  =
 åue
 )
 
-237 
+257 
 	`dñëe_b⁄ds
 ();
 
-242 
+262 
 ªt_code_t
  
 ªt
 ;
 
-244 
+264 
 	`mem£t
 (
 m_whôñi°_≥îs
@@ -82923,7 +82999,7 @@ m_whôñi°_≥îs
 PM_PEER_ID_INVALID
 , (m_whitelist_peers));
 
-245 
+265 
 m_whôñi°_≥î_˙t
  = ((
 m_whôñi°_≥îs
@@ -82931,7 +83007,7 @@ m_whôñi°_≥îs
 pm_≥î_id_t
 ));
 
-247 
+267 
 	`≥î_li°_gë
 (
 m_whôñi°_≥îs
@@ -82939,7 +83015,13 @@ m_whôñi°_≥îs
 m_whôñi°_≥î_˙t
 );
 
-249 
+269 
+	`NRF_LOG_INFO
+("Numbî Pì∏%d", 
+m_whôñi°_≥î_˙t
+);
+
+271 
 ªt
  = 
 	`pm_whôñi°_£t
@@ -82949,13 +83031,13 @@ m_whôñi°_≥îs
 m_whôñi°_≥î_˙t
 );
 
-250 
+272 
 	`APP_ERROR_CHECK
 (
 ªt
 );
 
-254 
+276 
 ªt
  = 
 	`pm_devi˚_idítôõs_li°_£t
@@ -82965,19 +83047,755 @@ m_whôñi°_≥îs
 m_whôñi°_≥î_˙t
 );
 
-255 i‡(
+277 i‡(
 ªt
  !
 NRF_ERROR_NOT_SUPPORTED
 )
 
-257 
+279 
 	`APP_ERROR_CHECK
 (
 ªt
 );
 
-260 
+282 
+	`NRF_LOG_INFO
+("------startádv6-------");
+
+283 
+ªt
+ = 
+	`bÀ_advîtisög_°¨t
+(&
+m_advîtisög
+, 
+BLE_ADV_MODE_DIRECTED
+);
+
+284 
+	`APP_ERROR_CHECK
+(
+ªt
+);
+
+286 
+	}
+}
+
+298 
+	#DETECTED_DEV_FREE
+ 0xFF
+
+	)
+
+299 
+	#DIRECT_CONN_QUANTITY
+ 0x3
+
+	)
+
+301 
+	#APP_ADV_FAST_SCANING_INTERVAL
+ 0x0023
+
+	)
+
+302 
+	#APP_ADV_FAST_SCANING_TIMEOUT
+ 5
+
+	)
+
+304 
+	#APP_ADV_FAST_CONNECT_INTERVAL
+ 0x0023
+
+	)
+
+305 
+	#APP_ADV_FAST_CONNECT_TIMEOUT
+ 5
+
+	)
+
+307 
+	#APP_ADV_FAST_SEARCH_INTERVAL
+ 0x0140
+
+	)
+
+308 
+	#APP_ADV_FAST_SEARCH_TIMEOUT
+ 60
+
+	)
+
+312 
+	mADV_PROC_START_CONNECT
+,
+
+313 
+	mADV_PROC_STOP_ADV
+,
+
+314 
+	mADV_PROC_CONNECT
+,
+
+315 }
+	tadvProcEvT
+;
+
+319 
+	mDEV_SCANNING
+,
+
+320 
+	mDEV_CONNECTION
+,
+
+321 }
+	tc⁄nPha£
+;
+
+325 
+	mADV_IDLE
+,
+
+326 
+	mADV_GENERAL
+,
+
+327 
+	mADV_ADD_NEW
+,
+
+328 
+	mADV_RECONNECT_SCAN
+,
+
+329 
+	mADV_RECONNECT_CONNECT
+,
+
+330 }
+	tadvTy≥T
+;
+
+334 
+c⁄nPha£
+ 
+	mpha£
+;
+
+335 
+uöt16_t
+ 
+	mli°Dëe˘edDev
+[
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+];
+
+336 
+uöt8_t
+ 
+	mqu™tôyDëe˘edDev
+;
+
+337 
+uöt8_t
+ 
+	mc⁄√˘C¡
+;
+
+338 
+uöt8_t
+ 
+	mlo›C¡
+;
+
+339 }
+	gadvDúOrdC⁄nSèã
+;
+
+341 
+advTy≥T
+ 
+	gcuºítAdv
+ = 
+ADV_IDLE
+;
+
+343 
+‹dîT
+ 
+	gdevi˚Ordî
+;
+
+347 
+	$advîtisög_öô
+(
+uöt16_t
+ 
+öãrvÆMSec⁄ds
+, uöt16_à
+≥riodSec⁄ds
+, 
+boﬁ
+ 
+whôñi°E«bÀd
+)
+
+349 
+ªt_code_t
+ 
+îr_code
+;
+
+350 
+uöt8_t
+ 
+adv_Êags
+;
+
+351 
+bÀ_advîtisög_öô_t
+ 
+öô
+;
+
+353 
+	`mem£t
+(&
+öô
+, 0, (init));
+
+355 
+adv_Êags
+ = 
+BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE
+;
+
+356 
+öô
+.
+advd©a
+.
+«me_ty≥
+ = 
+BLE_ADVDATA_FULL_NAME
+;
+
+357 
+öô
+.
+advd©a
+.
+ö˛ude_≠≥¨™˚
+ = 
+åue
+;
+
+358 
+öô
+.
+advd©a
+.
+Êags
+ = 
+adv_Êags
+;
+
+359 
+öô
+.
+advd©a
+.
+uuids_com∂ëe
+.
+uuid_˙t
+ = (
+m_adv_uuids
+) / (m_adv_uuids[0]);
+
+360 
+öô
+.
+advd©a
+.
+uuids_com∂ëe
+.
+p_uuids
+ = 
+m_adv_uuids
+;
+
+362 
+öô
+.
+c⁄fig
+.
+bÀ_adv_⁄_disc⁄√˘_dißbÀd
+ = 
+åue
+;
+
+363 
+öô
+.
+c⁄fig
+.
+bÀ_adv_whôñi°_íabÀd
+ = 
+Ál£
+;
+
+364 
+öô
+.
+c⁄fig
+.
+bÀ_adv_dúe˘ed_íabÀd
+ = 
+Ál£
+;
+
+365 
+öô
+.
+c⁄fig
+.
+bÀ_adv_dúe˘ed_¶ow_íabÀd
+ = 
+Ál£
+;
+
+366 
+öô
+.
+c⁄fig
+.
+bÀ_adv_dúe˘ed_¶ow_öãrvÆ
+ = 
+APP_ADV_FAST_INTERVAL
+;
+
+367 
+öô
+.
+c⁄fig
+.
+bÀ_adv_dúe˘ed_¶ow_timeout
+ = 
+APP_ADV_FAST_TIMEOUT
+;
+
+368 
+öô
+.
+c⁄fig
+.
+bÀ_adv_Á°_íabÀd
+ = 
+åue
+;
+
+369 
+öô
+.
+c⁄fig
+.
+bÀ_adv_Á°_öãrvÆ
+ = 
+öãrvÆMSec⁄ds
+;
+
+370 
+öô
+.
+c⁄fig
+.
+bÀ_adv_Á°_timeout
+ = 
+≥riodSec⁄ds
+;
+
+371 
+öô
+.
+c⁄fig
+.
+bÀ_adv_¶ow_íabÀd
+ = 
+Ál£
+;
+
+372 
+öô
+.
+c⁄fig
+.
+bÀ_adv_¶ow_öãrvÆ
+ = 
+APP_ADV_SLOW_INTERVAL
+;
+
+373 
+öô
+.
+c⁄fig
+.
+bÀ_adv_¶ow_timeout
+ = 
+APP_ADV_SLOW_TIMEOUT
+;
+
+375 
+öô
+.
+evt_h™dÀr
+ = 
+⁄_adv_evt
+;
+
+376 
+öô
+.
+îr‹_h™dÀr
+ = 
+bÀ_advîtisög_îr‹_h™dÀr
+;
+
+378 
+îr_code
+ = 
+	`bÀ_advîtisög_öô
+(&
+m_advîtisög
+, &
+öô
+);
+
+379 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+381 
+	`bÀ_advîtisög_c⁄n_cfg_èg_£t
+(&
+m_advîtisög
+, 
+APP_BLE_CONN_CFG_TAG
+);
+
+382 
+	}
+}
+
+385 
+boﬁ
+ 
+	$≥îIdInLi°
+(
+pm_≥î_id_t
+ 
+≥îIdIn
+)
+
+387 
+pm_≥î_id_t
+ 
+≥î_id
+;
+
+389 
+≥î_id
+ = 
+	`pm_√xt_≥î_id_gë
+(
+PM_PEER_ID_INVALID
+);
+
+391 
+≥î_id
+ !
+PM_PEER_ID_INVALID
+ )
+
+393 if–
+≥îIdIn
+ =
+≥î_id
+)
+
+395  
+åue
+;
+
+397 
+≥î_id
+ = 
+	`pm_√xt_≥î_id_gë
+(peer_id);
+
+399  
+Ál£
+;
+
+400 
+	}
+}
+
+405 
+	$advîtisögApSèπ
+(
+advTy≥T
+ 
+advTy≥
+, 
+uöt16_t
+ 
+≥îId
+)
+
+407 
+ªt_code_t
+ 
+ªt
+;
+
+408 if(
+cuºítAdv
+ !
+ADV_IDLE
+)
+
+410 
+	`sd_bÀ_g≠_adv_°›
+();
+
+412 
+advTy≥
+)
+
+414 
+ADV_GENERAL
+:
+
+415 
+	`NRF_LOG_INFO
+("ADV General");
+
+416 
+m_whôñi°_≥î_˙t
+ = 0;
+
+418 
+	`advîtisög_öô
+(
+APP_ADV_FAST_SEARCH_INTERVAL
+, 
+APP_ADV_FAST_SEARCH_TIMEOUT
+, 
+Ál£
+);
+
+420 
+cuºítAdv
+ = 
+ADV_GENERAL
+;
+
+422 
+ADV_ADD_NEW
+:
+
+423 
+	`NRF_LOG_INFO
+("ADVáddÇew");
+
+424 
+m_whôñi°_≥î_˙t
+ = 0;
+
+426 
+	`advîtisög_öô
+(
+APP_ADV_FAST_SEARCH_INTERVAL
+, 
+APP_ADV_FAST_SEARCH_TIMEOUT
+, 
+Ál£
+);
+
+428 
+cuºítAdv
+ = 
+ADV_ADD_NEW
+;
+
+430 
+ADV_RECONNECT_SCAN
+:
+
+433 
+	`mem£t
+(
+m_whôñi°_≥îs
+, 
+PM_PEER_ID_INVALID
+, (m_whitelist_peers));
+
+434 
+m_whôñi°_≥î_˙t
+ = ((
+m_whôñi°_≥îs
+Ë/ (
+pm_≥î_id_t
+));
+
+435 
+	`≥î_li°_gë
+(
+m_whôñi°_≥îs
+, &
+m_whôñi°_≥î_˙t
+);
+
+437 
+	`NRF_LOG_INFO
+("AdvÑec⁄: %d", 
+m_whôñi°_≥î_˙t
+);
+
+440 if(
+m_whôñi°_≥î_˙t
+ == 0)
+
+443 
+	`advîtisög_öô
+(
+APP_ADV_FAST_SEARCH_INTERVAL
+, 
+APP_ADV_FAST_SEARCH_TIMEOUT
+, 
+Ál£
+);
+
+444 
+cuºítAdv
+ = 
+ADV_GENERAL
+;
+
+449 
+	`advîtisög_öô
+(
+APP_ADV_FAST_SCANING_INTERVAL
+, 
+APP_ADV_FAST_SCANING_TIMEOUT
+, 
+Ál£
+);
+
+450 
+cuºítAdv
+ = 
+ADV_RECONNECT_SCAN
+;
+
+454 
+ADV_RECONNECT_CONNECT
+:
+
+456 
+	`advîtisög_öô
+(
+APP_ADV_FAST_CONNECT_INTERVAL
+, 
+APP_ADV_FAST_CONNECT_TIMEOUT
+, 
+Ál£
+);
+
+458 
+	`NRF_LOG_INFO
+("AdvÑecon conn");
+
+459 
+m_whôñi°_≥îs
+[0] = 
+≥îId
+;
+
+460 
+m_whôñi°_≥î_˙t
+ = 1;
+
+462 
+cuºítAdv
+ = 
+ADV_RECONNECT_SCAN
+;
+
+468 
+ªt
+ = 
+	`pm_whôñi°_£t
+((
+m_whôñi°_≥î_˙t
+ =0 ) ? (
+NULL
+Ë: (
+m_whôñi°_≥îs
+),
+
+469 (
+m_whôñi°_≥î_˙t
+ == 0 ) ? (0) : (m_whitelist_peer_cnt));
+
+470 
+	`APP_ERROR_CHECK
+(
+ªt
+);
+
+473 
+ªt
+ = 
+	`pm_devi˚_idítôõs_li°_£t
+((
+m_whôñi°_≥î_˙t
+ =0 ) ? (
+NULL
+Ë: (
+m_whôñi°_≥îs
+),
+
+474 (
+m_whôñi°_≥î_˙t
+ == 0 ) ? (0) : (m_whitelist_peer_cnt));
+
+476 i‡(
+ªt
+ !
+NRF_ERROR_NOT_SUPPORTED
+)
+
+478 
+	`APP_ERROR_CHECK
+(
+ªt
+);
+
+480 
+	`NRF_LOG_INFO
+("------startádv1-------");
+
+481 
 ªt
  = 
 	`bÀ_advîtisög_°¨t
@@ -82987,463 +83805,467 @@ m_advîtisög
 BLE_ADV_MODE_FAST
 );
 
-261 
+482 
 	`APP_ERROR_CHECK
 (
 ªt
 );
 
-263 
+483 
 	}
 }
 
-270 
-	$pm_evt_h™dÀr
+486 
+	$advîtisögAddNew
 (
-pm_evt_t
- c⁄° * 
-p_evt
+advProcEvT
+ 
+öEv
+, 
+uöt16_t
+ 
+c⁄nH™dÀ
+, 
+pm_≥î_id_t
+ 
+≥îId
 )
 
-272 
+488 
 ªt_code_t
  
 îr_code
 ;
 
-274 
-p_evt
-->
-evt_id
-)
-
-276 
-PM_EVT_BONDED_PEER_CONNECTED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_BONDED_PEER_CONNECTED"); ;
-
-277 
-PM_EVT_CONN_SEC_START
-: 
-	`NRF_LOG_INFO
-("PM_EVT_CONN_SEC_START"); ;
-
-278 
-PM_EVT_CONN_SEC_SUCCEEDED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_CONN_SEC_SUCCEEDED"); ;
-
-279 
-PM_EVT_CONN_SEC_FAILED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_CONN_SEC_FAILED"); ;
-
-280 
-PM_EVT_CONN_SEC_CONFIG_REQ
-: 
-	`NRF_LOG_INFO
-("PM_EVT_CONN_SEC_CONFIG_REQ"); ;
-
-281 
-PM_EVT_CONN_SEC_PARAMS_REQ
-: 
-	`NRF_LOG_INFO
-("PM_EVT_CONN_SEC_PARAMS_REQ"); ;
-
-282 
-PM_EVT_STORAGE_FULL
-: 
-	`NRF_LOG_INFO
-("PM_EVT_STORAGE_FULL"); ;
-
-283 
-PM_EVT_ERROR_UNEXPECTED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_ERROR_UNEXPECTED"); ;
-
-284 
-PM_EVT_PEER_DATA_UPDATE_SUCCEEDED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEER_DATA_UPDATE_SUCCEEDED"); ;
-
-285 
-PM_EVT_PEER_DATA_UPDATE_FAILED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEER_DATA_UPDATE_FAILED"); ;
-
-286 
-PM_EVT_PEER_DELETE_SUCCEEDED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEER_DELETE_SUCCEEDED"); ;
-
-287 
-PM_EVT_PEER_DELETE_FAILED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEER_DELETE_FAILED"); ;
-
-288 
-PM_EVT_PEERS_DELETE_SUCCEEDED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEERS_DELETE_SUCCEEDED"); ;
-
-289 
-PM_EVT_PEERS_DELETE_FAILED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_PEERS_DELETE_FAILED"); ;
-
-290 
-PM_EVT_LOCAL_DB_CACHE_APPLIED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_LOCAL_DB_CACHE_APPLIED"); ;
-
-291 
-PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED"); ;
-
-292 
-PM_EVT_SERVICE_CHANGED_IND_SENT
-: 
-	`NRF_LOG_INFO
-("PM_EVT_SERVICE_CHANGED_IND_SENT"); ;
-
-293 
-PM_EVT_SERVICE_CHANGED_IND_CONFIRMED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_SERVICE_CHANGED_IND_CONFIRMED"); ;
-
-294 
-PM_EVT_SLAVE_SECURITY_REQ
-: 
-	`NRF_LOG_INFO
-("PM_EVT_SLAVE_SECURITY_REQ"); ;
-
-295 
-PM_EVT_FLASH_GARBAGE_COLLECTED
-: 
-	`NRF_LOG_INFO
-("PM_EVT_FLASH_GARBAGE_COLLECTED"); ;
-
-298 
-p_evt
-->
-evt_id
-)
-
-300 
-PM_EVT_BONDED_PEER_CONNECTED
-:
-
-302 
-	`NRF_LOG_INFO
-("ConnectedÅoáÖreviously bonded. Disconnect.");
-
-309 
-PM_EVT_CONN_SEC_SUCCEEDED
-:
-
-311 
-	`NRF_LOG_INFO
-("Connection secured:Ñole: %d, conn_handle: 0x%x,Örocedure: %d.",
-
-312 
-	`bÀ_c⁄n_°©e_rﬁe
+489 if(!
+	`≥îIdInLi°
 (
-p_evt
-->
-c⁄n_h™dÀ
-),
-
-313 
-p_evt
-->
-c⁄n_h™dÀ
-,
-
-314 
-p_evt
-->
-∑øms
-.
-c⁄n_£c_suc˚eded
-.
-¥o˚duª
-);
-
-317 
-m_≥î_id
- = 
-p_evt
-->
-≥î_id
-;
-
-320 
-PM_EVT_CONN_SEC_FAILED
-:
-
-330 
-PM_EVT_CONN_SEC_CONFIG_REQ
-:
-
-333 
-pm_c⁄n_£c_c⁄fig_t
- 
-c⁄n_£c_c⁄fig
- = {.
-Ælow_ª∑úög
- = 
-Ál£
-};
-
-334 
-	`pm_c⁄n_£c_c⁄fig_ª∂y
-(
-p_evt
-->
-c⁄n_h™dÀ
-, &
-c⁄n_£c_c⁄fig
-);
-
-337 
-PM_EVT_STORAGE_FULL
-:
-
-340 
-îr_code
- = 
-	`fds_gc
-();
-
-341 i‡(
-îr_code
- =
-FDS_ERR_BUSY
- ||Éº_codê=
-FDS_ERR_NO_SPACE_IN_QUEUES
-)
-
-347 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-351 
-PM_EVT_PEERS_DELETE_SUCCEEDED
-:
-
-353 
-	`advîtisög_°¨t
-(
-Ál£
-);
-
-356 
-PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED
-:
-
-359 
-	`pm_loˇl_d©aba£_has_ch™ged
-();
-
-362 
-PM_EVT_PEER_DATA_UPDATE_SUCCEEDED
-:
-
-364 i‡–
-p_evt
-->
-∑øms
-.
-≥î_d©a_upd©e_suc˚eded
-.
-Êash_ch™ged
-
-
-365 && (
-p_evt
-->
-∑øms
-.
-≥î_d©a_upd©e_suc˚eded
-.
-d©a_id
- =
-PM_PEER_DATA_ID_BONDING
+≥îId
 ))
 
-367 
+491 
 	`NRF_LOG_INFO
-("New Bond,áddÅheÖeerÅoÅhe whitelist ifÖossible");
+("No device onÅheÜist");
 
-368 
+494 
 	`NRF_LOG_INFO
-("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d",
+("Disconnect old dev");
 
-369 
-m_whôñi°_≥î_˙t
- + 1,
-
-370 
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-);
-
-373 i‡(
-m_whôñi°_≥î_˙t
- < 
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-)
-
-376 
-m_whôñi°_≥îs
-[
-m_whôñi°_≥î_˙t
-++] = 
-m_≥î_id
-;
-
-379 
+495 
 îr_code
  = 
-	`pm_whôñi°_£t
+	`sd_bÀ_g≠_disc⁄√˘
 (
-m_whôñi°_≥îs
+c⁄nH™dÀ
 , 
-m_whôñi°_≥î_˙t
+BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
 );
 
-380 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-382 
-îr_code
- = 
-	`pm_devi˚_idítôõs_li°_£t
-(
-m_whôñi°_≥îs
-, 
-m_whôñi°_≥î_˙t
-);
-
-383 i‡(
+496 i‡(
 îr_code
  !
-NRF_ERROR_NOT_SUPPORTED
+NRF_ERROR_INVALID_STATE
 )
 
-385 
+498 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-391 
-PM_EVT_PEER_DATA_UPDATE_FAILED
-:
-
-394 
-	`APP_ERROR_CHECK
-(
-p_evt
-->
-∑øms
-.
-≥î_d©a_upd©e_Áûed
-.
-îr‹
-);
-
-397 
-PM_EVT_PEER_DELETE_FAILED
-:
-
-400 
-	`APP_ERROR_CHECK
-(
-p_evt
-->
-∑øms
-.
-≥î_dñëe_Áûed
-.
-îr‹
-);
-
-403 
-PM_EVT_PEERS_DELETE_FAILED
-:
-
-406 
-	`APP_ERROR_CHECK
-(
-p_evt
-->
-∑øms
-.
-≥îs_dñëe_Áûed_evt
-.
-îr‹
-);
-
-409 
-PM_EVT_ERROR_UNEXPECTED
-:
-
-412 
-	`APP_ERROR_CHECK
-(
-p_evt
-->
-∑øms
-.
-îr‹_u√x≥˘ed
-.
-îr‹
-);
-
-415 
-PM_EVT_CONN_SEC_START
-:
-
-416 
-PM_EVT_PEER_DELETE_SUCCEEDED
-:
-
-417 
-PM_EVT_LOCAL_DB_CACHE_APPLIED
-:
-
-418 
-PM_EVT_SERVICE_CHANGED_IND_SENT
-:
-
-419 
-PM_EVT_SERVICE_CHANGED_IND_CONFIRMED
-:
-
-423 
+500 
 	}
 }
 
-433 
+504 
+	$advîtisögDúe˘Proc
+(
+advProcEvT
+ 
+öEv
+, 
+uöt16_t
+ 
+c⁄nH™dÀ
+, 
+pm_≥î_id_t
+ 
+≥îId
+)
+
+506 
+ªt_code_t
+ 
+îr_code
+;
+
+507 
+öEv
+)
+
+509 
+ADV_PROC_START_CONNECT
+:
+
+510 
+	`NRF_LOG_INFO
+("CONNECT");
+
+511 
+advDúOrdC⁄nSèã
+.
+pha£
+)
+
+513 
+DEV_SCANNING
+:
+
+515 
+uöt8_t
+ 
+pos
+;
+
+516 
+	`NRF_LOG_INFO
+("_SCANNING_");
+
+517 
+	`‹dîGëPos
+(
+ªmDevi˚Ordî
+, 
+≥îId
+, &
+pos
+);
+
+519 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[
+pos
+] = 
+≥îId
+;
+
+520 
+advDúOrdC⁄nSèã
+.
+qu™tôyDëe˘edDev
+++;
+
+522 
+îr_code
+ = 
+	`sd_bÀ_g≠_disc⁄√˘
+(
+c⁄nH™dÀ
+, 
+BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
+);
+
+523 i‡(
+îr_code
+ !
+NRF_ERROR_INVALID_STATE
+)
+
+525 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+529 
+DEV_CONNECTION
+:
+
+530 
+	`NRF_LOG_INFO
+("_CONNECTION_");
+
+534 
+ADV_PROC_STOP_ADV
+:
+
+535 
+	`NRF_LOG_INFO
+("STOP_ADV");
+
+536 
+advDúOrdC⁄nSèã
+.
+pha£
+)
+
+538 
+DEV_SCANNING
+:
+
+540 
+uöt8_t
+ 
+˙t_1
+ = 0;
+
+541 
+uöt8_t
+ 
+˙t_2
+ = 0;
+
+542 
+	`NRF_LOG_INFO
+("_SCANNING_");
+
+543 
+˙t_1
+ = 0; c¡_1 < 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+ - 1; cnt_1++)
+
+545 
+˙t_2
+ = 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+-1; cnt_2 > 0; cnt_2--)
+
+547 if(
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[
+˙t_2
+ - 1] =
+DETECTED_DEV_FREE
+ &&
+
+548 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[
+˙t_2
+ ] !
+DETECTED_DEV_FREE
+)
+
+550 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[
+˙t_2
+ - 1] =ádvDirOrdConnState.listDetectedDev[cnt_2 ];
+
+551 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[
+˙t_2
+ ] = 
+DETECTED_DEV_FREE
+;
+
+555 
+	`NRF_LOG_INFO
+("Föd %d", 
+advDúOrdC⁄nSèã
+.
+qu™tôyDëe˘edDev
+);
+
+556 
+advDúOrdC⁄nSèã
+.
+c⁄√˘C¡
+ = 0;
+
+557 
+	`advîtisögApSèπ
+(
+ADV_RECONNECT_CONNECT
+ , 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[advDúOrdC⁄nSèã.
+c⁄√˘C¡
+]);
+
+560 
+DEV_CONNECTION
+:
+
+561 
+	`NRF_LOG_INFO
+("_CONNECTION_");
+
+562 if(
+advDúOrdC⁄nSèã
+.
+c⁄√˘C¡
+ >advDúOrdC⁄nSèã.
+qu™tôyDëe˘edDev
+)
+
+565 
+advDúOrdC⁄nSèã
+.
+lo›C¡
+++;
+
+567 if(
+advDúOrdC⁄nSèã
+.
+lo›C¡
+ >
+DIRECT_CONN_QUANTITY
+)
+
+573 
+	`mem£t
+(
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+, 
+DETECTED_DEV_FREE
+, (advDirOrdConnState.listDetectedDev));
+
+574 
+advDúOrdC⁄nSèã
+.
+c⁄√˘C¡
+ = 0;
+
+575 
+advDúOrdC⁄nSèã
+.
+pha£
+ = 
+DEV_SCANNING
+;
+
+576 
+	`advîtisögApSèπ
+(
+ADV_RECONNECT_SCAN
+, 0);
+
+579 
+advDúOrdC⁄nSèã
+.
+c⁄√˘C¡
+++;
+
+580 
+	`advîtisögApSèπ
+(
+ADV_RECONNECT_CONNECT
+, 
+advDúOrdC⁄nSèã
+.
+li°Dëe˘edDev
+[advDúOrdC⁄nSèã.
+c⁄√˘C¡
+]);
+
+587 
+	}
+}
+
+591 
+	$advîtisögPro˚ssög
+(
+advProcEvT
+ 
+öEv
+, 
+uöt16_t
+ 
+c⁄nH™dÀ
+, 
+pm_≥î_id_t
+ 
+≥îId
+)
+
+593 
+cuºítAdv
+)
+
+595 
+ADV_GENERAL
+:
+
+596 
+	`NRF_LOG_INFO
+("ADV_GENERAL");
+
+598 
+ADV_ADD_NEW
+:
+
+599 
+	`NRF_LOG_INFO
+("ADV_ADD_NEW");
+
+600 
+	`advîtisögAddNew
+(
+öEv
+, 
+c⁄nH™dÀ
+, 
+≥îId
+);
+
+602 
+ADV_RECONNECT_SCAN
+:
+
+603 
+	`NRF_LOG_INFO
+("ADV_SCAN");
+
+604 
+	`advîtisögDúe˘Proc
+(
+öEv
+, 
+c⁄nH™dÀ
+, 
+≥îId
+);
+
+606 
+ADV_RECONNECT_CONNECT
+:
+
+607 
+	`NRF_LOG_INFO
+("ADV_CONNECT");
+
+608 
+	`advîtisögDúe˘Proc
+(
+öEv
+, 
+c⁄nH™dÀ
+, 
+≥îId
+);
+
+613 
+	}
+}
+
+622 
 	$£rvi˚_îr‹_h™dÀr
 (
 uöt32_t
@@ -83451,17 +84273,17 @@ uöt32_t
 ƒf_îr‹
 )
 
-435 
+624 
 	`APP_ERROR_HANDLER
 (
 ƒf_îr‹
 );
 
-436 
+625 
 	}
 }
 
-443 
+632 
 	$bÀ_advîtisög_îr‹_h™dÀr
 (
 uöt32_t
@@ -83469,33 +84291,33 @@ uöt32_t
 ƒf_îr‹
 )
 
-445 
+634 
 	`APP_ERROR_HANDLER
 (
 ƒf_îr‹
 );
 
-446 
+635 
 	}
 }
 
-451 
+640 
 	$b©ãry_Àvñ_upd©e
 ()
 
-453 
+642 
 ªt_code_t
  
 îr_code
 ;
 
-454 
+643 
 uöt8_t
  
 b©ãry_Àvñ
 ;
 
-456 
+645 
 b©ãry_Àvñ
  = (
 uöt8_t
@@ -83507,7 +84329,7 @@ m_b©ãry_sim_°©e
 m_b©ãry_sim_cfg
 );
 
-458 
+647 
 îr_code
  = 
 	`bÀ_bas_b©ãry_Àvñ_upd©e
@@ -83517,95 +84339,95 @@ m_bas
 b©ãry_Àvñ
 );
 
-459 i‡((
+648 i‡((
 îr_code
  !
 NRF_SUCCESS
 ) &&
 
-460 (
+649 (
 îr_code
  !
 NRF_ERROR_BUSY
 ) &&
 
-461 (
+650 (
 îr_code
  !
 NRF_ERROR_RESOURCES
 ) &&
 
-462 (
+651 (
 îr_code
  !
 NRF_ERROR_FORBIDDEN
 ) &&
 
-463 (
+652 (
 îr_code
  !
 NRF_ERROR_INVALID_STATE
 ) &&
 
-464 (
+653 (
 îr_code
  !
 BLE_ERROR_GATTS_SYS_ATTR_MISSING
 )
 
-467 
+656 
 	`APP_ERROR_HANDLER
 (
 îr_code
 );
 
-469 
+658 
 	}
 }
 
-479 
+668 
 	$b©ãry_Àvñ_mós_timeout_h™dÀr
 (* 
 p_c⁄ãxt
 )
 
-481 
+670 
 	`UNUSED_PARAMETER
 (
 p_c⁄ãxt
 );
 
-482 
+671 
 	`b©ãry_Àvñ_upd©e
 ();
 
-483 
+672 
 	}
 }
 
-490 
+679 
 	$timîs_öô
 ()
 
-492 
+681 
 ªt_code_t
  
 îr_code
 ;
 
-494 
+683 
 îr_code
  = 
 	`≠p_timî_öô
 ();
 
-495 
+684 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-498 
+687 
 îr_code
  = 
 	`≠p_timî_¸óã
@@ -83613,53 +84435,53 @@ p_c⁄ãxt
 m_b©ãry_timî_id
 ,
 
-499 
+688 
 APP_TIMER_MODE_REPEATED
 ,
 
-500 
+689 
 b©ãry_Àvñ_mós_timeout_h™dÀr
 );
 
-501 
+690 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-502 
+691 
 	}
 }
 
-510 
+699 
 	$g≠_∑øms_öô
 ()
 
-512 
+701 
 ªt_code_t
  
 îr_code
 ;
 
-513 
+702 
 bÀ_g≠_c⁄n_∑øms_t
  
 g≠_c⁄n_∑øms
 ;
 
-514 
+703 
 bÀ_g≠_c⁄n_£c_mode_t
  
 £c_mode
 ;
 
-516 
+705 
 	`BLE_GAP_CONN_SEC_MODE_SET_OPEN
 (&
 £c_mode
 );
 
-518 
+707 
 îr_code
  = 
 	`sd_bÀ_g≠_devi˚_«me_£t
@@ -83667,25 +84489,25 @@ bÀ_g≠_c⁄n_£c_mode_t
 £c_mode
 ,
 
-519 (c⁄° 
+708 (c⁄° 
 uöt8_t
  *)
 DEVICE_NAME
 ,
 
-520 
+709 
 	`°æí
 (
 DEVICE_NAME
 ));
 
-521 
+710 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-523 
+712 
 îr_code
  = 
 	`sd_bÀ_g≠_≠≥¨™˚_£t
@@ -83693,19 +84515,19 @@ DEVICE_NAME
 BLE_APPEARANCE_HID_MOUSE
 );
 
-524 
+713 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-526 
+715 
 	`mem£t
 (&
 g≠_c⁄n_∑øms
 , 0, (gap_conn_params));
 
-528 
+717 
 g≠_c⁄n_∑øms
 .
 mö_c⁄n_öãrvÆ
@@ -83713,7 +84535,7 @@ mö_c⁄n_öãrvÆ
 MIN_CONN_INTERVAL
 ;
 
-529 
+718 
 g≠_c⁄n_∑øms
 .
 max_c⁄n_öãrvÆ
@@ -83721,7 +84543,7 @@ max_c⁄n_öãrvÆ
 MAX_CONN_INTERVAL
 ;
 
-530 
+719 
 g≠_c⁄n_∑øms
 .
 ¶ave_œãncy
@@ -83729,7 +84551,7 @@ g≠_c⁄n_∑øms
 SLAVE_LATENCY
 ;
 
-531 
+720 
 g≠_c⁄n_∑øms
 .
 c⁄n_sup_timeout
@@ -83737,7 +84559,7 @@ c⁄n_sup_timeout
 CONN_SUP_TIMEOUT
 ;
 
-533 
+722 
 îr_code
  = 
 	`sd_bÀ_g≠_µ˝_£t
@@ -83745,21 +84567,21 @@ CONN_SUP_TIMEOUT
 g≠_c⁄n_∑øms
 );
 
-534 
+723 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-535 
+724 
 	}
 }
 
-540 
+729 
 	$g©t_öô
 ()
 
-542 
+731 
 ªt_code_t
  
 îr_code
@@ -83771,39 +84593,39 @@ m_g©t
 NULL
 );
 
-543 
+732 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-544 
+733 
 	}
 }
 
-549 
+738 
 	$dis_öô
 ()
 
-551 
+740 
 ªt_code_t
  
 îr_code
 ;
 
-552 
+741 
 bÀ_dis_öô_t
  
 dis_öô_obj
 ;
 
-553 
+742 
 bÀ_dis_≤p_id_t
  
 ≤p_id
 ;
 
-555 
+744 
 ≤p_id
 .
 víd‹_id_sour˚
@@ -83811,7 +84633,7 @@ víd‹_id_sour˚
 PNP_ID_VENDOR_ID_SOURCE
 ;
 
-556 
+745 
 ≤p_id
 .
 víd‹_id
@@ -83819,7 +84641,7 @@ víd‹_id
 PNP_ID_VENDOR_ID
 ;
 
-557 
+746 
 ≤p_id
 .
 ¥odu˘_id
@@ -83827,7 +84649,7 @@ PNP_ID_VENDOR_ID
 PNP_ID_PRODUCT_ID
 ;
 
-558 
+747 
 ≤p_id
 .
 ¥odu˘_vîsi⁄
@@ -83835,13 +84657,13 @@ PNP_ID_PRODUCT_ID
 PNP_ID_PRODUCT_VERSION
 ;
 
-560 
+749 
 	`mem£t
 (&
 dis_öô_obj
 , 0, (dis_init_obj));
 
-562 
+751 
 	`bÀ_§v_ascii_to_utf8
 (&
 dis_öô_obj
@@ -83851,7 +84673,7 @@ m™uÁ˘_«me_°r
 MANUFACTURER_NAME
 );
 
-563 
+752 
 dis_öô_obj
 .
 p_≤p_id
@@ -83859,7 +84681,7 @@ p_≤p_id
 ≤p_id
 ;
 
-565 
+754 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 dis_öô_obj
@@ -83869,7 +84691,7 @@ dis_©å_md
 ªad_≥rm
 );
 
-566 
+755 
 	`BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS
 (&
 dis_öô_obj
@@ -83879,7 +84701,7 @@ dis_©å_md
 wrôe_≥rm
 );
 
-568 
+757 
 îr_code
  = 
 	`bÀ_dis_öô
@@ -83887,39 +84709,39 @@ wrôe_≥rm
 dis_öô_obj
 );
 
-569 
+758 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-570 
+759 
 	}
 }
 
-575 
+764 
 	$bas_öô
 ()
 
-577 
+766 
 ªt_code_t
  
 îr_code
 ;
 
-578 
+767 
 bÀ_bas_öô_t
  
 bas_öô_obj
 ;
 
-580 
+769 
 	`mem£t
 (&
 bas_öô_obj
 , 0, (bas_init_obj));
 
-582 
+771 
 bas_öô_obj
 .
 evt_h™dÀr
@@ -83927,7 +84749,7 @@ evt_h™dÀr
 NULL
 ;
 
-583 
+772 
 bas_öô_obj
 .
 suµ‹t_nŸifiˇti⁄
@@ -83935,7 +84757,7 @@ suµ‹t_nŸifiˇti⁄
 åue
 ;
 
-584 
+773 
 bas_öô_obj
 .
 p_ªp‹t_ªf
@@ -83943,13 +84765,13 @@ p_ªp‹t_ªf
 NULL
 ;
 
-585 
+774 
 bas_öô_obj
 .
 öôül_b©t_Àvñ
  = 100;
 
-587 
+776 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 bas_öô_obj
@@ -83959,7 +84781,7 @@ b©ãry_Àvñ_ch¨_©å_md
 cccd_wrôe_≥rm
 );
 
-588 
+777 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 bas_öô_obj
@@ -83969,7 +84791,7 @@ b©ãry_Àvñ_ch¨_©å_md
 ªad_≥rm
 );
 
-589 
+778 
 	`BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS
 (&
 bas_öô_obj
@@ -83979,7 +84801,7 @@ b©ãry_Àvñ_ch¨_©å_md
 wrôe_≥rm
 );
 
-591 
+780 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 bas_öô_obj
@@ -83987,7 +84809,7 @@ bas_öô_obj
 b©ãry_Àvñ_ªp‹t_ªad_≥rm
 );
 
-593 
+782 
 îr_code
  = 
 	`bÀ_bas_öô
@@ -83997,33 +84819,33 @@ m_bas
 bas_öô_obj
 );
 
-594 
+783 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-595 
+784 
 	}
 }
 
-600 
+789 
 	$hids_öô
 ()
 
-602 
+791 
 ªt_code_t
  
 îr_code
 ;
 
-603 
+792 
 bÀ_hids_öô_t
  
 hids_öô_obj
 ;
 
-604 
+793 
 bÀ_hids_öp_ªp_öô_t
  
 öp_ªp_¨øy
@@ -84031,31 +84853,31 @@ bÀ_hids_öp_ªp_öô_t
 INPUT_REPORT_COUNT
 ];
 
-605 
+794 
 bÀ_hids_öp_ªp_öô_t
  * 
 p_öput_ªp‹t
 ;
 
-606 
+795 
 uöt8_t
  
 hid_öfo_Êags
 ;
 
-608 
+797 
 uöt8_t
  
 ªp_m≠_d©a
 [] =
 
-688 
+877 
 	`mem£t
 (
 öp_ªp_¨øy
 , 0, (inp_rep_array));
 
-690 
+879 
 p_öput_ªp‹t
  = &
 öp_ªp_¨øy
@@ -84063,7 +84885,7 @@ p_öput_ªp‹t
 INPUT_REP_BUTTONS_INDEX
 ];
 
-691 
+880 
 p_öput_ªp‹t
 ->
 max_Àn
@@ -84071,7 +84893,7 @@ max_Àn
 INPUT_REP_BUTTONS_LEN
 ;
 
-692 
+881 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84081,7 +84903,7 @@ p_öput_ªp‹t
 INPUT_REP_REF_BUTTONS_ID
 ;
 
-693 
+882 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84091,7 +84913,7 @@ p_öput_ªp‹t
 BLE_HIDS_REP_TYPE_INPUT
 ;
 
-695 
+884 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84101,7 +84923,7 @@ p_öput_ªp‹t
 cccd_wrôe_≥rm
 );
 
-696 
+885 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84111,7 +84933,7 @@ p_öput_ªp‹t
 ªad_≥rm
 );
 
-697 
+886 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84121,7 +84943,7 @@ p_öput_ªp‹t
 wrôe_≥rm
 );
 
-699 
+888 
 p_öput_ªp‹t
  = &
 öp_ªp_¨øy
@@ -84129,7 +84951,7 @@ p_öput_ªp‹t
 INPUT_REP_MOVEMENT_INDEX
 ];
 
-700 
+889 
 p_öput_ªp‹t
 ->
 max_Àn
@@ -84137,7 +84959,7 @@ max_Àn
 INPUT_REP_MOVEMENT_LEN
 ;
 
-701 
+890 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84147,7 +84969,7 @@ p_öput_ªp‹t
 INPUT_REP_REF_MOVEMENT_ID
 ;
 
-702 
+891 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84157,7 +84979,7 @@ p_öput_ªp‹t
 BLE_HIDS_REP_TYPE_INPUT
 ;
 
-704 
+893 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84167,7 +84989,7 @@ p_öput_ªp‹t
 cccd_wrôe_≥rm
 );
 
-705 
+894 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84177,7 +84999,7 @@ p_öput_ªp‹t
 ªad_≥rm
 );
 
-706 
+895 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84187,7 +85009,7 @@ p_öput_ªp‹t
 wrôe_≥rm
 );
 
-708 
+897 
 p_öput_ªp‹t
  = &
 öp_ªp_¨øy
@@ -84195,7 +85017,7 @@ p_öput_ªp‹t
 INPUT_REP_MPLAYER_INDEX
 ];
 
-709 
+898 
 p_öput_ªp‹t
 ->
 max_Àn
@@ -84203,7 +85025,7 @@ max_Àn
 INPUT_REP_MEDIA_PLAYER_LEN
 ;
 
-710 
+899 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84213,7 +85035,7 @@ p_öput_ªp‹t
 INPUT_REP_REF_MPLAYER_ID
 ;
 
-711 
+900 
 p_öput_ªp‹t
 ->
 ªp_ªf
@@ -84223,7 +85045,7 @@ p_öput_ªp‹t
 BLE_HIDS_REP_TYPE_INPUT
 ;
 
-713 
+902 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84233,7 +85055,7 @@ p_öput_ªp‹t
 cccd_wrôe_≥rm
 );
 
-714 
+903 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84243,7 +85065,7 @@ p_öput_ªp‹t
 ªad_≥rm
 );
 
-715 
+904 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 p_öput_ªp‹t
@@ -84253,7 +85075,7 @@ p_öput_ªp‹t
 wrôe_≥rm
 );
 
-717 
+906 
 hid_öfo_Êags
  = 
 HID_INFO_FLAG_REMOTE_WAKE_MSK
@@ -84261,13 +85083,13 @@ HID_INFO_FLAG_REMOTE_WAKE_MSK
 HID_INFO_FLAG_NORMALLY_CONNECTABLE_MSK
 ;
 
-719 
+908 
 	`mem£t
 (&
 hids_öô_obj
 , 0, (hids_init_obj));
 
-721 
+910 
 hids_öô_obj
 .
 evt_h™dÀr
@@ -84275,7 +85097,7 @@ evt_h™dÀr
 ⁄_hids_evt
 ;
 
-722 
+911 
 hids_öô_obj
 .
 îr‹_h™dÀr
@@ -84283,7 +85105,7 @@ hids_öô_obj
 £rvi˚_îr‹_h™dÀr
 ;
 
-723 
+912 
 hids_öô_obj
 .
 is_kb
@@ -84291,7 +85113,7 @@ is_kb
 Ál£
 ;
 
-724 
+913 
 hids_öô_obj
 .
 is_mou£
@@ -84299,7 +85121,7 @@ is_mou£
 åue
 ;
 
-725 
+914 
 hids_öô_obj
 .
 öp_ªp_cou¡
@@ -84307,7 +85129,7 @@ hids_öô_obj
 INPUT_REPORT_COUNT
 ;
 
-726 
+915 
 hids_öô_obj
 .
 p_öp_ªp_¨øy
@@ -84315,13 +85137,13 @@ p_öp_ªp_¨øy
 öp_ªp_¨øy
 ;
 
-727 
+916 
 hids_öô_obj
 .
 ouç_ªp_cou¡
  = 0;
 
-728 
+917 
 hids_öô_obj
 .
 p_ouç_ªp_¨øy
@@ -84329,13 +85151,13 @@ p_ouç_ªp_¨øy
 NULL
 ;
 
-729 
+918 
 hids_öô_obj
 .
 „©uª_ªp_cou¡
  = 0;
 
-730 
+919 
 hids_öô_obj
 .
 p_„©uª_ªp_¨øy
@@ -84343,7 +85165,7 @@ p_„©uª_ªp_¨øy
 NULL
 ;
 
-731 
+920 
 hids_öô_obj
 .
 ªp_m≠
@@ -84353,7 +85175,7 @@ d©a_Àn
 ªp_m≠_d©a
 );
 
-732 
+921 
 hids_öô_obj
 .
 ªp_m≠
@@ -84363,7 +85185,7 @@ p_d©a
 ªp_m≠_d©a
 ;
 
-733 
+922 
 hids_öô_obj
 .
 hid_öf‹m©i⁄
@@ -84373,7 +85195,7 @@ bcd_hid
 BASE_USB_HID_SPEC_VERSION
 ;
 
-734 
+923 
 hids_öô_obj
 .
 hid_öf‹m©i⁄
@@ -84381,7 +85203,7 @@ hid_öf‹m©i⁄
 b_cou¡ry_code
  = 0;
 
-735 
+924 
 hids_öô_obj
 .
 hid_öf‹m©i⁄
@@ -84391,13 +85213,13 @@ hid_öf‹m©i⁄
 hid_öfo_Êags
 ;
 
-736 
+925 
 hids_öô_obj
 .
 ö˛uded_£rvi˚s_cou¡
  = 0;
 
-737 
+926 
 hids_öô_obj
 .
 p_ö˛uded_£rvi˚s_¨øy
@@ -84405,7 +85227,7 @@ p_ö˛uded_£rvi˚s_¨øy
 NULL
 ;
 
-739 
+928 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 hids_öô_obj
@@ -84417,7 +85239,7 @@ hids_öô_obj
 ªad_≥rm
 );
 
-740 
+929 
 	`BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS
 (&
 hids_öô_obj
@@ -84429,7 +85251,7 @@ hids_öô_obj
 wrôe_≥rm
 );
 
-741 
+930 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 hids_öô_obj
@@ -84441,7 +85263,7 @@ hid_öf‹m©i⁄
 ªad_≥rm
 );
 
-742 
+931 
 	`BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS
 (&
 hids_öô_obj
@@ -84453,11 +85275,11 @@ hid_öf‹m©i⁄
 wrôe_≥rm
 );
 
-744 
+933 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (
 
-745 &
+934 &
 hids_öô_obj
 .
 £curôy_mode_boŸ_mou£_öp_ªp
@@ -84465,11 +85287,11 @@ hids_öô_obj
 cccd_wrôe_≥rm
 );
 
-746 
+935 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (
 
-747 &
+936 &
 hids_öô_obj
 .
 £curôy_mode_boŸ_mou£_öp_ªp
@@ -84477,11 +85299,11 @@ hids_öô_obj
 ªad_≥rm
 );
 
-748 
+937 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (
 
-749 &
+938 &
 hids_öô_obj
 .
 £curôy_mode_boŸ_mou£_öp_ªp
@@ -84489,7 +85311,7 @@ hids_öô_obj
 wrôe_≥rm
 );
 
-751 
+940 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 hids_öô_obj
@@ -84499,7 +85321,7 @@ hids_öô_obj
 ªad_≥rm
 );
 
-752 
+941 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 hids_öô_obj
@@ -84509,7 +85331,7 @@ hids_öô_obj
 wrôe_≥rm
 );
 
-753 
+942 
 	`BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS
 (&
 hids_öô_obj
@@ -84519,7 +85341,7 @@ hids_öô_obj
 ªad_≥rm
 );
 
-754 
+943 
 	`BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM
 (&
 hids_öô_obj
@@ -84529,7 +85351,7 @@ hids_öô_obj
 wrôe_≥rm
 );
 
-756 
+945 
 îr_code
  = 
 	`bÀ_hids_öô
@@ -84539,41 +85361,41 @@ m_hids
 hids_öô_obj
 );
 
-757 
+946 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-758 
+947 
 	}
 }
 
-763 
+952 
 	$£rvi˚s_öô
 ()
 
-765 
+954 
 	`dis_öô
 ();
 
-766 
+955 
 	`bas_öô
 ();
 
-767 
+956 
 	`hids_öô
 ();
 
-768 
+957 
 	}
 }
 
-773 
+962 
 	$£ns‹_simuœt‹_öô
 ()
 
-775 
+964 
 m_b©ãry_sim_cfg
 .
 mö
@@ -84581,7 +85403,7 @@ mö
 MIN_BATTERY_LEVEL
 ;
 
-776 
+965 
 m_b©ãry_sim_cfg
 .
 max
@@ -84589,7 +85411,7 @@ max
 MAX_BATTERY_LEVEL
 ;
 
-777 
+966 
 m_b©ãry_sim_cfg
 .
 ö¸
@@ -84597,7 +85419,7 @@ m_b©ãry_sim_cfg
 BATTERY_LEVEL_INCREMENT
 ;
 
-778 
+967 
 m_b©ãry_sim_cfg
 .
 °¨t_©_max
@@ -84605,7 +85427,7 @@ m_b©ãry_sim_cfg
 åue
 ;
 
-780 
+969 
 	`£ns‹sim_öô
 (&
 m_b©ãry_sim_°©e
@@ -84613,11 +85435,11 @@ m_b©ãry_sim_°©e
 m_b©ãry_sim_cfg
 );
 
-781 
+970 
 	}
 }
 
-788 
+977 
 	$c⁄n_∑øms_îr‹_h™dÀr
 (
 uöt32_t
@@ -84625,39 +85447,39 @@ uöt32_t
 ƒf_îr‹
 )
 
-790 
+979 
 	`APP_ERROR_HANDLER
 (
 ƒf_îr‹
 );
 
-791 
+980 
 	}
 }
 
-796 
+985 
 	$c⁄n_∑øms_öô
 ()
 
-798 
+987 
 ªt_code_t
  
 îr_code
 ;
 
-799 
+988 
 bÀ_c⁄n_∑øms_öô_t
  
 ˝_öô
 ;
 
-801 
+990 
 	`mem£t
 (&
 ˝_öô
 , 0, (cp_init));
 
-803 
+992 
 ˝_öô
 .
 p_c⁄n_∑øms
@@ -84665,7 +85487,7 @@ p_c⁄n_∑øms
 NULL
 ;
 
-804 
+993 
 ˝_öô
 .
 fú°_c⁄n_∑øms_upd©e_dñay
@@ -84673,7 +85495,7 @@ fú°_c⁄n_∑øms_upd©e_dñay
 FIRST_CONN_PARAMS_UPDATE_DELAY
 ;
 
-805 
+994 
 ˝_öô
 .
 √xt_c⁄n_∑øms_upd©e_dñay
@@ -84681,7 +85503,7 @@ FIRST_CONN_PARAMS_UPDATE_DELAY
 NEXT_CONN_PARAMS_UPDATE_DELAY
 ;
 
-806 
+995 
 ˝_öô
 .
 max_c⁄n_∑øms_upd©e_cou¡
@@ -84689,7 +85511,7 @@ max_c⁄n_∑øms_upd©e_cou¡
 MAX_CONN_PARAM_UPDATE_COUNT
 ;
 
-807 
+996 
 ˝_öô
 .
 °¨t_⁄_nŸify_cccd_h™dÀ
@@ -84697,7 +85519,7 @@ MAX_CONN_PARAM_UPDATE_COUNT
 BLE_GATT_HANDLE_INVALID
 ;
 
-808 
+997 
 ˝_öô
 .
 disc⁄√˘_⁄_Áû
@@ -84705,7 +85527,7 @@ disc⁄√˘_⁄_Áû
 Ál£
 ;
 
-809 
+998 
 ˝_öô
 .
 evt_h™dÀr
@@ -84713,7 +85535,7 @@ evt_h™dÀr
 NULL
 ;
 
-810 
+999 
 ˝_öô
 .
 îr‹_h™dÀr
@@ -84721,7 +85543,7 @@ NULL
 c⁄n_∑øms_îr‹_h™dÀr
 ;
 
-812 
+1001 
 îr_code
  = 
 	`bÀ_c⁄n_∑øms_öô
@@ -84729,27 +85551,27 @@ c⁄n_∑øms_îr‹_h™dÀr
 ˝_öô
 );
 
-813 
+1002 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-814 
+1003 
 	}
 }
 
-819 
+1008 
 	$timîs_°¨t
 ()
 
-821 
+1010 
 ªt_code_t
  
 îr_code
 ;
 
-823 
+1012 
 îr_code
  = 
 	`≠p_timî_°¨t
@@ -84761,27 +85583,27 @@ BATTERY_LEVEL_MEAS_INTERVAL
 NULL
 );
 
-824 
+1013 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-825 
+1014 
 	}
 }
 
-832 
+1021 
 	$¶ìp_mode_íãr
 ()
 
-834 
+1023 
 ªt_code_t
  
 îr_code
 ;
 
-836 
+1025 
 îr_code
  = 
 	`b•_ödiˇti⁄_£t
@@ -84789,41 +85611,41 @@ NULL
 BSP_INDICATE_IDLE
 );
 
-837 
+1026 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-840 
+1029 
 îr_code
  = 
 	`b•_bä_bÀ_¶ìp_mode_¥ï¨e
 ();
 
-841 
+1030 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-844 
+1033 
 îr_code
  = 
 	`sd_powî_sy°em_off
 ();
 
-845 
+1034 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-846 
+1035 
 	}
 }
 
-856 
+1045 
 	$⁄_hids_evt
 (
 bÀ_hids_t
@@ -84835,169 +85657,515 @@ bÀ_hids_evt_t
 p_evt
 )
 
-858 
+1047 
 p_evt
 ->
 evt_ty≥
 )
 
-860 
+1049 
 BLE_HIDS_EVT_BOOT_MODE_ENTERED
 :
 
-861 
+1050 
 m_ö_boŸ_mode
  = 
 åue
 ;
 
-864 
+1053 
 BLE_HIDS_EVT_REPORT_MODE_ENTERED
 :
 
-865 
+1054 
 m_ö_boŸ_mode
  = 
 Ál£
 ;
 
-868 
+1057 
 BLE_HIDS_EVT_NOTIF_ENABLED
 :
 
-875 
+1064 
 	}
 }
 
-884 
-	$⁄_adv_evt
-(
-bÀ_adv_evt_t
- 
-bÀ_adv_evt
-)
+1072 
+	$bÀ_°ack_öô
+()
 
-886 
+1074 
 ªt_code_t
  
 îr_code
 ;
 
-888 
-bÀ_adv_evt
+1076 
+îr_code
+ = 
+	`ƒf_sdh_íabÀ_ªque°
+();
+
+1077 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1081 
+uöt32_t
+ 
+øm_°¨t
+ = 0;
+
+1082 
+îr_code
+ = 
+	`ƒf_sdh_bÀ_deÁu…_cfg_£t
+(
+APP_BLE_CONN_CFG_TAG
+, &
+øm_°¨t
+);
+
+1083 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1086 
+îr_code
+ = 
+	`ƒf_sdh_bÀ_íabÀ
+(&
+øm_°¨t
+);
+
+1087 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1090 
+	`NRF_SDH_BLE_OBSERVER
+(
+m_bÀ_ob£rvî
+, 
+APP_BLE_OBSERVER_PRIO
+, 
+bÀ_evt_h™dÀr
+, 
+NULL
+);
+
+1091 
+	}
+}
+
+1096 
+	$≥î_m™agî_öô
+()
+
+1098 
+bÀ_g≠_£c_∑øms_t
+ 
+£c_∑øm
+;
+
+1099 
+ªt_code_t
+ 
+îr_code
+;
+
+1101 
+îr_code
+ = 
+	`pm_öô
+();
+
+1102 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1104 
+	`mem£t
+(&
+£c_∑øm
+, 0, (
+bÀ_g≠_£c_∑øms_t
+));
+
+1107 
+£c_∑øm
+.
+b⁄d
+ = 
+SEC_PARAM_BOND
+;
+
+1108 
+£c_∑øm
+.
+môm
+ = 
+SEC_PARAM_MITM
+;
+
+1109 
+£c_∑øm
+.
+Àsc
+ = 
+SEC_PARAM_LESC
+;
+
+1110 
+£c_∑øm
+.
+key¥ess
+ = 
+SEC_PARAM_KEYPRESS
+;
+
+1111 
+£c_∑øm
+.
+io_ˇps
+ = 
+SEC_PARAM_IO_CAPABILITIES
+;
+
+1112 
+£c_∑øm
+.
+oob
+ = 
+SEC_PARAM_OOB
+;
+
+1113 
+£c_∑øm
+.
+mö_key_size
+ = 
+SEC_PARAM_MIN_KEY_SIZE
+;
+
+1114 
+£c_∑øm
+.
+max_key_size
+ = 
+SEC_PARAM_MAX_KEY_SIZE
+;
+
+1115 
+£c_∑øm
+.
+kdi°_own
+.
+íc
+ = 1;
+
+1116 
+£c_∑øm
+.
+kdi°_own
+.
+id
+ = 1;
+
+1117 
+£c_∑øm
+.
+kdi°_≥î
+.
+íc
+ = 1;
+
+1118 
+£c_∑øm
+.
+kdi°_≥î
+.
+id
+ = 1;
+
+1120 
+îr_code
+ = 
+	`pm_£c_∑øms_£t
+(&
+£c_∑øm
+);
+
+1121 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1123 
+îr_code
+ = 
+	`pm_ªgi°î
+(
+pm_evt_h™dÀr
+);
+
+1124 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1125 
+	}
+}
+
+1133 
+	$scheduÀr_öô
+()
+
+1135 
+	`APP_SCHED_INIT
+(
+SCHED_MAX_EVENT_DATA_SIZE
+, 
+SCHED_QUEUE_SIZE
+);
+
+1136 
+	}
+}
+
+1144 
+	$mou£_movemít_£nd
+(
+öt16_t
+ 
+x_dñè
+, i¡16_à
+y_dñè
 )
 
-890 
-BLE_ADV_EVT_DIRECTED
-:
+1146 
+ªt_code_t
+ 
+îr_code
+;
 
-891 
-	`NRF_LOG_INFO
-("Directedádvertising.");
+1148 i‡(
+m_ö_boŸ_mode
+)
 
-892 
+1150 
+x_dñè
+ = 
+	`MIN
+(x_delta, 0x00ff);
+
+1151 
+y_dñè
+ = 
+	`MIN
+(y_delta, 0x00ff);
+
+1153 
 îr_code
  = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_ADVERTISING_DIRECTED
+	`bÀ_hids_boŸ_mou£_öp_ªp_£nd
+(&
+m_hids
+,
+
+1155 (
+öt8_t
+)
+x_dñè
+,
+
+1156 (
+öt8_t
+)
+y_dñè
+,
+
+1158 
+NULL
 );
 
-893 
+1162 
+uöt8_t
+ 
+buf„r
+[
+INPUT_REP_MOVEMENT_LEN
+];
+
+1164 
+	`APP_ERROR_CHECK_BOOL
+(
+INPUT_REP_MOVEMENT_LEN
+ == 3);
+
+1166 
+x_dñè
+ = 
+	`MIN
+(x_delta, 0x0fff);
+
+1167 
+y_dñè
+ = 
+	`MIN
+(y_delta, 0x0fff);
+
+1169 
+buf„r
+[0] = 
+x_dñè
+ & 0x00ff;
+
+1170 
+buf„r
+[1] = ((
+y_dñè
+ & 0x000fË<< 4Ë| ((
+x_dñè
+ & 0x0f00) >> 8);
+
+1171 
+buf„r
+[2] = (
+y_dñè
+ & 0x0ff0) >> 4;
+
+1173 
+îr_code
+ = 
+	`bÀ_hids_öp_ªp_£nd
+(&
+m_hids
+,
+
+1174 
+INPUT_REP_MOVEMENT_INDEX
+,
+
+1175 
+INPUT_REP_MOVEMENT_LEN
+,
+
+1176 
+buf„r
+);
+
+1179 i‡((
+îr_code
+ !
+NRF_SUCCESS
+) &&
+
+1180 (
+îr_code
+ !
+NRF_ERROR_INVALID_STATE
+) &&
+
+1181 (
+îr_code
+ !
+NRF_ERROR_RESOURCES
+) &&
+
+1182 (
+îr_code
+ !
+BLE_ERROR_GATTS_SYS_ATTR_MISSING
+)
+
+1185 
+	`APP_ERROR_HANDLER
+(
+îr_code
+);
+
+1187 
+	}
+}
+
+1194 
+	$b•_evít_h™dÀr
+(
+b•_evít_t
+ 
+evít
+)
+
+1196 
+ªt_code_t
+ 
+îr_code
+;
+
+1198 
+evít
+)
+
+1200 
+BSP_EVENT_SLEEP
+:
+
+1201 
+	`¶ìp_mode_íãr
+();
+
+1204 
+BSP_EVENT_DISCONNECT
+:
+
+1205 
+îr_code
+ = 
+	`sd_bÀ_g≠_disc⁄√˘
+(
+m_c⁄n_h™dÀ
+,
+
+1206 
+BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
+);
+
+1207 i‡(
+îr_code
+ !
+NRF_ERROR_INVALID_STATE
+)
+
+1209 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-896 
-BLE_ADV_EVT_FAST
+1213 
+BSP_EVENT_WHITELIST_OFF
 :
 
-897 
-	`NRF_LOG_INFO
-("Fastádvertising.");
+1214 i‡(
+m_c⁄n_h™dÀ
+ =
+BLE_CONN_HANDLE_INVALID
+)
 
-898 
-îr_code
- = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_ADVERTISING
-);
-
-899 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-902 
-BLE_ADV_EVT_SLOW
-:
-
-903 
-	`NRF_LOG_INFO
-("Slowádvertising.");
-
-904 
-îr_code
- = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_ADVERTISING_SLOW
-);
-
-905 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-908 
-BLE_ADV_EVT_FAST_WHITELIST
-:
-
-909 
-	`NRF_LOG_INFO
-("Fastádvertising with whitelist.");
-
-910 
-îr_code
- = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_ADVERTISING_WHITELIST
-);
-
-911 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-914 
-BLE_ADV_EVT_SLOW_WHITELIST
-:
-
-915 
-	`NRF_LOG_INFO
-("Slowádvertising with whitelist.");
-
-916 
-îr_code
- = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_ADVERTISING_WHITELIST
-);
-
-917 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-918 
+1216 
 îr_code
  = 
 	`bÀ_advîtisög_ª°¨t_wôhout_whôñi°
@@ -85005,205 +86173,307 @@ BSP_INDICATE_ADVERTISING_WHITELIST
 m_advîtisög
 );
 
-919 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-922 
-BLE_ADV_EVT_IDLE
-:
-
-923 
-îr_code
- = 
-	`b•_ödiˇti⁄_£t
-(
-BSP_INDICATE_IDLE
-);
-
-924 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-925 
-	`¶ìp_mode_íãr
-();
-
-928 
-BLE_ADV_EVT_WHITELIST_REQUEST
-:
-
-930 
-bÀ_g≠_addr_t
- 
-whôñi°_addrs
-[
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-];
-
-931 
-bÀ_g≠_úk_t
- 
-whôñi°_úks
-[
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-];
-
-932 
-uöt32_t
- 
-addr_˙t
- = 
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-;
-
-933 
-uöt32_t
- 
-úk_˙t
- = 
-BLE_GAP_WHITELIST_ADDR_MAX_COUNT
-;
-
-935 
-îr_code
- = 
-	`pm_whôñi°_gë
-(
-whôñi°_addrs
-, &
-addr_˙t
-,
-
-936 
-whôñi°_úks
-, &
-úk_˙t
-);
-
-937 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-938 
-	`NRF_LOG_DEBUG
-("pm_whitelist_getÑeturns %dáddr in whitelistánd %d irk whitelist",
-
-939 
-addr_˙t
-,
-
-940 
-úk_˙t
-);
-
-943 
-îr_code
- = 
-	`bÀ_advîtisög_whôñi°_ª∂y
-(&
-m_advîtisög
-,
-
-944 
-whôñi°_addrs
-,
-
-945 
-addr_˙t
-,
-
-946 
-whôñi°_úks
-,
-
-947 
-úk_˙t
-);
-
-948 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-952 
-BLE_ADV_EVT_PEER_ADDR_REQUEST
-:
-
-954 
-pm_≥î_d©a_b⁄dög_t
- 
-≥î_b⁄dög_d©a
-;
-
-957 i‡(
-m_≥î_id
- !
-PM_PEER_ID_INVALID
-)
-
-960 
-îr_code
- = 
-	`pm_≥î_d©a_b⁄dög_lﬂd
-(
-m_≥î_id
-, &
-≥î_b⁄dög_d©a
-);
-
-961 i‡(
+1217 i‡(
 îr_code
  !
-NRF_ERROR_NOT_FOUND
+NRF_ERROR_INVALID_STATE
 )
 
-963 
+1219 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-965 
-bÀ_g≠_addr_t
- * 
-p_≥î_addr
- = &(
-≥î_b⁄dög_d©a
-.
-≥î_bÀ_id
-.
-id_addr_öfo
+1224 
+BSP_EVENT_KEY_0
+:
+
+1225 
+	`NRF_LOG_INFO
+("KEY_0");
+
+1226 i‡(
+m_c⁄n_h™dÀ
+ !
+BLE_CONN_HANDLE_INVALID
+)
+
+1228 
+	`mou£_movemít_£nd
+(-
+MOVEMENT_SPEED
+, 0);
+
+1232 
+BSP_EVENT_KEY_1
+:
+
+1233 
+	`NRF_LOG_INFO
+("KEY_1");
+
+1234 i‡(
+m_c⁄n_h™dÀ
+ !
+BLE_CONN_HANDLE_INVALID
+)
+
+1236 
+	`mou£_movemít_£nd
+(0, -
+MOVEMENT_SPEED
 );
 
-966 
-îr_code
- = 
-	`bÀ_advîtisög_≥î_addr_ª∂y
-(&
-m_advîtisög
-, 
-p_≥î_addr
-);
+1240 
+BSP_EVENT_KEY_2
+:
 
-967 
-	`APP_ERROR_CHECK
+1241 
+	`NRF_LOG_INFO
+("KEY_2");
+
+1242 i‡(
+m_c⁄n_h™dÀ
+ !
+BLE_CONN_HANDLE_INVALID
+)
+
+1244 
+	`mou£_movemít_£nd
 (
-îr_code
-);
+MOVEMENT_SPEED
+, 0);
 
-977 
+1248 
+BSP_EVENT_KEY_3
+:
+
+1249 
+	`NRF_LOG_INFO
+("Start generaládvert");
+
+1250 
+	`advîtisögApSèπ
+(
+ADV_ADD_NEW
+, 0);
+
+1256 
 	}
 }
 
-985 
+1263 
+	$buâ⁄s_Àds_öô
+(
+boﬁ
+ * 
+p_îa£_b⁄ds
+)
+
+1265 
+ªt_code_t
+ 
+îr_code
+;
+
+1266 
+b•_evít_t
+ 
+°¨tup_evít
+;
+
+1268 
+îr_code
+ = 
+	`b•_öô
+(
+BSP_INIT_LED
+ | 
+BSP_INIT_BUTTONS
+, 
+b•_evít_h™dÀr
+);
+
+1270 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1272 
+îr_code
+ = 
+	`b•_bä_bÀ_öô
+(
+NULL
+, &
+°¨tup_evít
+);
+
+1273 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1275 *
+p_îa£_b⁄ds
+ = (
+°¨tup_evít
+ =
+BSP_EVENT_CLEAR_BONDING_DATA
+);
+
+1276 
+	}
+}
+
+1281 
+	$log_öô
+()
+
+1283 
+ªt_code_t
+ 
+îr_code
+ = 
+	`NRF_LOG_INIT
+(
+NULL
+);
+
+1284 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1286 
+	`NRF_LOG_DEFAULT_BACKENDS_INIT
+();
+
+1287 
+	}
+}
+
+1292 
+	$powî_m™age
+()
+
+1294 
+ªt_code_t
+ 
+îr_code
+ = 
+	`sd_≠p_evt_waô
+();
+
+1295 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1296 
+	}
+}
+
+1301 
+	$maö
+()
+
+1303 
+boﬁ
+ 
+îa£_b⁄ds
+;
+
+1306 
+	`log_öô
+();
+
+1307 
+	`NRF_LOG_INFO
+("Gerasimchuk started.");
+
+1309 
+devi˚Ordî
+ = 
+	`‹dîMÆloc
+();
+
+1311 
+	`timîs_öô
+();
+
+1312 
+	`buâ⁄s_Àds_öô
+(&
+îa£_b⁄ds
+);
+
+1313 
+	`bÀ_°ack_öô
+();
+
+1314 
+	`scheduÀr_öô
+();
+
+1315 
+	`g≠_∑øms_öô
+();
+
+1316 
+	`g©t_öô
+();
+
+1318 
+	`£rvi˚s_öô
+();
+
+1319 
+	`£ns‹_simuœt‹_öô
+();
+
+1320 
+	`c⁄n_∑øms_öô
+();
+
+1321 
+	`≥î_m™agî_öô
+();
+
+1325 
+	`timîs_°¨t
+();
+
+1327 
+	`advîtisögApSèπ
+(
+ADV_RECONNECT_SCAN
+, 0);
+
+1332 
+	`≠p_sched_execuã
+();
+
+1333 i‡(
+	`NRF_LOG_PROCESS
+(Ë=
+Ál£
+)
+
+1335 
+	`powî_m™age
+();
+
+1338 
+	}
+}
+
+1352 
 	$bÀ_evt_h™dÀr
 (
 bÀ_evt_t
@@ -85213,13 +86483,13 @@ p_bÀ_evt
 p_c⁄ãxt
 )
 
-987 
+1354 
 ªt_code_t
  
 îr_code
 ;
 
-990 
+1357 
 p_bÀ_evt
 ->
 hódî
@@ -85227,127 +86497,127 @@ hódî
 evt_id
 )
 
-992 
+1359 
 BLE_GAP_EVT_CONNECTED
 : 
 	`NRF_LOG_INFO
 ("CONNECTED"); ;
 
-993 
+1360 
 BLE_GAP_EVT_DISCONNECTED
 : 
 	`NRF_LOG_INFO
 ("DISCONNECTED"); ;
 
-994 
+1361 
 BLE_GAP_EVT_CONN_PARAM_UPDATE
 : 
 	`NRF_LOG_INFO
 ("CONN_PARAM_UPDATE"); ;
 
-995 
+1362 
 BLE_GAP_EVT_SEC_PARAMS_REQUEST
 : 
 	`NRF_LOG_INFO
 ("SEC_PARAMS_REQUEST"); ;
 
-996 
+1363 
 BLE_GAP_EVT_SEC_INFO_REQUEST
 : 
 	`NRF_LOG_INFO
 ("SEC_INFO_REQUEST"); ;
 
-997 
+1364 
 BLE_GAP_EVT_PASSKEY_DISPLAY
 : 
 	`NRF_LOG_INFO
 ("PASSKEY_DISPLAY"); ;
 
-998 
+1365 
 BLE_GAP_EVT_KEY_PRESSED
 : 
 	`NRF_LOG_INFO
 ("KEY_PRESSED"); ;
 
-999 
+1366 
 BLE_GAP_EVT_AUTH_KEY_REQUEST
 : 
 	`NRF_LOG_INFO
 ("AUTH_KEY_REQUEST"); ;
 
-1000 
+1367 
 BLE_GAP_EVT_LESC_DHKEY_REQUEST
 : 
 	`NRF_LOG_INFO
 ("LESC_DHKEY_REQUEST"); ;
 
-1001 
+1368 
 BLE_GAP_EVT_AUTH_STATUS
 : 
 	`NRF_LOG_INFO
 ("AUTH_STATUS"); ;
 
-1002 
+1369 
 BLE_GAP_EVT_CONN_SEC_UPDATE
 : 
 	`NRF_LOG_INFO
 ("CONN_SEC_UPDATE"); ;
 
-1003 
+1370 
 BLE_GAP_EVT_TIMEOUT
 : 
 	`NRF_LOG_INFO
 ("TIMEOUT"); ;
 
-1004 
+1371 
 BLE_GAP_EVT_RSSI_CHANGED
 : 
 	`NRF_LOG_INFO
 ("RSSI_CHANGED"); ;
 
-1005 
+1372 
 BLE_GAP_EVT_ADV_REPORT
 : 
 	`NRF_LOG_INFO
 ("ADV_REPORT"); ;
 
-1006 
+1373 
 BLE_GAP_EVT_SEC_REQUEST
 : 
 	`NRF_LOG_INFO
 ("SEC_REQUEST"); ;
 
-1007 
+1374 
 BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST
 : 
 	`NRF_LOG_INFO
 ("CONN_PARAM_UPDATE_REQUEST"); ;
 
-1008 
+1375 
 BLE_GAP_EVT_SCAN_REQ_REPORT
 : 
 	`NRF_LOG_INFO
 ("SCAN_REQ_REPORT"); ;
 
-1009 
+1376 
 BLE_GAP_EVT_PHY_UPDATE
 : 
 	`NRF_LOG_INFO
 ("PHY_UPDATE"); ;
 
-1010 
+1377 
 BLE_GAP_EVT_DATA_LENGTH_UPDATE_REQUEST
 : 
 	`NRF_LOG_INFO
 ("DATA_LENGTH_UPDATE_REQUEST"); ;
 
-1011 
+1378 
 BLE_GAP_EVT_DATA_LENGTH_UPDATE
 : 
 	`NRF_LOG_INFO
 ("DATA_LENGTH_UPDATE"); ;
 
-1014 
+1381 
 p_bÀ_evt
 ->
 hódî
@@ -85355,33 +86625,11 @@ hódî
 evt_id
 )
 
-1016 
+1383 
 BLE_GAP_EVT_CONNECTED
 :
 
-1017 
-îr_code
- = 
-	`sd_bÀ_g≠_disc⁄√˘
-(
-p_bÀ_evt
-->
-evt
-.
-g≠_evt
-.
-c⁄n_h™dÀ
-,
-
-1018 
-BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
-);
-
-1019 
-	`NRF_LOG_INFO
-("Connected");
-
-1020 
+1385 
 îr_code
  = 
 	`b•_ödiˇti⁄_£t
@@ -85389,13 +86637,13 @@ BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
 BSP_INDICATE_CONNECTED
 );
 
-1021 
+1386 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1023 
+1388 
 m_c⁄n_h™dÀ
  = 
 p_bÀ_evt
@@ -85407,51 +86655,47 @@ g≠_evt
 c⁄n_h™dÀ
 ;
 
-1026 
+1391 
 BLE_GAP_EVT_DISCONNECTED
 :
 
-1027 
-	`NRF_LOG_INFO
-("Disconnected");
-
-1030 
+1395 
 m_c⁄n_h™dÀ
  = 
 BLE_CONN_HANDLE_INVALID
 ;
 
-1033 #i‚de‡
+1398 #i‚de‡
 S140
 
 
-1034 
+1399 
 BLE_GAP_EVT_PHY_UPDATE_REQUEST
 :
 
-1036 
+1401 
 	`NRF_LOG_DEBUG
 ("PHY updateÑequest.");
 
-1037 
+1402 
 bÀ_g≠_phys_t
  c⁄° 
 phys
  =
 
-1039 .
+1404 .
 rx_phys
  = 
 BLE_GAP_PHY_AUTO
 ,
 
-1040 .
+1405 .
 tx_phys
  = 
 BLE_GAP_PHY_AUTO
 ,
 
-1042 
+1407 
 îr_code
  = 
 	`sd_bÀ_g≠_phy_upd©e
@@ -85467,21 +86711,21 @@ c⁄n_h™dÀ
 phys
 );
 
-1043 
+1408 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1047 
+1412 
 BLE_GATTC_EVT_TIMEOUT
 :
 
-1049 
+1414 
 	`NRF_LOG_DEBUG
 ("GATT Client Timeout.");
 
-1050 
+1415 
 îr_code
  = 
 	`sd_bÀ_g≠_disc⁄√˘
@@ -85495,25 +86739,25 @@ g©tc_evt
 c⁄n_h™dÀ
 ,
 
-1051 
+1416 
 BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
 );
 
-1052 
+1417 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1055 
+1420 
 BLE_GATTS_EVT_TIMEOUT
 :
 
-1057 
+1422 
 	`NRF_LOG_DEBUG
 ("GATT Server Timeout.");
 
-1058 
+1423 
 îr_code
  = 
 	`sd_bÀ_g≠_disc⁄√˘
@@ -85527,21 +86771,21 @@ g©ts_evt
 c⁄n_h™dÀ
 ,
 
-1059 
+1424 
 BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
 );
 
-1060 
+1425 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1063 
+1428 
 BLE_EVT_USER_MEM_REQUEST
 :
 
-1064 
+1429 
 îr_code
  = 
 	`sd_bÀ_u£r_mem_ª∂y
@@ -85551,29 +86795,29 @@ m_c⁄n_h™dÀ
 NULL
 );
 
-1065 
+1430 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1068 
+1433 
 BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
 :
 
-1070 
+1435 
 bÀ_g©ts_evt_rw_auth‹ize_ªque°_t
  
 ªq
 ;
 
-1071 
+1436 
 bÀ_g©ts_rw_auth‹ize_ª∂y_∑øms_t
  
 auth_ª∂y
 ;
 
-1073 
+1438 
 ªq
  = 
 p_bÀ_evt
@@ -85587,7 +86831,7 @@ g©ts_evt
 auth‹ize_ªque°
 ;
 
-1075 i‡(
+1440 i‡(
 ªq
 .
 ty≥
@@ -85595,7 +86839,7 @@ ty≥
 BLE_GATTS_AUTHORIZE_TYPE_INVALID
 )
 
-1077 i‡((
+1442 i‡((
 ªq
 .
 ªque°
@@ -85607,7 +86851,7 @@ wrôe
 BLE_GATTS_OP_PREP_WRITE_REQ
 ) ||
 
-1078 (
+1443 (
 ªq
 .
 ªque°
@@ -85619,7 +86863,7 @@ wrôe
 BLE_GATTS_OP_EXEC_WRITE_REQ_NOW
 ) ||
 
-1079 (
+1444 (
 ªq
 .
 ªque°
@@ -85631,7 +86875,7 @@ wrôe
 BLE_GATTS_OP_EXEC_WRITE_REQ_CANCEL
 ))
 
-1081 i‡(
+1446 i‡(
 ªq
 .
 ty≥
@@ -85639,7 +86883,7 @@ ty≥
 BLE_GATTS_AUTHORIZE_TYPE_WRITE
 )
 
-1083 
+1448 
 auth_ª∂y
 .
 ty≥
@@ -85647,7 +86891,7 @@ ty≥
 BLE_GATTS_AUTHORIZE_TYPE_WRITE
 ;
 
-1087 
+1452 
 auth_ª∂y
 .
 ty≥
@@ -85655,7 +86899,7 @@ ty≥
 BLE_GATTS_AUTHORIZE_TYPE_READ
 ;
 
-1089 
+1454 
 auth_ª∂y
 .
 ∑øms
@@ -85667,7 +86911,7 @@ g©t_°©us
 APP_FEATURE_NOT_SUPPORTED
 ;
 
-1090 
+1455 
 îr_code
  = 
 	`sd_bÀ_g©ts_rw_auth‹ize_ª∂y
@@ -85681,733 +86925,613 @@ g©ts_evt
 c⁄n_h™dÀ
 ,
 
-1091 &
+1456 &
 auth_ª∂y
 );
 
-1092 
+1457 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1101 
+1466 
 	}
 }
 
-1108 
-	$bÀ_°ack_öô
-()
+1475 
+	$pm_evt_h™dÀr
+(
+pm_evt_t
+ c⁄° * 
+p_evt
+)
 
-1110 
+1477 
 ªt_code_t
  
 îr_code
 ;
 
-1112 
-îr_code
- = 
-	`ƒf_sdh_íabÀ_ªque°
-();
+1479 
+p_evt
+->
+evt_id
+)
 
-1113 
-	`APP_ERROR_CHECK
-(
-îr_code
+1481 
+PM_EVT_BONDED_PEER_CONNECTED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_BONDED_PEER_CONNECTED"); ;
+
+1482 
+PM_EVT_CONN_SEC_START
+: 
+	`NRF_LOG_INFO
+("PM_EVT_CONN_SEC_START"); ;
+
+1483 
+PM_EVT_CONN_SEC_SUCCEEDED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_CONN_SEC_SUCCEEDED"); ;
+
+1484 
+PM_EVT_CONN_SEC_FAILED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_CONN_SEC_FAILED"); ;
+
+1485 
+PM_EVT_CONN_SEC_CONFIG_REQ
+: 
+	`NRF_LOG_INFO
+("PM_EVT_CONN_SEC_CONFIG_REQ"); ;
+
+1486 
+PM_EVT_CONN_SEC_PARAMS_REQ
+: 
+	`NRF_LOG_INFO
+("PM_EVT_CONN_SEC_PARAMS_REQ"); ;
+
+1487 
+PM_EVT_STORAGE_FULL
+: 
+	`NRF_LOG_INFO
+("PM_EVT_STORAGE_FULL"); ;
+
+1488 
+PM_EVT_ERROR_UNEXPECTED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_ERROR_UNEXPECTED"); ;
+
+1489 
+PM_EVT_PEER_DATA_UPDATE_SUCCEEDED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEER_DATA_UPDATE_SUCCEEDED"); ;
+
+1490 
+PM_EVT_PEER_DATA_UPDATE_FAILED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEER_DATA_UPDATE_FAILED"); ;
+
+1491 
+PM_EVT_PEER_DELETE_SUCCEEDED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEER_DELETE_SUCCEEDED"); ;
+
+1492 
+PM_EVT_PEER_DELETE_FAILED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEER_DELETE_FAILED"); ;
+
+1493 
+PM_EVT_PEERS_DELETE_SUCCEEDED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEERS_DELETE_SUCCEEDED"); ;
+
+1494 
+PM_EVT_PEERS_DELETE_FAILED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_PEERS_DELETE_FAILED"); ;
+
+1495 
+PM_EVT_LOCAL_DB_CACHE_APPLIED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_LOCAL_DB_CACHE_APPLIED"); ;
+
+1496 
+PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED"); ;
+
+1497 
+PM_EVT_SERVICE_CHANGED_IND_SENT
+: 
+	`NRF_LOG_INFO
+("PM_EVT_SERVICE_CHANGED_IND_SENT"); ;
+
+1498 
+PM_EVT_SERVICE_CHANGED_IND_CONFIRMED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_SERVICE_CHANGED_IND_CONFIRMED"); ;
+
+1499 
+PM_EVT_SLAVE_SECURITY_REQ
+: 
+	`NRF_LOG_INFO
+("PM_EVT_SLAVE_SECURITY_REQ"); ;
+
+1500 
+PM_EVT_FLASH_GARBAGE_COLLECTED
+: 
+	`NRF_LOG_INFO
+("PM_EVT_FLASH_GARBAGE_COLLECTED"); ;
+
+1503 
+p_evt
+->
+evt_id
+)
+
+1506 
+PM_EVT_BONDED_PEER_CONNECTED
+:
+
+1508 
+	`NRF_LOG_INFO
+("Pªv c⁄: %d", 
+p_evt
+->
+≥î_id
 );
 
-1117 
-uöt32_t
- 
-øm_°¨t
- = 0;
-
-1118 
-îr_code
- = 
-	`ƒf_sdh_bÀ_deÁu…_cfg_£t
+1510 
+	`advîtisögPro˚ssög
 (
-APP_BLE_CONN_CFG_TAG
-, &
-øm_°¨t
-);
-
-1119 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1122 
-îr_code
- = 
-	`ƒf_sdh_bÀ_íabÀ
-(&
-øm_°¨t
-);
-
-1123 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1126 
-	`NRF_SDH_BLE_OBSERVER
-(
-m_bÀ_ob£rvî
+ADV_PROC_START_CONNECT
 , 
-APP_BLE_OBSERVER_PRIO
-, 
-bÀ_evt_h™dÀr
-, 
-NULL
+p_evt
+->
+c⁄n_h™dÀ
+,Ö_evt->
+≥î_id
 );
 
-1127 
-	}
-}
+1514 
+PM_EVT_CONN_SEC_SUCCEEDED
+:
 
-1132 
-	$≥î_m™agî_öô
-()
+1516 
+	`NRF_LOG_INFO
+("Connection secured:Ñole: %d, conn_handle: 0x%x,Örocedure: %d.",
 
-1134 
-bÀ_g≠_£c_∑øms_t
- 
-£c_∑øm
-;
-
-1135 
-ªt_code_t
- 
-îr_code
-;
-
-1137 
-îr_code
- = 
-	`pm_öô
-();
-
-1138 
-	`APP_ERROR_CHECK
+1517 
+	`bÀ_c⁄n_°©e_rﬁe
 (
-îr_code
+p_evt
+->
+c⁄n_h™dÀ
+),
+
+1518 
+p_evt
+->
+c⁄n_h™dÀ
+,
+
+1519 
+p_evt
+->
+∑øms
+.
+c⁄n_£c_suc˚eded
+.
+¥o˚duª
 );
 
-1140 
-	`mem£t
-(&
-£c_∑øm
-, 0, (
-bÀ_g≠_£c_∑øms_t
-));
-
-1143 
-£c_∑øm
-.
-b⁄d
+1522 
+m_≥î_id
  = 
-SEC_PARAM_BOND
+p_evt
+->
+≥î_id
 ;
 
-1144 
-£c_∑øm
-.
-môm
- = 
-SEC_PARAM_MITM
-;
+1526 
+PM_EVT_CONN_SEC_FAILED
+:
 
-1145 
-£c_∑øm
-.
-Àsc
- = 
-SEC_PARAM_LESC
-;
+1536 
+PM_EVT_CONN_SEC_CONFIG_REQ
+:
 
-1146 
-£c_∑øm
-.
-key¥ess
- = 
-SEC_PARAM_KEYPRESS
-;
-
-1147 
-£c_∑øm
-.
-io_ˇps
- = 
-SEC_PARAM_IO_CAPABILITIES
-;
-
-1148 
-£c_∑øm
-.
-oob
- = 
-SEC_PARAM_OOB
-;
-
-1149 
-£c_∑øm
-.
-mö_key_size
- = 
-SEC_PARAM_MIN_KEY_SIZE
-;
-
-1150 
-£c_∑øm
-.
-max_key_size
- = 
-SEC_PARAM_MAX_KEY_SIZE
-;
-
-1151 
-£c_∑øm
-.
-kdi°_own
-.
-íc
- = 1;
-
-1152 
-£c_∑øm
-.
-kdi°_own
-.
-id
- = 1;
-
-1153 
-£c_∑øm
-.
-kdi°_≥î
-.
-íc
- = 1;
-
-1154 
-£c_∑øm
-.
-kdi°_≥î
-.
-id
- = 1;
-
-1156 
-îr_code
- = 
-	`pm_£c_∑øms_£t
-(&
-£c_∑øm
-);
-
-1157 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1159 
-îr_code
- = 
-	`pm_ªgi°î
-(
-pm_evt_h™dÀr
-);
-
-1160 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1161 
-	}
-}
-
-1166 
-	$advîtisög_öô
-()
-
-1168 
-ªt_code_t
+1539 
+pm_c⁄n_£c_c⁄fig_t
  
-îr_code
-;
-
-1169 
-uöt8_t
- 
-adv_Êags
-;
-
-1170 
-bÀ_advîtisög_öô_t
- 
-öô
-;
-
-1172 
-	`mem£t
-(&
-öô
-, 0, (init));
-
-1174 
-adv_Êags
- = 
-BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE
-;
-
-1175 
-öô
-.
-advd©a
-.
-«me_ty≥
- = 
-BLE_ADVDATA_FULL_NAME
-;
-
-1176 
-öô
-.
-advd©a
-.
-ö˛ude_≠≥¨™˚
- = 
-åue
-;
-
-1177 
-öô
-.
-advd©a
-.
-Êags
- = 
-adv_Êags
-;
-
-1178 
-öô
-.
-advd©a
-.
-uuids_com∂ëe
-.
-uuid_˙t
- = (
-m_adv_uuids
-) / (m_adv_uuids[0]);
-
-1179 
-öô
-.
-advd©a
-.
-uuids_com∂ëe
-.
-p_uuids
- = 
-m_adv_uuids
-;
-
-1181 
-öô
-.
-c⁄fig
-.
-bÀ_adv_whôñi°_íabÀd
- = 
-åue
-;
-
-1182 
-öô
-.
-c⁄fig
-.
-bÀ_adv_dúe˘ed_íabÀd
- = 
-åue
-;
-
-1183 
-öô
-.
-c⁄fig
-.
-bÀ_adv_dúe˘ed_¶ow_íabÀd
+c⁄n_£c_c⁄fig
+ = {.
+Ælow_ª∑úög
  = 
 Ál£
-;
+};
 
-1184 
-öô
-.
-c⁄fig
-.
-bÀ_adv_dúe˘ed_¶ow_öãrvÆ
- = 0;
-
-1185 
-öô
-.
-c⁄fig
-.
-bÀ_adv_dúe˘ed_¶ow_timeout
- = 0;
-
-1186 
-öô
-.
-c⁄fig
-.
-bÀ_adv_Á°_íabÀd
- = 
-åue
-;
-
-1187 
-öô
-.
-c⁄fig
-.
-bÀ_adv_Á°_öãrvÆ
- = 
-APP_ADV_FAST_INTERVAL
-;
-
-1188 
-öô
-.
-c⁄fig
-.
-bÀ_adv_Á°_timeout
- = 
-APP_ADV_FAST_TIMEOUT
-;
-
-1189 
-öô
-.
-c⁄fig
-.
-bÀ_adv_¶ow_íabÀd
- = 
-åue
-;
-
-1190 
-öô
-.
-c⁄fig
-.
-bÀ_adv_¶ow_öãrvÆ
- = 
-APP_ADV_SLOW_INTERVAL
-;
-
-1191 
-öô
-.
-c⁄fig
-.
-bÀ_adv_¶ow_timeout
- = 
-APP_ADV_SLOW_TIMEOUT
-;
-
-1193 
-öô
-.
-evt_h™dÀr
- = 
-⁄_adv_evt
-;
-
-1194 
-öô
-.
-îr‹_h™dÀr
- = 
-bÀ_advîtisög_îr‹_h™dÀr
-;
-
-1196 
-îr_code
- = 
-	`bÀ_advîtisög_öô
-(&
-m_advîtisög
+1540 
+	`pm_c⁄n_£c_c⁄fig_ª∂y
+(
+p_evt
+->
+c⁄n_h™dÀ
 , &
-öô
+c⁄n_£c_c⁄fig
 );
 
-1197 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1199 
-	`bÀ_advîtisög_c⁄n_cfg_èg_£t
-(&
-m_advîtisög
-, 
-APP_BLE_CONN_CFG_TAG
-);
-
-1200 
-	}
-}
-
-1205 
-	$scheduÀr_öô
-()
-
-1207 
-	`APP_SCHED_INIT
-(
-SCHED_MAX_EVENT_DATA_SIZE
-, 
-SCHED_QUEUE_SIZE
-);
-
-1208 
-	}
-}
-
-1216 
-	$mou£_movemít_£nd
-(
-öt16_t
- 
-x_dñè
-, i¡16_à
-y_dñè
-)
-
-1218 
-ªt_code_t
- 
-îr_code
-;
-
-1220 i‡(
-m_ö_boŸ_mode
-)
-
-1222 
-x_dñè
- = 
-	`MIN
-(x_delta, 0x00ff);
-
-1223 
-y_dñè
- = 
-	`MIN
-(y_delta, 0x00ff);
-
-1225 
-îr_code
- = 
-	`bÀ_hids_boŸ_mou£_öp_ªp_£nd
-(&
-m_hids
-,
-
-1227 (
-öt8_t
-)
-x_dñè
-,
-
-1228 (
-öt8_t
-)
-y_dñè
-,
-
-1230 
-NULL
-);
-
-1234 
-uöt8_t
- 
-buf„r
-[
-INPUT_REP_MOVEMENT_LEN
-];
-
-1236 
-	`APP_ERROR_CHECK_BOOL
-(
-INPUT_REP_MOVEMENT_LEN
- == 3);
-
-1238 
-x_dñè
- = 
-	`MIN
-(x_delta, 0x0fff);
-
-1239 
-y_dñè
- = 
-	`MIN
-(y_delta, 0x0fff);
-
-1241 
-buf„r
-[0] = 
-x_dñè
- & 0x00ff;
-
-1242 
-buf„r
-[1] = ((
-y_dñè
- & 0x000fË<< 4Ë| ((
-x_dñè
- & 0x0f00) >> 8);
-
-1243 
-buf„r
-[2] = (
-y_dñè
- & 0x0ff0) >> 4;
-
-1245 
-îr_code
- = 
-	`bÀ_hids_öp_ªp_£nd
-(&
-m_hids
-,
-
-1246 
-INPUT_REP_MOVEMENT_INDEX
-,
-
-1247 
-INPUT_REP_MOVEMENT_LEN
-,
-
-1248 
-buf„r
-);
-
-1251 i‡((
-îr_code
- !
-NRF_SUCCESS
-) &&
-
-1252 (
-îr_code
- !
-NRF_ERROR_INVALID_STATE
-) &&
-
-1253 (
-îr_code
- !
-NRF_ERROR_RESOURCES
-) &&
-
-1254 (
-îr_code
- !
-BLE_ERROR_GATTS_SYS_ATTR_MISSING
-)
-
-1257 
-	`APP_ERROR_HANDLER
-(
-îr_code
-);
-
-1259 
-	}
-}
-
-1266 
-	$b•_evít_h™dÀr
-(
-b•_evít_t
- 
-evít
-)
-
-1268 
-ªt_code_t
- 
-îr_code
-;
-
-1270 
-evít
-)
-
-1272 
-BSP_EVENT_SLEEP
+1543 
+PM_EVT_STORAGE_FULL
 :
 
-1273 
-	`¶ìp_mode_íãr
+1546 
+îr_code
+ = 
+	`fds_gc
 ();
 
-1276 
-BSP_EVENT_DISCONNECT
-:
-
-1277 
+1547 i‡(
 îr_code
- = 
-	`sd_bÀ_g≠_disc⁄√˘
-(
-m_c⁄n_h™dÀ
-,
-
-1278 
-BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION
-);
-
-1279 i‡(
-îr_code
- !
-NRF_ERROR_INVALID_STATE
+ =
+FDS_ERR_BUSY
+ ||Éº_codê=
+FDS_ERR_NO_SPACE_IN_QUEUES
 )
 
-1281 
+1553 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1285 
-BSP_EVENT_WHITELIST_OFF
+1557 
+PM_EVT_PEERS_DELETE_SUCCEEDED
 :
 
-1286 i‡(
-m_c⁄n_h™dÀ
+1559 
+	`advîtisög_°¨t
+(
+Ál£
+);
+
+1562 
+PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED
+:
+
+1565 
+	`pm_loˇl_d©aba£_has_ch™ged
+();
+
+1568 
+PM_EVT_PEER_DATA_UPDATE_SUCCEEDED
+:
+
+1570 i‡–
+p_evt
+->
+∑øms
+.
+≥î_d©a_upd©e_suc˚eded
+.
+Êash_ch™ged
+
+
+1571 && (
+p_evt
+->
+∑øms
+.
+≥î_d©a_upd©e_suc˚eded
+.
+d©a_id
  =
-BLE_CONN_HANDLE_INVALID
+PM_PEER_DATA_ID_BONDING
+))
+
+1573 
+	`NRF_LOG_INFO
+("New Bond,áddÅheÖeerÅoÅhe whitelist ifÖossible");
+
+1574 
+	`NRF_LOG_INFO
+("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d",
+
+1575 
+m_whôñi°_≥î_˙t
+ + 1,
+
+1576 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+);
+
+1579 i‡(
+m_whôñi°_≥î_˙t
+ < 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
 )
 
-1288 
+1582 
+m_whôñi°_≥îs
+[
+m_whôñi°_≥î_˙t
+++] = 
+m_≥î_id
+;
+
+1585 
+îr_code
+ = 
+	`pm_whôñi°_£t
+(
+m_whôñi°_≥îs
+, 
+m_whôñi°_≥î_˙t
+);
+
+1586 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1588 
+îr_code
+ = 
+	`pm_devi˚_idítôõs_li°_£t
+(
+m_whôñi°_≥îs
+, 
+m_whôñi°_≥î_˙t
+);
+
+1589 i‡(
+îr_code
+ !
+NRF_ERROR_NOT_SUPPORTED
+)
+
+1591 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1597 
+PM_EVT_PEER_DATA_UPDATE_FAILED
+:
+
+1600 
+	`APP_ERROR_CHECK
+(
+p_evt
+->
+∑øms
+.
+≥î_d©a_upd©e_Áûed
+.
+îr‹
+);
+
+1603 
+PM_EVT_PEER_DELETE_FAILED
+:
+
+1606 
+	`APP_ERROR_CHECK
+(
+p_evt
+->
+∑øms
+.
+≥î_dñëe_Áûed
+.
+îr‹
+);
+
+1609 
+PM_EVT_PEERS_DELETE_FAILED
+:
+
+1612 
+	`APP_ERROR_CHECK
+(
+p_evt
+->
+∑øms
+.
+≥îs_dñëe_Áûed_evt
+.
+îr‹
+);
+
+1615 
+PM_EVT_ERROR_UNEXPECTED
+:
+
+1618 
+	`APP_ERROR_CHECK
+(
+p_evt
+->
+∑øms
+.
+îr‹_u√x≥˘ed
+.
+îr‹
+);
+
+1621 
+PM_EVT_CONN_SEC_START
+:
+
+1622 
+PM_EVT_PEER_DELETE_SUCCEEDED
+:
+
+1623 
+PM_EVT_LOCAL_DB_CACHE_APPLIED
+:
+
+1624 
+PM_EVT_SERVICE_CHANGED_IND_SENT
+:
+
+1625 
+PM_EVT_SERVICE_CHANGED_IND_CONFIRMED
+:
+
+1629 
+	}
+}
+
+1639 
+	$⁄_adv_evt
+(
+bÀ_adv_evt_t
+ 
+bÀ_adv_evt
+)
+
+1641 
+ªt_code_t
+ 
+îr_code
+;
+
+1643 
+	`NRF_LOG_INFO
+("ADV_EV %d", 
+bÀ_adv_evt
+);
+
+1645 
+bÀ_adv_evt
+)
+
+1647 
+BLE_ADV_EVT_DIRECTED
+:
+
+1648 
+	`NRF_LOG_INFO
+("Directedádvertising.");
+
+1649 
+îr_code
+ = 
+	`b•_ödiˇti⁄_£t
+(
+BSP_INDICATE_ADVERTISING_DIRECTED
+);
+
+1650 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1653 
+BLE_ADV_EVT_FAST
+:
+
+1655 
+îr_code
+ = 
+	`b•_ödiˇti⁄_£t
+(
+BSP_INDICATE_ADVERTISING
+);
+
+1656 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1659 
+BLE_ADV_EVT_SLOW
+:
+
+1660 
+	`NRF_LOG_INFO
+("Slowádvertising.");
+
+1661 
+îr_code
+ = 
+	`b•_ödiˇti⁄_£t
+(
+BSP_INDICATE_ADVERTISING_SLOW
+);
+
+1662 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1665 
+BLE_ADV_EVT_FAST_WHITELIST
+:
+
+1666 
+	`NRF_LOG_INFO
+("Fastádvertising with whitelist.");
+
+1667 
+îr_code
+ = 
+	`b•_ödiˇti⁄_£t
+(
+BSP_INDICATE_ADVERTISING_WHITELIST
+);
+
+1668 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1671 
+BLE_ADV_EVT_SLOW_WHITELIST
+:
+
+1672 
+	`NRF_LOG_INFO
+("Slowádvertising with whitelist.");
+
+1673 
+îr_code
+ = 
+	`b•_ödiˇti⁄_£t
+(
+BSP_INDICATE_ADVERTISING_WHITELIST
+);
+
+1674 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1675 
 îr_code
  = 
 	`bÀ_advîtisög_ª°¨t_wôhout_whôñi°
@@ -86415,291 +87539,207 @@ BLE_CONN_HANDLE_INVALID
 m_advîtisög
 );
 
-1289 i‡(
-îr_code
- !
-NRF_ERROR_INVALID_STATE
-)
-
-1291 
+1676 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1296 
-BSP_EVENT_KEY_0
+1679 
+BLE_ADV_EVT_IDLE
 :
 
-1297 i‡(
-m_c⁄n_h™dÀ
- !
-BLE_CONN_HANDLE_INVALID
-)
-
-1299 
-	`mou£_movemít_£nd
-(-
-MOVEMENT_SPEED
-, 0);
-
-1303 
-BSP_EVENT_KEY_1
-:
-
-1304 i‡(
-m_c⁄n_h™dÀ
- !
-BLE_CONN_HANDLE_INVALID
-)
-
-1306 
-	`mou£_movemít_£nd
-(0, -
-MOVEMENT_SPEED
-);
-
-1310 
-BSP_EVENT_KEY_2
-:
-
-1311 i‡(
-m_c⁄n_h™dÀ
- !
-BLE_CONN_HANDLE_INVALID
-)
-
-1313 
-	`mou£_movemít_£nd
-(
-MOVEMENT_SPEED
-, 0);
-
-1317 
-BSP_EVENT_KEY_3
-:
-
-1318 i‡(
-m_c⁄n_h™dÀ
- !
-BLE_CONN_HANDLE_INVALID
-)
-
-1320 
-	`mou£_movemít_£nd
-(0, 
-MOVEMENT_SPEED
-);
-
-1327 
-	}
-}
-
-1334 
-	$buâ⁄s_Àds_öô
-(
-boﬁ
- * 
-p_îa£_b⁄ds
-)
-
-1336 
-ªt_code_t
- 
-îr_code
-;
-
-1337 
-b•_evít_t
- 
-°¨tup_evít
-;
-
-1339 
+1680 
 îr_code
  = 
-	`b•_öô
+	`b•_ödiˇti⁄_£t
 (
-BSP_INIT_LED
- | 
-BSP_INIT_BUTTONS
-, 
-b•_evít_h™dÀr
+BSP_INDICATE_IDLE
 );
 
-1341 
+1681 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1343 
+1684 
+	`advîtisögPro˚ssög
+(
+ADV_PROC_STOP_ADV
+, 0, 0);
+
+1689 
+BLE_ADV_EVT_WHITELIST_REQUEST
+:
+
+1691 
+bÀ_g≠_addr_t
+ 
+whôñi°_addrs
+[
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+];
+
+1692 
+bÀ_g≠_úk_t
+ 
+whôñi°_úks
+[
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+];
+
+1693 
+uöt32_t
+ 
+addr_˙t
+ = 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+;
+
+1694 
+uöt32_t
+ 
+úk_˙t
+ = 
+BLE_GAP_WHITELIST_ADDR_MAX_COUNT
+;
+
+1696 
 îr_code
  = 
-	`b•_bä_bÀ_öô
+	`pm_whôñi°_gë
 (
-NULL
+whôñi°_addrs
 , &
-°¨tup_evít
+addr_˙t
+,
+
+1697 
+whôñi°_úks
+, &
+úk_˙t
 );
 
-1344 
+1698 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1346 *
-p_îa£_b⁄ds
- = (
-°¨tup_evít
- =
-BSP_EVENT_CLEAR_BONDING_DATA
+1699 
+	`NRF_LOG_INFO
+("pm_whitelist_getÑeturns %dáddr in whitelistánd %d irk whitelist",
+
+1700 
+addr_˙t
+,
+
+1701 
+úk_˙t
 );
 
-1347 
-	}
-}
-
-1352 
-	$log_öô
-()
-
-1354 
-ªt_code_t
- 
+1704 
 îr_code
  = 
-	`NRF_LOG_INIT
-(
-NULL
+	`bÀ_advîtisög_whôñi°_ª∂y
+(&
+m_advîtisög
+,
+
+1705 
+whôñi°_addrs
+,
+
+1706 
+addr_˙t
+,
+
+1707 
+whôñi°_úks
+,
+
+1708 
+úk_˙t
 );
 
-1355 
+1709 
 	`APP_ERROR_CHECK
 (
 îr_code
 );
 
-1357 
-	`NRF_LOG_DEFAULT_BACKENDS_INIT
-();
+1713 
+BLE_ADV_EVT_PEER_ADDR_REQUEST
+:
 
-1358 
-	}
-}
-
-1363 
-	$powî_m™age
-()
-
-1365 
-ªt_code_t
+1715 
+pm_≥î_d©a_b⁄dög_t
  
-îr_code
- = 
-	`sd_≠p_evt_waô
-();
-
-1366 
-	`APP_ERROR_CHECK
-(
-îr_code
-);
-
-1367 
-	}
-}
-
-1372 
-	$maö
-()
-
-1374 
-boﬁ
- 
-îa£_b⁄ds
+≥î_b⁄dög_d©a
 ;
 
-1377 
-	`log_öô
-();
-
-1378 
-	`timîs_öô
-();
-
-1379 
-	`buâ⁄s_Àds_öô
-(&
-îa£_b⁄ds
-);
-
-1380 
-	`bÀ_°ack_öô
-();
-
-1381 
-	`scheduÀr_öô
-();
-
-1382 
-	`g≠_∑øms_öô
-();
-
-1383 
-	`g©t_öô
-();
-
-1384 
-	`advîtisög_öô
-();
-
-1385 
-	`£rvi˚s_öô
-();
-
-1386 
-	`£ns‹_simuœt‹_öô
-();
-
-1387 
-	`c⁄n_∑øms_öô
-();
-
-1388 
-	`≥î_m™agî_öô
-();
-
-1391 
+1716 
 	`NRF_LOG_INFO
-("Gerasimchuk started.");
+("Dir_next");
 
-1392 
-	`timîs_°¨t
-();
-
-1394 
-	`advîtisög_°¨t
-(
-îa£_b⁄ds
-);
-
-1399 
-	`≠p_sched_execuã
-();
-
-1400 i‡(
-	`NRF_LOG_PROCESS
-(Ë=
-Ál£
+1719 i‡(
+m_≥î_id
+ !
+PM_PEER_ID_INVALID
 )
 
-1402 
-	`powî_m™age
-();
+1722 
+îr_code
+ = 
+	`pm_≥î_d©a_b⁄dög_lﬂd
+(
+m_≥î_id
+, &
+≥î_b⁄dög_d©a
+);
 
-1405 
+1723 i‡(
+îr_code
+ !
+NRF_ERROR_NOT_FOUND
+)
+
+1725 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1727 
+bÀ_g≠_addr_t
+ * 
+p_≥î_addr
+ = &(
+≥î_b⁄dög_d©a
+.
+≥î_bÀ_id
+.
+id_addr_öfo
+);
+
+1728 
+îr_code
+ = 
+	`bÀ_advîtisög_≥î_addr_ª∂y
+(&
+m_advîtisög
+, 
+p_≥î_addr
+);
+
+1729 
+	`APP_ERROR_CHECK
+(
+îr_code
+);
+
+1739 
 	}
 }
 
@@ -93829,12 +94869,660 @@ r
 	}
 }
 
+	@C:\Private\Programing\Nordic\NRF52840Mouse\orderProcessing.c
+
+5 
+	~"°döt.h
+"
+
+6 
+	~"°rög.h
+"
+
+7 
+	~"°dboﬁ.h
+"
+
+8 
+	~"‹dîPro˚ssög.h
+"
+
+10 
+	#ORDER_ITEM_FREE
+ 0xFF
+
+	)
+
+12 
+	#ORDER_HEAP_ITEM_FREE
+ 0xFF
+
+	)
+
+13 
+	#ORDER_HEAP_ITEM_BUSY
+ 0x00
+
+	)
+
+16 
+	s‹dî
+
+
+18 
+uöt8_t
+ 
+	m‹dî
+[
+ORDER_ITEM_QUANTITY
+];
+
+19 } 
+	tdevi˚OrdîS
+;
+
+24 
+devi˚OrdîS
+ 
+	mhóp
+[
+HEAP_ORDER_QUANTITY
+];
+
+25 
+uöt8_t
+ 
+	mhópIãmSèã
+[
+HEAP_ORDER_QUANTITY
+];
+
+26 }
+	ghópDes¸ùt‹
+ =
+
+28 .
+hópIãmSèã
+ = {[0 ... 
+HEAP_ORDER_QUANTITY
+ - 1] = 
+ORDER_HEAP_ITEM_FREE
+}
+
+32 
+ölöe
+ 
+boﬁ
+ 
+	$gëIDPos
+(
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ *
+ªzPos
+, uöt8_à
+öIãm
+)
+
+34 
+uöt8_t
+ 
+˙t
+ = 0; c¡ < 
+ORDER_ITEM_QUANTITY
+; cnt++ )
+
+36 if–
+öIãm
+ !
+‹dîIn
+->
+‹dî
+[
+˙t
+])
+
+40 *
+ªzPos
+ = 
+˙t
+;
+
+41  
+åue
+;
+
+43  
+Ál£
+;
+
+44 
+	}
+}
+
+47 
+‹dîT
+ 
+	$‹dîMÆloc
+()
+
+49 
+uöt8_t
+ 
+˙t
+ = 0; c¡ < 
+HEAP_ORDER_QUANTITY
+; cnt++)
+
+51 if(
+hópDes¸ùt‹
+.
+hópIãmSèã
+[
+˙t
+] !
+ORDER_HEAP_ITEM_FREE
+)
+
+55 
+hópDes¸ùt‹
+.
+hópIãmSèã
+[
+˙t
+] = 
+ORDER_HEAP_ITEM_BUSY
+;
+
+56 
+	`mem£t
+(
+hópDes¸ùt‹
+.
+hóp
+[
+˙t
+].
+‹dî
+, 
+ORDER_ITEM_FREE
+, (heapDescriptor.heap[cnt].order));
+
+57  &
+hópDes¸ùt‹
+.
+hóp
+[
+˙t
+];
+
+59  
+NULL
+;
+
+60 
+	}
+}
+
+62 
+boﬁ
+ 
+	$‹dîFªe
+(
+‹dîT
+ 
+‹dîIn
+)
+
+64 
+uöt8_t
+ 
+˙t
+ = 0; c¡ < 
+HEAP_ORDER_QUANTITY
+; cnt++)
+
+66 if(
+‹dîIn
+ !&
+hópDes¸ùt‹
+.
+hóp
+[
+˙t
+])
+
+70 
+hópDes¸ùt‹
+.
+hópIãmSèã
+[
+˙t
+] = 
+ORDER_HEAP_ITEM_FREE
+;
+
+71  
+åue
+;
+
+73  
+Ál£
+;
+
+74 
+	}
+}
+
+77 
+boﬁ
+ 
+	$‹dîSëFú°
+ (
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+öIãm
+)
+
+79 
+uöt8_t
+ 
+cuºítPos
+;
+
+80 if–
+‹dîIn
+ =
+NULL
+)
+
+82  
+Ál£
+;
+
+84 if–!
+	`gëIDPos
+(
+‹dîIn
+, &
+cuºítPos
+, 
+öIãm
+))
+
+86 
+cuºítPos
+ = 
+ORDER_ITEM_QUANTITY
+ - 1;
+
+88 if(
+cuºítPos
+ == 0)
+
+90  
+åue
+;
+
+92 ; 
+cuºítPos
+ > 0; currentPos--)
+
+94 
+‹dîIn
+->
+‹dî
+[
+cuºítPos
+] = orderIn->order[currentPos - 1];
+
+96 
+‹dîIn
+->
+‹dî
+[0] = 
+öIãm
+;
+
+97  
+åue
+;
+
+98 
+	}
+}
+
+101 
+boﬁ
+ 
+	$‹dîGëPos
+(c⁄° 
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+devi˚ID
+, uöt8_à*
+pos
+)
+
+103 
+uöt8_t
+ 
+˙t
+ = 0; c¡ < 
+ORDER_ITEM_QUANTITY
+; cnt++)
+
+105 if(
+‹dîIn
+->
+‹dî
+[
+˙t
+] !
+devi˚ID
+)
+
+109 *
+pos
+ = 
+˙t
+;
+
+110  
+åue
+;
+
+112  
+Ál£
+;
+
+113 
+	}
+}
+
+116 
+uöt8_t
+ 
+	$‹dîGëQu™tôy
+(c⁄° 
+‹dîT
+ 
+‹dîIn
+)
+
+118 
+uöt8_t
+ 
+˙t
+ = 0;
+
+119 ; 
+˙t
+ < 
+ORDER_ITEM_QUANTITY
+; cnt++)
+
+121 if(
+‹dîIn
+->
+‹dî
+[
+˙t
+] =
+ORDER_ITEM_FREE
+)
+
+126  
+˙t
+;
+
+127 
+	}
+}
+
+130 
+	$‹dîCÀ™
+(
+‹dîT
+ 
+‹dîIn
+)
+
+132 
+	`mem£t
+(
+‹dîIn
+->
+‹dî
+, 
+ORDER_ITEM_FREE
+, (orderIn->order));
+
+133 
+	}
+}
+
+	@C:\Private\Programing\Nordic\NRF52840Mouse\orderProcessing.h
+
+5 #i‚de‡
+ORDERPROCESSING
+
+
+6 
+	#ORDERPROCESSING
+
+
+	)
+
+8 
+	~"°döt.h
+"
+
+9 
+	~"°dboﬁ.h
+"
+
+11 
+	#ORDER_ITEM_QUANTITY
+ 5
+
+	)
+
+12 
+	#HEAP_ORDER_QUANTITY
+ 2
+
+	)
+
+14 
+‹dî
+ *
+	t‹dîT
+;
+
+16 
+‹dîT
+ 
+‹dîMÆloc
+ ();
+
+17 
+boﬁ
+ 
+‹dîFªe
+ (
+‹dîT
+ 
+‹dîIn
+);
+
+18 
+boﬁ
+ 
+‹dîSëFú°
+ (
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+öIãm
+);
+
+19 
+boﬁ
+ 
+‹dîGëPos
+ (c⁄° 
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+devi˚ID
+, uöt8_à*
+pos
+);
+
+20 
+uöt8_t
+ 
+‹dîGëQu™tôy
+(c⁄° 
+‹dîT
+ 
+‹dîIn
+);
+
+21 
+‹dîCÀ™
+ (
+‹dîT
+ 
+‹dîIn
+);
+
+	@orderProcessing.h
+
+5 #i‚de‡
+ORDERPROCESSING
+
+
+6 
+	#ORDERPROCESSING
+
+
+	)
+
+8 
+	~"°döt.h
+"
+
+9 
+	~"°dboﬁ.h
+"
+
+11 
+	#ORDER_ITEM_QUANTITY
+ 5
+
+	)
+
+12 
+	#HEAP_ORDER_QUANTITY
+ 2
+
+	)
+
+14 
+‹dî
+ *
+	t‹dîT
+;
+
+16 
+‹dîT
+ 
+‹dîMÆloc
+ ();
+
+17 
+boﬁ
+ 
+‹dîFªe
+ (
+‹dîT
+ 
+‹dîIn
+);
+
+18 
+boﬁ
+ 
+‹dîSëFú°
+ (
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+öIãm
+);
+
+19 
+boﬁ
+ 
+‹dîGëPos
+ (c⁄° 
+‹dîT
+ 
+‹dîIn
+, 
+uöt8_t
+ 
+devi˚ID
+, uöt8_à*
+pos
+);
+
+20 
+uöt8_t
+ 
+‹dîGëQu™tôy
+(c⁄° 
+‹dîT
+ 
+‹dîIn
+);
+
+21 
+‹dîCÀ™
+ (
+‹dîT
+ 
+‹dîIn
+);
+
 	@
 1
 .
 0
-67
-7552
+70
+7692
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_bas\ble_bas.c
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\components\ble\ble_services\ble_dis\ble_dis.c
@@ -93902,3 +95590,6 @@ C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\external\fpri
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT.c
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT_Syscalls_GCC.c
 C:\Private\Programing\Nordic\NRF52840Mouse\nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT_printf.c
+C:\Private\Programing\Nordic\NRF52840Mouse\orderProcessing.c
+C:\Private\Programing\Nordic\NRF52840Mouse\orderProcessing.h
+orderProcessing.h

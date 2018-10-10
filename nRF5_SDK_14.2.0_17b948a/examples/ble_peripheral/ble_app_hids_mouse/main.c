@@ -84,7 +84,9 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
+
 #include "orderProcessing.h"
+#include "systemTime.h"
 
 
 #define DEVICE_NAME                     "Nordic_Mouse"                              /**< Name of device. Will be included in the advertising data. */
@@ -174,6 +176,8 @@ static ble_uuid_t        m_adv_uuids[] =                                        
 /* My variable
 */
 orderT remDeviceOrder;
+bool   clearBonds = false;
+
 
 static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
 
@@ -181,15 +185,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
 static void pm_evt_handler(pm_evt_t const * p_evt);
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 static void ble_advertising_error_handler(uint32_t nrf_error);
-
-
-struct
-{
-    bool remConnet;
-}advState =
-{
-    .remConnet = false
-};
 
 
 
@@ -250,6 +245,7 @@ static void delete_bonds(void)
 
 /**@brief Function for starting advertising.
  */
+ /*
 static void advertising_start(bool erase_bonds)
 {
     if (erase_bonds == true)
@@ -279,11 +275,12 @@ static void advertising_start(bool erase_bonds)
             APP_ERROR_CHECK(ret);
         }
 
+        NRF_LOG_INFO("------start adv6-------");
         ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
         APP_ERROR_CHECK(ret);
     }
 }
-
+*/
 
 /**@brief Function for starting advertising for direct connect to device according order.
  *        This process include two phase: scanning, one item white list advertising
@@ -343,7 +340,7 @@ orderT   deviceOrder;
 
 /**@brief Function for initializing the Advertising functionality.
  */
-static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds )
+static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds, bool whitelistEnabled)
 {
     ret_code_t err_code;
     uint8_t    adv_flags;
@@ -358,7 +355,8 @@ static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds )
     init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
-    init.config.ble_adv_whitelist_enabled      = false;
+    init.config.ble_adv_on_disconnect_disabled = true;
+    init.config.ble_adv_whitelist_enabled      = whitelistEnabled;
     init.config.ble_adv_directed_enabled       = false;
     init.config.ble_adv_directed_slow_enabled  = false;
     init.config.ble_adv_directed_slow_interval = APP_ADV_FAST_INTERVAL;
@@ -413,7 +411,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         NRF_LOG_INFO("ADV General");
         m_whitelist_peer_cnt = 0;
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT);
+        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
         // scanning without white list
         currentAdv = ADV_GENERAL;
         break;
@@ -421,7 +419,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         NRF_LOG_INFO("ADV add new");
         m_whitelist_peer_cnt = 0;
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT);
+        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
         // scanning without white list, but REJECT connection all current peers
         currentAdv = ADV_ADD_NEW;
         break;
@@ -438,20 +436,20 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         if(m_whitelist_peer_cnt == 0) // if no peer devices -
         {
             // set timeout and period of advertising
-            advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT);
+            advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
             currentAdv = ADV_GENERAL;
         }
         else
         {
              // set timeout and period of advertising
-            advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT);
+            advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, false);
             currentAdv = ADV_RECONNECT_SCAN;
         }
         //m_whitelist_peer_cnt = 0;
         break;
     case ADV_RECONNECT_CONNECT:
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT);
+        advertising_init(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, false);
         // set white list parameters
         NRF_LOG_INFO("Adv recon conn");
         m_whitelist_peers[0] = peerId;
@@ -475,7 +473,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
     {
         APP_ERROR_CHECK(ret);
     }
-
+    NRF_LOG_INFO("------start adv1-------");
     ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(ret);
 }
@@ -583,7 +581,6 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
         break;
     }
 }
-
 
 
 void advertisingProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
@@ -1236,11 +1233,9 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_2:
-            NRF_LOG_INFO("KEY_2");
-            if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
-            {
-                mouse_movement_send(MOVEMENT_SPEED, 0);
-            }
+            NRF_LOG_INFO("Clear all bonds");
+            clearBonds = true;
+
             break;
 
         case BSP_EVENT_KEY_3:
@@ -1322,12 +1317,22 @@ int main(void)
 
     timers_start();
 
+    initUserTimer();
     advertisingApStart(ADV_RECONNECT_SCAN, 0);
 
     // Enter main loop.
     for (;;)
     {
         app_sched_execute();
+
+        if(clearBonds &&  m_conn_handle == BLE_CONN_HANDLE_INVALID)
+        {
+            NRF_LOG_INFO("Clear b_start");
+            delete_bonds();
+            clearBonds = false;
+        }
+
+
         if (NRF_LOG_PROCESS() == false)
         {
             power_manage();
@@ -1554,7 +1559,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
         case PM_EVT_PEERS_DELETE_SUCCEEDED:
         {
-            advertising_start(false);
+            //advertising_start(false);
         } break;
 
         case PM_EVT_LOCAL_DB_CACHE_APPLY_FAILED:

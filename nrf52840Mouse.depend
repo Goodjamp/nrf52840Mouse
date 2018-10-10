@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
+1539159972 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
 	"sdk_common.h"
 	"ble_advdata.h"
 	"ble_advertising.h"
@@ -1339,7 +1339,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539102360 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539183015 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
@@ -1371,6 +1371,7 @@
 	"nrf_log_ctrl.h"
 	"nrf_log_default_backends.h"
 	"orderProcessing.h"
+	"systemTime.h"
 
 1510697636 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\external\fprintf\nrf_fprintf.c
 	"sdk_common.h"
@@ -2830,4 +2831,34 @@
 1539081899 c:\private\programing\nordic\nrf52840mouse\orderprocessing.h
 	"stdint.h"
 	"stdbool.h"
+
+1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.c
+	"sdk_common.h"
+	"nrf_drv_timer.h"
+	"nrf_drv_common.h"
+	"app_util_platform.h"
+	"nrf_log.h"
+
+1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.h
+	"nordic_common.h"
+	"sdk_config.h"
+	"nrf_timer.h"
+	"sdk_errors.h"
+	"nrf_assert.h"
+
+1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_timer.h
+	<stddef.h>
+	<stdbool.h>
+	<stdint.h>
+	"nrf_peripherals.h"
+	"nrf.h"
+	"nrf_assert.h"
+
+1539182434 source:c:\private\programing\nordic\nrf52840mouse\systemtime.c
+	"stdint.h"
+	"systemTime.h"
+	"nrf.h"
+	"nrf_timer.h"
+
+1539181440 c:\private\programing\nordic\nrf52840mouse\systemtime.h
 
