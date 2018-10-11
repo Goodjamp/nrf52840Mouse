@@ -1,7 +1,6 @@
 /*file: systemTime.c
  *
 */
-
 #include "stdint.h"
 #include "systemTime.h"
 
@@ -10,7 +9,20 @@
 
 #define TIMER_INT_MS   1
 
+
 static volatile uint32_t cntMs;
+static bool              isNewTick = false;
+
+static volatile struct timerCallback
+{
+     timerCallbackFunT fun;
+     uint32_t          timeCallback;
+     bool              runCallback;
+     bool              waiteCallback;
+} timerCallbackHeap[CALLBACK_QUANTITY];
+
+bool isCallbackFree[CALLBACK_QUANTITY] = {[0 ... CALLBACK_QUANTITY - 1] = true};
+
 
 const uint32_t timFrqList[]=
 {
@@ -25,7 +37,6 @@ const uint32_t timFrqList[]=
     [NRF_TIMER_FREQ_62500Hz]  = 62500,    ///< Timer frequency 62500 Hz.
     [NRF_TIMER_FREQ_31250Hz]  = 31250     ///< Timer frequency 31250 Hz.
 };
-
 
 
 void initUserTimer(void)
@@ -50,6 +61,17 @@ void TIMER1_IRQHandler(void)
     cntMs++;
     nrf_timer_task_trigger(USER_SCHEDULER_TIMER, NRF_TIMER_TASK_CLEAR);
     nrf_timer_event_clear(USER_SCHEDULER_TIMER, NRF_TIMER_EVENT_COMPARE0);
+    for(uint16_t cnt = 0; cnt < CALLBACK_QUANTITY; cnt++)
+    {
+        if(timerCallbackHeap[cnt].waiteCallback && (timerCallbackHeap[cnt].timeCallback <= cntMs))
+        {
+            if(timerCallbackHeap[cnt].timeCallback >= cntMs)
+            timerCallbackHeap[cnt].waiteCallback = false;
+            timerCallbackHeap[cnt].runCallback   = true;
+        }
+
+    }
+    isNewTick = true;
 }
 
 
@@ -57,3 +79,49 @@ uint32_t getTime(void)
 {
     return cntMs;
 }
+
+
+timerCallbacT timerGetCallback(timerCallbackFunT timerCallbackFun)
+{
+    for(uint16_t cnt = 0; cnt < CALLBACK_QUANTITY; cnt ++)
+    {
+        if(!isCallbackFree[cnt])
+        {
+            continue;
+        }
+        isCallbackFree[cnt]                  = false;
+        timerCallbackHeap[cnt].fun           = timerCallbackFun;
+        timerCallbackHeap[cnt].runCallback   = false;
+        timerCallbackHeap[cnt].waiteCallback = false;
+        return &timerCallbackHeap[cnt];
+    }
+    return NULL;
+}
+
+
+void timerRun(timerCallbacT inTimerCallbac, int32_t waitTime)
+{
+    inTimerCallbac->timeCallback  = cntMs + waitTime;
+    inTimerCallbac->runCallback   = false;
+    inTimerCallbac->waiteCallback = true;
+}
+
+
+void userProcessingTimerCallbackFun(void)
+{
+    if(!isNewTick)
+    {
+        return;
+    }
+    isNewTick = false;
+    for(uint16_t cnt = 0; cnt < CALLBACK_QUANTITY; cnt++)
+    {
+        if(!timerCallbackHeap[cnt].runCallback)
+        {
+            continue;
+        }
+        timerCallbackHeap[cnt].runCallback   = false;
+        timerCallbackHeap[cnt].fun();
+    }
+}
+
