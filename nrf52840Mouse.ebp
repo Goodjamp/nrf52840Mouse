@@ -272,6 +272,10 @@
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\boards\boards.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.h" />
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\clock\nrf_drv_clock.c">
 			<Option compilerVar="CC" />
 		</Unit>

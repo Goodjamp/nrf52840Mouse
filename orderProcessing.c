@@ -15,7 +15,7 @@
 
 typedef struct order
 {
-    uint8_t order[ORDER_ITEM_QUANTITY];
+    uint16_t order[ORDER_ITEM_QUANTITY];
 } deviceOrderS;
 
 
@@ -29,9 +29,9 @@ struct
 };
 
 
-static inline bool getIDPos(orderT orderIn, uint8_t *rezPos, uint8_t inItem)
+static inline bool getIDPos(orderT orderIn, uint16_t *rezPos, uint8_t inItem)
 {
-    for(uint8_t cnt = 0; cnt < ORDER_ITEM_QUANTITY; cnt++ )
+    for(uint16_t cnt = 0; cnt < ORDER_ITEM_QUANTITY; cnt++ )
     {
         if( inItem != orderIn->order[cnt])
         {
@@ -76,7 +76,7 @@ bool orderFree(orderT orderIn)
 
 bool orderSetFirst (orderT orderIn, uint8_t inItem)
 {
-    uint8_t currentPos;
+    uint16_t currentPos;
     if( orderIn == NULL)
     {
         return false;
@@ -100,7 +100,7 @@ bool orderSetFirst (orderT orderIn, uint8_t inItem)
 
 bool orderGetPos(const orderT orderIn, uint8_t deviceID, uint8_t *pos)
 {
-    for(uint8_t cnt = 0; cnt < ORDER_ITEM_QUANTITY; cnt++)
+    for(uint16_t cnt = 0; cnt < ORDER_ITEM_QUANTITY; cnt++)
     {
         if(orderIn->order[cnt] != deviceID)
         {
@@ -115,7 +115,7 @@ bool orderGetPos(const orderT orderIn, uint8_t deviceID, uint8_t *pos)
 
 uint8_t orderGetQuantity(const orderT orderIn)
 {
-    uint8_t cnt = 0;
+    uint16_t cnt = 0;
     for(; cnt < ORDER_ITEM_QUANTITY; cnt++)
     {
         if(orderIn->order[cnt] == ORDER_ITEM_FREE)

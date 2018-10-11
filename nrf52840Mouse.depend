@@ -22,7 +22,7 @@
 	"app_util.h"
 	"sdk_macros.h"
 
-1538554351 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
+1539255562 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
 	"app_config.h"
 
 1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nordic_common.h
@@ -1339,7 +1339,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539183015 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539277939 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
@@ -1367,6 +1367,7 @@
 	"fds.h"
 	"ble_conn_state.h"
 	"nrf_ble_gatt.h"
+	"ble_flash.h"
 	"nrf_log.h"
 	"nrf_log_ctrl.h"
 	"nrf_log_default_backends.h"
@@ -2855,13 +2856,13 @@
 	"nrf.h"
 	"nrf_assert.h"
 
-1539182434 source:c:\private\programing\nordic\nrf52840mouse\systemtime.c
+1539255562 source:c:\private\programing\nordic\nrf52840mouse\systemtime.c
 	"stdint.h"
 	"systemTime.h"
 	"nrf.h"
 	"nrf_timer.h"
 
-1539181440 c:\private\programing\nordic\nrf52840mouse\systemtime.h
+1539255562 c:\private\programing\nordic\nrf52840mouse\systemtime.h
 
 1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.c
 	"sdk_common.h"
@@ -2892,4 +2893,20 @@
 	"systemTime.h"
 	"nrf.h"
 	"nrf_timer.h"
+
+1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.c
+	"ble_flash.h"
+	<stdlib.h>
+	<stdint.h>
+	<string.h>
+	"nrf_soc.h"
+	"nordic_common.h"
+	"nrf_error.h"
+	"nrf.h"
+	"app_util.h"
+
+1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.h
+	<stdint.h>
+	<stdbool.h>
+	"nrf.h"
 

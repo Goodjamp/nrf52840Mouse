@@ -80,6 +80,8 @@
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
 
+/* -AddOrder- definition*/
+#include "ble_flash.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
@@ -175,8 +177,9 @@ static ble_uuid_t        m_adv_uuids[] =                                        
 
 /* My variable
 */
-orderT remDeviceOrder;
+orderT   deviceOrder;
 timerCallbacT stopScanAdvTimerCallback;
+timerCallbacT switchToConnAdvTimerCallback;
 bool   clearBonds = false;
 bool   advState   = false;
 
@@ -297,10 +300,10 @@ static void advertising_start(bool erase_bonds)
 #define DIRECT_CONN_QUANTITY 0x3
 
 #define APP_ADV_FAST_SCANING_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
-#define APP_ADV_FAST_SCANING_TIMEOUT                 5     /**< The duration of the fast advertising period (in seconds). */
+#define APP_ADV_FAST_SCANING_TIMEOUT                10     /**< The duration of the fast advertising period (in seconds). */
 
 #define APP_ADV_FAST_CONNECT_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
-#define APP_ADV_FAST_CONNECT_TIMEOUT                 5     /**< The duration of the fast advertising period (in seconds). */
+#define APP_ADV_FAST_CONNECT_TIMEOUT                10     /**< The duration of the fast advertising period (in seconds). */
 
 #define APP_ADV_FAST_SEARCH_INTERVAL           0x0140      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 200 ms.). */
 #define APP_ADV_FAST_SEARCH_TIMEOUT                60     /**< The duration of the fast advertising period (in seconds). */
@@ -338,7 +341,7 @@ struct
 
 advTypeT currentAdv = ADV_IDLE;
 
-orderT   deviceOrder;
+
 
 /**@brief Function for initializing the Advertising functionality.
  */
@@ -357,7 +360,7 @@ static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds, 
     init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
-    init.config.ble_adv_on_disconnect_disabled = true;
+    init.config.ble_adv_on_disconnect_disabled = false;
     init.config.ble_adv_whitelist_enabled      = whitelistEnabled;
     init.config.ble_adv_directed_enabled       = false;
     init.config.ble_adv_directed_slow_enabled  = false;
@@ -477,8 +480,8 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         APP_ERROR_CHECK(ret);
     }
     NRF_LOG_INFO("------start adv1-------");
-    ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
     advState = true;
+    ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(ret);
 }
 
@@ -513,19 +516,23 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
         case DEV_SCANNING:  // add device to the list of device that was detected
         {
             uint8_t pos;
-            NRF_LOG_INFO("_SCANNING_");
-            orderGetPos(remDeviceOrder, peerId, &pos);
-            // save peer ID
-            advDirOrdConnState.listDetectedDev[pos] = peerId;
-            advDirOrdConnState.quantityDetectedDev++;
             // disconnect input connection
+            NRF_LOG_INFO("_SCANNING_");
             err_code = sd_ble_gap_disconnect(connHandle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
             if (err_code != NRF_ERROR_INVALID_STATE)
             {
                 APP_ERROR_CHECK(err_code);
             }
-            err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-            APP_ERROR_CHECK(err_code);
+            if(orderGetPos(deviceOrder, peerId, &pos))
+            {
+                // save scanning peer ID
+                if(advDirOrdConnState.listDetectedDev[pos] == DETECTED_DEV_FREE)
+                {
+                    advDirOrdConnState.listDetectedDev[pos] = peerId;
+                    advDirOrdConnState.quantityDetectedDev++;
+                }
+            }
+
         }
         break;
         case DEV_CONNECTION:// DO NOTHING (continue connection processing)
@@ -618,11 +625,15 @@ void advScanStop(void)
 {
     NRF_LOG_INFO("Stop Scan");
     advState   = false;
+    timerRun(switchToConnAdvTimerCallback, 500);
+}
+
+
+void switchToConnAdv(void)
+{
+    NRF_LOG_INFO("switch To conn");
     currentAdv = ADV_IDLE;
-    if(currentAdv != ADV_IDLE)
-    {
-        sd_ble_gap_adv_stop();
-    }
+    advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
 }
 
 
@@ -1321,7 +1332,8 @@ int main(void)
 
     deviceOrder = orderMalloc();
     initUserTimer();
-    stopScanAdvTimerCallback = timerGetCallback(advScanStop);
+    stopScanAdvTimerCallback     = timerGetCallback(advScanStop);
+    switchToConnAdvTimerCallback = timerGetCallback(switchToConnAdv);
 
     timers_init();
     buttons_leds_init(&erase_bonds);
@@ -1595,6 +1607,12 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
             if (     p_evt->params.peer_data_update_succeeded.flash_changed
                  && (p_evt->params.peer_data_update_succeeded.data_id == PM_PEER_DATA_ID_BONDING))
             {
+
+                /* -AddOrder- Added new device to order*/
+                orderSetFirst(deviceOrder, p_evt->peer_id);
+                /*Save order in flash*/
+
+
                 NRF_LOG_INFO("New Bond, add the peer to the whitelist if possible");
                 NRF_LOG_INFO("\tm_whitelist_peer_cnt %d, MAX_PEERS_WLIST %d",
                                m_whitelist_peer_cnt + 1,
@@ -1667,9 +1685,11 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 
     NRF_LOG_INFO("ADV_EV %d", ble_adv_evt);
 
-    if(!advState && ble_adv_evt != BLE_ADV_EVT_IDLE)
+    if( (advState == false) && (ble_adv_evt != BLE_ADV_EVT_IDLE))
     {
+        NRF_LOG_INFO("Stop Adv");
         sd_ble_gap_adv_stop();
+        return;
     }
 
     switch (ble_adv_evt)
@@ -1711,7 +1731,7 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
             APP_ERROR_CHECK(err_code);
 
             /******processing adv event************/
-            advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
+            //advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
             /****** *******************************/
             //sleep_mode_enter();
             break;
