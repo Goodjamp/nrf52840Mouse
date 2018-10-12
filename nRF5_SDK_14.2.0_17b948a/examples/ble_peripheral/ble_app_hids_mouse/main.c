@@ -215,6 +215,8 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 #define APP_ADV_FAST_SEARCH_INTERVAL           0x0140      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 200 ms.). */
 #define APP_ADV_FAST_SEARCH_TIMEOUT                60     /**< The duration of the fast advertising period (in seconds). */
 
+#define ORDER_FLASHE_PAGE                         30
+
 typedef enum
 {
     ADV_PROC_START_CONNECT,
@@ -1334,10 +1336,12 @@ int main(void)
     NRF_LOG_INFO("Gerasimchuk started.");
     // set
 
-    deviceOrder = orderMalloc();
     initUserTimer();
     stopScanAdvTimerCallback     = timerGetCallback(advScanStop);
     switchToConnAdvTimerCallback = timerGetCallback(switchToConnAdv);
+    deviceOrder = orderMalloc();
+    ble_flash_page_read(ORDER_FLASHE_PAGE, (uint32_t*)deviceOrder, sizeof(*deviceOrder));
+
 
     timers_init();
     buttons_leds_init(&erase_bonds);
