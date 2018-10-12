@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <EmBitz_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="21355" topLine="573" />
+			<Cursor1 position="23071" topLine="639" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_conn_params.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7146" topLine="1099" />
+			<Cursor1 position="10270" topLine="200" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6296" topLine="164" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\ble_flash\ble_flash.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6145" topLine="118" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2562" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3488" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3098" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2595" topLine="23" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_log\src\nrf_log_frontend.c" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7167" topLine="155" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\fds\fds.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8136" topLine="168" />
 		</Cursor>
 	</File>
 	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -16,69 +56,59 @@
 			<Cursor1 position="6934" topLine="218" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_error_weak.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\pwr_mgmt\nrf_pwr_mgmt.c" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3168" topLine="53" />
+			<Cursor1 position="0" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\libraries\util\app_error_weak.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3122" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="7306" topLine="194" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.S" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\gcc_startup_nrf52840.S" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8555" topLine="207" />
+			<Cursor1 position="9474" topLine="265" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\components\toolchain\gcc\nrf5x_common.ld" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3503" topLine="108" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c" open="1" top="1" tabpos="14" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="62366" topLine="1516" />
+			<Cursor1 position="55061" topLine="1434" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nRF5_SDK_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\armgcc\ble_app_hids_mouse_gcc_nrf52.ld" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2218" topLine="54" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="orderProcessing.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="2947" topLine="126" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf_format.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="orderProcessing.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="628" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="nRF5_SDK_14.2.0_17b948a\external\segger_rtt\SEGGER_RTT.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="systemTime.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7576" topLine="146" />
+			<Cursor1 position="3461" topLine="80" />
 		</Cursor>
 	</File>
-	<File name="orderProcessing.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="systemTime.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="326" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="orderProcessing.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="228" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="systemTime.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3188" topLine="80" />
-		</Cursor>
-	</File>
-	<File name="systemTime.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="450" topLine="0" />
+			<Cursor1 position="146" topLine="0" />
 		</Cursor>
 	</File>
 </EmBitz_layout_file>

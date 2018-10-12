@@ -2287,7 +2287,7 @@
 //==========================================================
 // <o> FDS_MAX_USERS - Maximum number of callbacks that can be registered. 
 #ifndef FDS_MAX_USERS
-#define FDS_MAX_USERS 4
+#define FDS_MAX_USERS 8
 #endif
 
 // </h> 

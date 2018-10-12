@@ -344,12 +344,24 @@
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fds\fds.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fds\fds.h" />
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fds\fds_internal_defs.h" />
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fifo\app_fifo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fifo\app_fifo.h" />
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage.h" />
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.h" />
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_sd.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_sd.h" />
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\libraries\hardfault\hardfault_implementation.c">
 			<Option compilerVar="CC" />
 		</Unit>

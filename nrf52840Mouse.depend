@@ -22,7 +22,7 @@
 	"app_util.h"
 	"sdk_macros.h"
 
-1539255562 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
+1539349210 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
 	"app_config.h"
 
 1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nordic_common.h
@@ -1339,7 +1339,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539344985 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539363244 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
@@ -1372,6 +1372,7 @@
 	"nrf_log_default_backends.h"
 	"ble_flash.h"
 	"nrf_nvmc.h"
+	"fds.h"
 	"orderProcessing.h"
 	"systemTime.h"
 
@@ -2825,13 +2826,13 @@
 	"stdint.h"
 	"stdbool.h"
 
-1539340831 source:c:\private\programing\nordic\nrf52840mouse\orderprocessing.c
+1539363307 source:c:\private\programing\nordic\nrf52840mouse\orderprocessing.c
 	"stdint.h"
 	"string.h"
 	"stdbool.h"
 	"orderProcessing.h"
 
-1539340802 c:\private\programing\nordic\nrf52840mouse\orderprocessing.h
+1539359898 c:\private\programing\nordic\nrf52840mouse\orderprocessing.h
 	"stdint.h"
 	"stdbool.h"
 
@@ -2934,4 +2935,21 @@
 	<stdbool.h>
 	"nrf.h"
 	"nrf_nvmc.h"
+
+1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fifo\app_fifo.c
+	"sdk_common.h"
+	"app_fifo.h"
+
+1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fifo\app_fifo.h
+	<stdint.h>
+	<stdlib.h>
+
+1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.c
+	"sdk_common.h"
+	"nrf_fstorage_nvmc.h"
+	<stdint.h>
+	<string.h>
+	<stdbool.h>
+	"nrf_nvmc.h"
+	"nrf_atomic.h"
 

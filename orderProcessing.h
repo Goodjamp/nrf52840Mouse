@@ -25,5 +25,6 @@ void    orderWriteFlash (orderT orderIn, uint32_t flashAddress);
 
 /*********USER IMPLEMENTED FUNCTION****************/
 void flashMemWriteBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize);
+void flashMemReadBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize);
 
 #endif

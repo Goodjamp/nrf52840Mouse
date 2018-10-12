@@ -20,16 +20,6 @@ typedef struct order
     uint16_t order[ORDER_ITEM_QUANTITY];
 } deviceOrderS;
 
-
-#pragma pack(push,1)
-    typedef struct
-    {
-        uint8_t  readArray[sizeof(((orderT)0)->order)];
-        uint32_t dataValidator;
-    } orderFlashBuffer;
-#pragma pack(pop)
-
-
 struct
 {
     deviceOrderS heap[HEAP_ORDER_QUANTITY];
@@ -146,6 +136,8 @@ void orderClean(orderT orderIn)
 
 bool orderReadFlash(orderT orderIn, uint32_t  flashAddress)
 {
+    flashMemReadBytes(flashAddress, (uint8_t*)orderIn->order, sizeof(orderIn->order));
+    /*
     orderFlashBuffer *orderBuff = (orderFlashBuffer*)flashAddress;
 
     if(orderBuff->dataValidator != ORDER_FLASH_DATA_VALIDATOR)
@@ -154,16 +146,12 @@ bool orderReadFlash(orderT orderIn, uint32_t  flashAddress)
     }
     memcpy((uint8_t*)orderIn->order, orderBuff->readArray, sizeof(orderIn->order));
     return true;
+   */
+   return true;
 }
 
 
 void orderWriteFlash(orderT orderIn, uint32_t flashAddress)
 {
-    orderFlashBuffer orderBuff =
-    {
-        .dataValidator = ORDER_FLASH_DATA_VALIDATOR
-    };
-
-    memcpy((uint8_t*)orderBuff.readArray, (uint8_t*)orderIn->order, sizeof(orderIn->order));
-    flashMemWriteBytes(flashAddress, (uint8_t*)(uint8_t*)orderBuff.readArray, sizeof(orderFlashBuffer));
+    flashMemWriteBytes(flashAddress, (uint8_t*)orderIn->order, sizeof(orderIn->order));
 }

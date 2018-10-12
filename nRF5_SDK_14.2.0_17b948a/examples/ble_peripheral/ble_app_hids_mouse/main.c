@@ -190,11 +190,16 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 #include "ble_flash.h"
 #include "nrf_nvmc.h"
 
+#include "fds.h"
+
 #include "orderProcessing.h"
 #include "systemTime.h"
 
 #define DETECTED_DEV_FREE    0xFF
 #define DIRECT_CONN_QUANTITY 0x3
+
+#define FILE_ORDER                               0xBAAB  /* The ID of the file to write the records into. */
+#define RECORD_KEY_ORDER                         0xABBA  /* A key for the second record. */
 
 #define APP_ADV_FAST_SCANING_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
 #define APP_ADV_FAST_SCANING_TIMEOUT                10     /**< The duration of the fast advertising period (in seconds). */
@@ -548,14 +553,67 @@ void switchToConnAdv(void)
 
 void flashMemWriteBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize)
 {
+    fds_record_t        record;
+    fds_record_desc_t   record_desc;
+    // Set up record.
+    record.file_id           = FILE_ORDER;
+    record.key               = RECORD_KEY_ORDER;
+    record.data.p_data       = buffer;
+    record.data.length_words = (bufferSize+ 3) / 4;
+    ret_code_t ret;
+    fds_find_token_t    ftok;
 
-    ble_flash_page_erase( flashAddress / 0x1000);
-    ble_flash_block_write((uint32_t*)flashAddress,  (uint32_t*)buffer, bufferSize / 4 +  ((bufferSize % 4 == 0) ? (0) : (1)));
-    /*
-    nrf_nvmc_page_erase(flashAddress);
-    nrf_nvmc_write_bytes(flashAddress, buffer, bufferSize);
-    */
+    /* It is required to zero the token before first use. */
+    memset(&ftok, 0x00, sizeof(fds_find_token_t));
+
+    // delete all previous records with the same KEY and ID
+    while (fds_record_find(FILE_ORDER, RECORD_KEY_ORDER, &record_desc, &ftok) == FDS_SUCCESS)
+    {
+        ret = fds_record_delete(&record_desc);
+        if (ret != FDS_SUCCESS)
+        {
+        /* Error. */
+        }
+    }
+    ret = fds_record_write(&record_desc, &record);
+    if (ret != FDS_SUCCESS)
+    {
+        /* Handle error. */
+    }
 }
+
+
+void flashMemReadBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize)
+{
+    fds_flash_record_t  flash_record;
+    fds_record_desc_t   record_desc;
+    fds_find_token_t    ftok;
+
+    /* It is required to zero the token before first use. */
+    memset(&ftok, 0x00, sizeof(fds_find_token_t));
+    /* Loop until all records with the given key and file ID have been found. */
+    // while (fds_record_find(FILE_ORDER, RECORD_KEY_ORDER, &record_desc, &ftok) == FDS_SUCCESS)
+    while (fds_record_find(FILE_ORDER, RECORD_KEY_ORDER, &record_desc, &ftok) == FDS_SUCCESS)
+    {
+        NRF_LOG_INFO("Read start");
+        if (fds_record_open(&record_desc, &flash_record) != FDS_SUCCESS)
+        {
+            /* Handle error. */
+        }
+
+        memcpy(buffer, (uint8_t*)flash_record.p_data, bufferSize);
+
+        /* Access the record through the flash_record structure. */
+        /* Close the record when done. */
+        if (fds_record_close(&record_desc) != FDS_SUCCESS)
+        {
+            /* Handle error. */
+        }
+    }
+    NRF_LOG_INFO("Read End");
+}
+
+
 
 
 /**@brief Callback function for asserts in the SoftDevice.
@@ -1339,6 +1397,32 @@ static void power_manage(void)
 }
 
 
+// Simple event handler to handle errors during initialization.
+static void fds_evt_handler(fds_evt_t const * p_fds_evt)
+{
+    switch(p_fds_evt->id)
+    {
+        case  FDS_EVT_INIT:       NRF_LOG_INFO("FDS_EVT_INIT");        break;
+        case  FDS_EVT_WRITE:      NRF_LOG_INFO("FDS_EVT_WRITE");       break;
+        case  FDS_EVT_UPDATE:     NRF_LOG_INFO("FDS_EVT_UPDATE");      break;
+        case  FDS_EVT_DEL_RECORD: NRF_LOG_INFO("FDS_EVT_DEL_RECORD");  break;
+        case  FDS_EVT_DEL_FILE:   NRF_LOG_INFO("FDS_EVT_DEL_FILE");    break;
+        case  FDS_EVT_GC:         NRF_LOG_INFO("FDS_EVT_GC");          break;
+    }
+
+    switch (p_fds_evt->id)
+    {
+        case FDS_EVT_INIT:
+            if (p_fds_evt->result != FDS_SUCCESS)
+            {
+                // Initialization failed.
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 
 /**@brief Function for application main entry.
  */
@@ -1354,8 +1438,25 @@ int main(void)
     stopScanAdvTimerCallback     = timerGetCallback(advScanStop);
     switchToConnAdvTimerCallback = timerGetCallback(switchToConnAdv);
     deviceOrder = orderMalloc();
-    orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+    ret_code_t ret = fds_register(fds_evt_handler);
+    if (ret != FDS_SUCCESS)
+    {
+    // Registering of the FDS event handler has failed.
+    }
+    ret = fds_init();
+    if (ret != FDS_SUCCESS)
+    {
+    // Handle error.
+    }
+
+    //orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
     orderReadFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+    orderSetFirst(deviceOrder, 1);
+    orderSetFirst(deviceOrder, 2);
+    orderSetFirst(deviceOrder, 4);
+    orderSetFirst(deviceOrder, 2);
+    orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+
 
 
     timers_init();
@@ -1375,6 +1476,9 @@ int main(void)
 
     advertisingApStart(ADV_RECONNECT_SCAN, 0);
 
+    //fdsRec();
+    //fdsRead();
+
     // Enter main loop.
     for (;;)
     {
@@ -1386,7 +1490,7 @@ int main(void)
             NRF_LOG_INFO("Clear b_start");
             delete_bonds();
             orderClean(deviceOrder);
-            orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+            //orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
         }
 
         userProcessingTimerCallbackFun();
@@ -1634,7 +1738,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
                 /* -AddOrder- Added new device to order*/
                 orderSetFirst(deviceOrder, p_evt->peer_id);
-                orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+                //orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
                 /*Save order in flash*/
 
 
