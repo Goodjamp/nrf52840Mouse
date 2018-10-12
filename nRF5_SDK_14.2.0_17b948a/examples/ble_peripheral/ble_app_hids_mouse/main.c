@@ -190,102 +190,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
 static void pm_evt_handler(pm_evt_t const * p_evt);
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 static void ble_advertising_error_handler(uint32_t nrf_error);
+static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 
 
-
-/**@brief Callback function for asserts in the SoftDevice.
- *
- * @details This function will be called in case of an assert in the SoftDevice.
- *
- * @warning This handler is an example only and does not fit a final product. You need to analyze
- *          how your product is supposed to react in case of Assert.
- * @warning On assert from the SoftDevice, the system can only recover on reset.
- *
- * @param[in]   line_num   Line number of the failing ASSERT call.
- * @param[in]   file_name  File name of the failing ASSERT call.
- */
-void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
-{
-    app_error_handler(DEAD_BEEF, line_num, p_file_name);
-}
-
-
-/**@brief Fetch the list of peer manager peer IDs.
- *
- * @param[inout] p_peers   The buffer where to store the list of peer IDs.
- * @param[inout] p_size    In: The size of the @p p_peers buffer.
- *                         Out: The number of peers copied in the buffer.
- */
-static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size)
-{
-    pm_peer_id_t peer_id;
-    uint32_t     peers_to_copy;
-
-    peers_to_copy = (*p_size < BLE_GAP_WHITELIST_ADDR_MAX_COUNT) ?
-                     *p_size : BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
-
-    peer_id = pm_next_peer_id_get(PM_PEER_ID_INVALID);
-    *p_size = 0;
-
-    while ((peer_id != PM_PEER_ID_INVALID) && (peers_to_copy--))
-    {
-        p_peers[(*p_size)++] = peer_id;
-        peer_id = pm_next_peer_id_get(peer_id);
-    }
-}
-
-
-/**@brief Clear bond information from persistent storage.
- */
-static void delete_bonds(void)
-{
-    ret_code_t err_code;
-
-    NRF_LOG_INFO("Erase bonds!");
-
-    err_code = pm_peers_delete();
-    APP_ERROR_CHECK(err_code);
-}
-
-
-/**@brief Function for starting advertising.
- */
- /*
-static void advertising_start(bool erase_bonds)
-{
-    if (erase_bonds == true)
-    {
-        delete_bonds();
-        // Advertising is started by PM_EVT_PEERS_DELETE_SUCCEEDED event.
-    }
-    else
-    {
-        ret_code_t ret;
-
-        memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
-        m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
-
-        peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
-
-         NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
-
-        ret = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
-        APP_ERROR_CHECK(ret);
-
-        // Setup the device identies list.
-        // Some SoftDevices do not support this feature.
-        ret = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
-        if (ret != NRF_ERROR_NOT_SUPPORTED)
-        {
-            APP_ERROR_CHECK(ret);
-        }
-
-        NRF_LOG_INFO("------start adv6-------");
-        ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
-        APP_ERROR_CHECK(ret);
-    }
-}
-*/
 
 /**@brief Function for starting advertising for direct connect to device according order.
  *        This process include two phase: scanning, one item white list advertising
@@ -635,6 +542,103 @@ void switchToConnAdv(void)
     currentAdv = ADV_IDLE;
     advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
 }
+
+
+
+/**@brief Callback function for asserts in the SoftDevice.
+ *
+ * @details This function will be called in case of an assert in the SoftDevice.
+ *
+ * @warning This handler is an example only and does not fit a final product. You need to analyze
+ *          how your product is supposed to react in case of Assert.
+ * @warning On assert from the SoftDevice, the system can only recover on reset.
+ *
+ * @param[in]   line_num   Line number of the failing ASSERT call.
+ * @param[in]   file_name  File name of the failing ASSERT call.
+ */
+void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
+{
+    app_error_handler(DEAD_BEEF, line_num, p_file_name);
+}
+
+
+/**@brief Fetch the list of peer manager peer IDs.
+ *
+ * @param[inout] p_peers   The buffer where to store the list of peer IDs.
+ * @param[inout] p_size    In: The size of the @p p_peers buffer.
+ *                         Out: The number of peers copied in the buffer.
+ */
+static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size)
+{
+    pm_peer_id_t peer_id;
+    uint32_t     peers_to_copy;
+
+    peers_to_copy = (*p_size < BLE_GAP_WHITELIST_ADDR_MAX_COUNT) ?
+                     *p_size : BLE_GAP_WHITELIST_ADDR_MAX_COUNT;
+
+    peer_id = pm_next_peer_id_get(PM_PEER_ID_INVALID);
+    *p_size = 0;
+
+    while ((peer_id != PM_PEER_ID_INVALID) && (peers_to_copy--))
+    {
+        p_peers[(*p_size)++] = peer_id;
+        peer_id = pm_next_peer_id_get(peer_id);
+    }
+}
+
+
+/**@brief Clear bond information from persistent storage.
+ */
+static void delete_bonds(void)
+{
+    ret_code_t err_code;
+
+    NRF_LOG_INFO("Erase bonds!");
+
+    err_code = pm_peers_delete();
+    APP_ERROR_CHECK(err_code);
+}
+
+
+/**@brief Function for starting advertising.
+ */
+ /*
+static void advertising_start(bool erase_bonds)
+{
+    if (erase_bonds == true)
+    {
+        delete_bonds();
+        // Advertising is started by PM_EVT_PEERS_DELETE_SUCCEEDED event.
+    }
+    else
+    {
+        ret_code_t ret;
+
+        memset(m_whitelist_peers, PM_PEER_ID_INVALID, sizeof(m_whitelist_peers));
+        m_whitelist_peer_cnt = (sizeof(m_whitelist_peers) / sizeof(pm_peer_id_t));
+
+        peer_list_get(m_whitelist_peers, &m_whitelist_peer_cnt);
+
+         NRF_LOG_INFO("Number Peer %d", m_whitelist_peer_cnt);
+
+        ret = pm_whitelist_set(m_whitelist_peers, m_whitelist_peer_cnt);
+        APP_ERROR_CHECK(ret);
+
+        // Setup the device identies list.
+        // Some SoftDevices do not support this feature.
+        ret = pm_device_identities_list_set(m_whitelist_peers, m_whitelist_peer_cnt);
+        if (ret != NRF_ERROR_NOT_SUPPORTED)
+        {
+            APP_ERROR_CHECK(ret);
+        }
+
+        NRF_LOG_INFO("------start adv6-------");
+        ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_DIRECTED);
+        APP_ERROR_CHECK(ret);
+    }
+}
+*/
+
 
 
 /**@brief Function for handling Service errors.
