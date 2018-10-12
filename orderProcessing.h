@@ -19,5 +19,11 @@ bool    orderSetFirst   (orderT orderIn, uint8_t inItem);
 bool    orderGetPos     (const orderT orderIn, uint8_t deviceID, uint8_t *pos);
 uint8_t orderGetQuantity(const orderT orderIn);
 void    orderClean      (orderT orderIn);
+bool    orderReadFlash  (orderT orderIn, uint32_t  flashAddress);
+void    orderWriteFlash (orderT orderIn, uint32_t flashAddress);
+
+
+/*********USER IMPLEMENTED FUNCTION****************/
+void flashMemWriteBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize);
 
 #endif

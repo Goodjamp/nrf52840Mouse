@@ -80,15 +80,9 @@
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
 
-/* -AddOrder- definition*/
-#include "ble_flash.h"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
-
-
-#include "orderProcessing.h"
-#include "systemTime.h"
 
 
 #define DEVICE_NAME                     "Nordic_Mouse"                              /**< Name of device. Will be included in the advertising data. */
@@ -175,23 +169,13 @@ static ble_uuid_t        m_adv_uuids[] =                                        
     {BLE_UUID_HUMAN_INTERFACE_DEVICE_SERVICE, BLE_UUID_TYPE_BLE}
 };
 
-/* My variable
-*/
-orderT   deviceOrder;
-timerCallbacT stopScanAdvTimerCallback;
-timerCallbacT switchToConnAdvTimerCallback;
-bool   clearBonds = false;
-bool   advState   = false;
-
 
 static void on_hids_evt(ble_hids_t * p_hids, ble_hids_evt_t * p_evt);
-
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context);
 static void pm_evt_handler(pm_evt_t const * p_evt);
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 static void ble_advertising_error_handler(uint32_t nrf_error);
 static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
-
 
 
 /**@brief Function for starting advertising for direct connect to device according order.
@@ -202,6 +186,12 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
           On processing of power On adv I should switch phase of adv.
 
  */
+
+#include "ble_flash.h"
+#include "nrf_nvmc.h"
+
+#include "orderProcessing.h"
+#include "systemTime.h"
 
 #define DETECTED_DEV_FREE    0xFF
 #define DIRECT_CONN_QUANTITY 0x3
@@ -215,7 +205,17 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 #define APP_ADV_FAST_SEARCH_INTERVAL           0x0140      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 200 ms.). */
 #define APP_ADV_FAST_SEARCH_TIMEOUT                60     /**< The duration of the fast advertising period (in seconds). */
 
-#define ORDER_FLASHE_PAGE                         30
+#define ORDER_FLASHE_PAGE                         254
+
+#define GET_PAGE_ADDRESS(X)  (uint32_t)(X*4096)
+
+orderT   deviceOrder;
+timerCallbacT stopScanAdvTimerCallback;
+timerCallbacT switchToConnAdvTimerCallback;
+bool   clearBonds = false;
+bool   advState   = false;
+
+
 
 typedef enum
 {
@@ -546,6 +546,17 @@ void switchToConnAdv(void)
 }
 
 
+void flashMemWriteBytes(uint32_t flashAddress, uint8_t buffer[], uint32_t bufferSize)
+{
+
+    ble_flash_page_erase( flashAddress / 0x1000);
+    ble_flash_block_write((uint32_t*)flashAddress,  (uint32_t*)buffer, bufferSize / 4 +  ((bufferSize % 4 == 0) ? (0) : (1)));
+    /*
+    nrf_nvmc_page_erase(flashAddress);
+    nrf_nvmc_write_bytes(flashAddress, buffer, bufferSize);
+    */
+}
+
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -600,6 +611,9 @@ static void delete_bonds(void)
     err_code = pm_peers_delete();
     APP_ERROR_CHECK(err_code);
 }
+
+
+
 
 
 /**@brief Function for starting advertising.
@@ -1325,6 +1339,7 @@ static void power_manage(void)
 }
 
 
+
 /**@brief Function for application main entry.
  */
 int main(void)
@@ -1334,13 +1349,13 @@ int main(void)
     // Initialize.
     log_init();
     NRF_LOG_INFO("Gerasimchuk started.");
-    // set
 
     initUserTimer();
     stopScanAdvTimerCallback     = timerGetCallback(advScanStop);
     switchToConnAdvTimerCallback = timerGetCallback(switchToConnAdv);
     deviceOrder = orderMalloc();
-    ble_flash_page_read(ORDER_FLASHE_PAGE, (uint32_t*)deviceOrder, sizeof(*deviceOrder));
+    orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
+    orderReadFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
 
 
     timers_init();
@@ -1354,7 +1369,6 @@ int main(void)
     sensor_simulator_init();
     conn_params_init();
     peer_manager_init();
-    // sd_ble_gap_disconnect
     // Start execution.
 
     timers_start();
@@ -1371,6 +1385,8 @@ int main(void)
             clearBonds = false;
             NRF_LOG_INFO("Clear b_start");
             delete_bonds();
+            orderClean(deviceOrder);
+            orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
         }
 
         userProcessingTimerCallbackFun();
@@ -1618,6 +1634,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
                 /* -AddOrder- Added new device to order*/
                 orderSetFirst(deviceOrder, p_evt->peer_id);
+                orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
                 /*Save order in flash*/
 
 

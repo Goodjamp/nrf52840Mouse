@@ -1339,7 +1339,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539277939 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539344985 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
@@ -1367,10 +1367,11 @@
 	"fds.h"
 	"ble_conn_state.h"
 	"nrf_ble_gatt.h"
-	"ble_flash.h"
 	"nrf_log.h"
 	"nrf_log_ctrl.h"
 	"nrf_log_default_backends.h"
+	"ble_flash.h"
+	"nrf_nvmc.h"
 	"orderProcessing.h"
 	"systemTime.h"
 
@@ -2824,13 +2825,13 @@
 	"stdint.h"
 	"stdbool.h"
 
-1539081899 source:c:\private\programing\nordic\nrf52840mouse\orderprocessing.c
+1539340831 source:c:\private\programing\nordic\nrf52840mouse\orderprocessing.c
 	"stdint.h"
 	"string.h"
 	"stdbool.h"
 	"orderProcessing.h"
 
-1539081899 c:\private\programing\nordic\nrf52840mouse\orderprocessing.h
+1539340802 c:\private\programing\nordic\nrf52840mouse\orderprocessing.h
 	"stdint.h"
 	"stdbool.h"
 
@@ -2925,4 +2926,12 @@
 	<stdint.h>
 	<stdbool.h>
 	"nrf.h"
+
+1510697631 c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.h
+	<stdint.h>
+
+1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.c
+	<stdbool.h>
+	"nrf.h"
+	"nrf_nvmc.h"
 

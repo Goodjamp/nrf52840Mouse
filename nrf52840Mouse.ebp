@@ -285,6 +285,10 @@
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.h" />
 		<Unit filename="nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\timer\nrf_drv_timer.c">
 			<Option compilerVar="CC" />
 		</Unit>

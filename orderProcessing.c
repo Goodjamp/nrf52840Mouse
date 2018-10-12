@@ -5,18 +5,29 @@
 #include "stdint.h"
 #include "string.h"
 #include "stdbool.h"
+
 #include "orderProcessing.h"
 
 #define ORDER_ITEM_FREE  0xFF
 
-#define ORDER_HEAP_ITEM_FREE    0xFF
-#define ORDER_HEAP_ITEM_BUSY    0x00
+#define ORDER_HEAP_ITEM_FREE       0xFF
+#define ORDER_HEAP_ITEM_BUSY       0x00
+#define ORDER_FLASH_DATA_VALIDATOR 0xAABBCCDD
 
 
 typedef struct order
 {
     uint16_t order[ORDER_ITEM_QUANTITY];
 } deviceOrderS;
+
+
+#pragma pack(push,1)
+    typedef struct
+    {
+        uint8_t  readArray[sizeof(((orderT)0)->order)];
+        uint32_t dataValidator;
+    } orderFlashBuffer;
+#pragma pack(pop)
 
 
 struct
@@ -130,4 +141,29 @@ uint8_t orderGetQuantity(const orderT orderIn)
 void orderClean(orderT orderIn)
 {
     memset(orderIn->order, ORDER_ITEM_FREE, sizeof(orderIn->order));
+}
+
+
+bool orderReadFlash(orderT orderIn, uint32_t  flashAddress)
+{
+    orderFlashBuffer *orderBuff = (orderFlashBuffer*)flashAddress;
+
+    if(orderBuff->dataValidator != ORDER_FLASH_DATA_VALIDATOR)
+    {
+        return false;
+    }
+    memcpy((uint8_t*)orderIn->order, orderBuff->readArray, sizeof(orderIn->order));
+    return true;
+}
+
+
+void orderWriteFlash(orderT orderIn, uint32_t flashAddress)
+{
+    orderFlashBuffer orderBuff =
+    {
+        .dataValidator = ORDER_FLASH_DATA_VALIDATOR
+    };
+
+    memcpy((uint8_t*)orderBuff.readArray, (uint8_t*)orderIn->order, sizeof(orderIn->order));
+    flashMemWriteBytes(flashAddress, (uint8_t*)(uint8_t*)orderBuff.readArray, sizeof(orderFlashBuffer));
 }
