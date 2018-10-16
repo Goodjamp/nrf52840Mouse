@@ -201,6 +201,10 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 #define FILE_ORDER                               0xBAAB  /* The ID of the file to write the records into. */
 #define RECORD_KEY_ORDER                         0xABBA  /* A key for the second record. */
 
+#define APP_ADV_GLOBAL_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
+#define APP_ADV_GLOBAL_TIMEOUT              6000     /**< The duration of the fast advertising period (in seconds). */
+
+
 #define APP_ADV_FAST_SCANING_INTERVAL           0x0023      /**< Fast advertising interval (in units of 0.625 ms. This value corresponds to 21 ms.). */
 #define APP_ADV_FAST_SCANING_TIMEOUT                10     /**< The duration of the fast advertising period (in seconds). */
 
@@ -213,13 +217,6 @@ static void peer_list_get(pm_peer_id_t * p_peers, uint32_t * p_size);
 #define ORDER_FLASHE_PAGE                         254
 
 #define GET_PAGE_ADDRESS(X)  (uint32_t)(X*4096)
-
-orderT   deviceOrder;
-timerCallbacT stopScanAdvTimerCallback;
-timerCallbacT switchToConnAdvTimerCallback;
-bool   clearBonds = false;
-bool   advState   = false;
-
 
 
 typedef enum
@@ -256,8 +253,32 @@ struct
     .listDetectedDev = {[0 ... BLE_GAP_WHITELIST_ADDR_MAX_COUNT-1] = DETECTED_DEV_FREE}
 };
 
-advTypeT currentAdv = ADV_IDLE;
+orderT   deviceOrder;
+timerCallbacT stopScanAdvTimerCallback;
+timerCallbacT switchToConnAdvTimerCallback;
+struct{
+    bool clearBonds;
+    bool advState;
+    advTypeT currentAdv;
+} appState =
+{
+    .clearBonds = false,
+    .advState   = false,
+    .currentAdv = ADV_IDLE,
+};
 
+
+advTypeT getAppCurrentAdv(void)
+{
+    return appState.currentAdv;
+}
+
+
+void appStopAdv(void)
+{
+    sd_ble_gap_adv_stop();
+    appState.advState = false;
+}
 
 
 /**@brief Function for initializing the Advertising functionality.
@@ -323,7 +344,7 @@ bool peerIdInList(pm_peer_id_t peerIdIn)
 static void advertisingApStart(advTypeT advType, uint16_t peerId)
 {
     ret_code_t ret;
-    if(currentAdv != ADV_IDLE)
+    if(appState.currentAdv != ADV_IDLE)
     {
         sd_ble_gap_adv_stop();
     }
@@ -333,58 +354,72 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         NRF_LOG_INFO("ADV General");
         m_whitelist_peer_cnt = 0;
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
+        //advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
         // scanning without white list
-        currentAdv = ADV_GENERAL;
+
+        ret = pm_whitelist_set(NULL, 0);
+        APP_ERROR_CHECK(ret);
+        ret = pm_device_identities_list_set(NULL, 0);
+
+        appState.currentAdv = ADV_GENERAL;
+
+        if(m_conn_handle != BLE_CONN_HANDLE_INVALID)
+        {
+            NRF_LOG_INFO("----start adv DISS-----");
+            sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            return;
+        }
+        else
+        {
+            NRF_LOG_INFO("----start adv ADV-----");
+            appState.advState = true;
+            sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
+            ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+            APP_ERROR_CHECK(ret);
+            return;
+        }
+
+
         break;
     case ADV_ADD_NEW:
 
         NRF_LOG_INFO("ADV add new");
         m_whitelist_peer_cnt = 0;
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
+        //advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
         // scanning without white list, but REJECT connection all current peers
-        currentAdv = ADV_ADD_NEW;
-/*
-        if(m_conn_handle != BLE_CONN_HANDLE_INVALID)
-        {
-            sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            return;
-        }
-*/
+        appState.currentAdv = ADV_ADD_NEW;
+
 
         //NRF_LOG_INFO("Config Ok");
-        ret = pm_whitelist_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
-                               (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
+        ret = pm_whitelist_set(NULL, 0);
         APP_ERROR_CHECK(ret);
         // Setup the device identies list.
         // Some SoftDevices do not support this feature.
-        ret = pm_device_identities_list_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
-                                            (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
+        ret = pm_device_identities_list_set(NULL, 0);
 
         if (ret != NRF_ERROR_NOT_SUPPORTED)
         {
             APP_ERROR_CHECK(ret);
         }
-        NRF_LOG_INFO("------start adv1-------");
         //SD_BLE_GAP_DISCONNECT
         if(m_conn_handle != BLE_CONN_HANDLE_INVALID)
         {
+            NRF_LOG_INFO("----start adv DISS-----");
             sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
         }
         else
         {
-            advState = true;
+            NRF_LOG_INFO("----start adv ADV-----");
+            appState.advState = true;
             sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
             ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
             APP_ERROR_CHECK(ret);
         }
 
-
+        NRF_LOG_INFO("!!!!!!");
 
         return;
-
-        break;
     case ADV_RECONNECT_SCAN:
 
         // set white list parameters
@@ -398,28 +433,29 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         if(m_whitelist_peer_cnt == 0) // if no peer devices -
         {
             // set timeout and period of advertising
-            advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
-            currentAdv = ADV_GENERAL;
+            //advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
+            ble_advertising_restart_without_whitelist(&m_advertising);
+            appState.currentAdv = ADV_GENERAL;
         }
         else
         {
             // set timeout and period of advertising
-            advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, true);
-            currentAdv = ADV_RECONNECT_SCAN;
-            timerRun(stopScanAdvTimerCallback, 6000);
+            //advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, true);
+            appState.currentAdv = ADV_RECONNECT_SCAN;
+            timerRun(stopScanAdvTimerCallback, 4000);
         }
         //m_whitelist_peer_cnt = 0;
         break;
     case ADV_RECONNECT_CONNECT:
 
         // set timeout and period of advertising
-        advertising_init(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true);
+        //advertising_init(APP_ADV_FAST_CONNECT_INTERVAL, APP_ADV_FAST_CONNECT_TIMEOUT, true);
         // set white list parameters
         NRF_LOG_INFO("Adv recon conn");
         m_whitelist_peers[0] = peerId;
         m_whitelist_peer_cnt = 1;
 
-        currentAdv = ADV_RECONNECT_SCAN;
+        appState.currentAdv = ADV_RECONNECT_SCAN;
         break;
     default:
         break;
@@ -427,9 +463,6 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
     //NRF_LOG_INFO("Config Ok");
     ret = pm_whitelist_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
                            (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
-    APP_ERROR_CHECK(ret);
-    // Setup the device identies list.
-    // Some SoftDevices do not support this feature.
     ret = pm_device_identities_list_set((m_whitelist_peer_cnt == 0 ) ? (NULL) : (m_whitelist_peers),
                                         (m_whitelist_peer_cnt == 0 ) ? (0)    : (m_whitelist_peer_cnt));
 
@@ -438,8 +471,8 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         APP_ERROR_CHECK(ret);
     }
     NRF_LOG_INFO("------start adv1-------");
-    advState = true;
-    sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
+    appState.advState = true;
+    //sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
     ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(ret);
 }
@@ -517,7 +550,7 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
             NRF_LOG_INFO("--------Dev in list ? %d", peerId);
             if(orderGetPos(deviceOrder, peerId, &pos))
             {
-                NRF_LOG_INFO("Dev find %d  %", peerId, pos);
+                NRF_LOG_INFO("Dev find %d  d%", peerId, pos);
                 if(advDirOrdConnState.listDetectedDev[pos] == DETECTED_DEV_FREE)
                 {
                     NRF_LOG_INFO("Dev save");
@@ -543,6 +576,7 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
             uint8_t cnt_1 = 0;
             uint8_t cnt_2 = 0;
             NRF_LOG_INFO("_SCANNING_");
+            NRF_LOG_INFO("Find %d", advDirOrdConnState.quantityDetectedDev);
             // if device wasn't detected  start adv again
             if(advDirOrdConnState.quantityDetectedDev == 0)
             {
@@ -561,7 +595,7 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
                     }
                 }
             }
-            NRF_LOG_INFO("Find %d", advDirOrdConnState.quantityDetectedDev);
+
             advDirOrdConnState.connectCnt = 0;
             advertisingApStart(ADV_RECONNECT_CONNECT , advDirOrdConnState.listDetectedDev[advDirOrdConnState.connectCnt]);
             advDirOrdConnState.phase = DEV_CONNECTION;
@@ -604,7 +638,7 @@ void advertisingDirectProc(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
 
 void advertisingProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
 {
-    switch(currentAdv)
+    switch(appState.currentAdv)
     {
     case ADV_GENERAL:
         NRF_LOG_INFO("ADV_GENERAL");
@@ -630,18 +664,9 @@ void advertisingProcessing(advProcEvT inEv, uint16_t connHandle, pm_peer_id_t pe
 void advScanStop(void)
 {
     NRF_LOG_INFO("Stop Scan");
-    advState   = false;
+    appState.advState   = false;
     advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
-    // adv will be stop in main loop,
-    //timerRun(switchToConnAdvTimerCallback, 500);
-}
 
-
-void switchToConnAdv(void)
-{
-    NRF_LOG_INFO("switch To conn");
-    currentAdv = ADV_IDLE;
-    advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
 }
 
 
@@ -761,6 +786,7 @@ static void delete_bonds(void)
     NRF_LOG_INFO("Erase bonds!");
 
     err_code = pm_peers_delete();
+    NRF_LOG_INFO("DELETE ERR %d", err_code);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -1373,6 +1399,8 @@ static void mouse_movement_send(int16_t x_delta, int16_t y_delta)
                                          buffer);
     }
 
+    NRF_LOG_INFO("HID ERROR %d", err_code);
+
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
         (err_code != NRF_ERROR_RESOURCES) &&
@@ -1425,6 +1453,7 @@ static void bsp_event_handler(bsp_event_t event)
             NRF_LOG_INFO("KEY_0");
             if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
             {
+                NRF_LOG_INFO("OK");
                 mouse_movement_send(-MOVEMENT_SPEED, 0);
             }
             break;
@@ -1433,20 +1462,20 @@ static void bsp_event_handler(bsp_event_t event)
             NRF_LOG_INFO("KEY_1");
             if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
             {
+                NRF_LOG_INFO("OK");
                 mouse_movement_send(0, -MOVEMENT_SPEED);
             }
             break;
 
         case BSP_EVENT_KEY_2:
             NRF_LOG_INFO("Clear all bonds");
-            clearBonds = true;
+            appState.clearBonds = true;
 
             break;
 
         case BSP_EVENT_KEY_3:
-           //NRF_LOG_INFO("ADD_NEW adv start");
-           //advertisingApStart(ADV_ADD_NEW, 0);
-           genAdvState = true;
+           NRF_LOG_INFO("ADD_NEW adv start");
+           advertisingApStart(ADV_ADD_NEW, 0);
            break;
 
         default:
@@ -1534,7 +1563,6 @@ int main(void)
 
     initUserTimer();
     stopScanAdvTimerCallback     = timerGetCallback(advScanStop);
-    switchToConnAdvTimerCallback = timerGetCallback(switchToConnAdv);
     deviceOrder = orderMalloc();
     ret_code_t ret = fds_register(fds_evt_handler);
     if (ret != FDS_SUCCESS)
@@ -1549,13 +1577,10 @@ int main(void)
     //orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
     orderReadFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
 
-
     for(uint8_t cnt = 0; cnt < ORDER_ITEM_QUANTITY; cnt++ )
     {
         NRF_LOG_INFO("item = %d \n", orderGetItem(deviceOrder, cnt));
     }
-
-
 
     timers_init();
     buttons_leds_init(&erase_bonds);
@@ -1563,7 +1588,6 @@ int main(void)
     scheduler_init();
     gap_params_init();
     gatt_init();
-//    advertising_init();
     services_init();
     sensor_simulator_init();
     conn_params_init();
@@ -1571,7 +1595,7 @@ int main(void)
     // Start execution.
 
     timers_start();
-
+    advertising_init(APP_ADV_GLOBAL_INTERVAL, APP_ADV_GLOBAL_TIMEOUT, true);
     advertisingApStart(ADV_RECONNECT_SCAN, 0);
 
     // Enter main loop.
@@ -1579,22 +1603,14 @@ int main(void)
     {
         app_sched_execute();
 
-        if(clearBonds &&  m_conn_handle == BLE_CONN_HANDLE_INVALID)
+        if(appState.clearBonds &&  m_conn_handle == BLE_CONN_HANDLE_INVALID)
         {
-            clearBonds = false;
+            appState.clearBonds = false;
             NRF_LOG_INFO("Clear b_start");
             delete_bonds();
             orderClean(deviceOrder);
             orderWriteFlash(deviceOrder, GET_PAGE_ADDRESS(ORDER_FLASHE_PAGE));
         }
-
-        if(genAdvState)
-        {
-            NRF_LOG_INFO("ADD_NEW adv start");
-            advertisingApStart(ADV_ADD_NEW, 0);
-            genAdvState = false;
-        }
-
         userProcessingTimerCallbackFun();
 
         if (NRF_LOG_PROCESS() == false)
@@ -1619,7 +1635,6 @@ int main(void)
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     ret_code_t err_code;
-
 
     switch(p_ble_evt->header.evt_id)
     {
@@ -1795,6 +1810,8 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
 
         case PM_EVT_CONN_SEC_FAILED:
         {
+            sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            //advertisingApStart(getAppCurrentAdv(), 0);
             /* Often, when securing fails, it shouldn't be restarted, for security reasons.
              * Other times, it can be restarted directly.
              * Sometimes it can be restarted, but only after changing some Security Parameters.
@@ -1918,7 +1935,7 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 
     NRF_LOG_INFO("ADV_EV %d", ble_adv_evt);
 
-    if( (advState == false) && (ble_adv_evt != BLE_ADV_EVT_IDLE))
+    if( (appState.advState == false) && (ble_adv_evt != BLE_ADV_EVT_IDLE))
     {
         NRF_LOG_INFO("Stop Adv");
         sd_ble_gap_adv_stop();

@@ -466,11 +466,11 @@ enum BLE_GAP_CFGS
 
 
 /**@brief Maximum amount of addresses in the whitelist. */
-#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (3)
+#define BLE_GAP_WHITELIST_ADDR_MAX_COUNT (5)
 
 
 /**@brief Maximum amount of identities in the device identities list. */
-#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (3)
+#define BLE_GAP_DEVICE_IDENTITIES_MAX_COUNT (5)
 
 
 /**@brief Default connection count for a configuration. */

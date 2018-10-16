@@ -142,16 +142,6 @@ void orderClean(orderT orderIn)
 bool orderReadFlash(orderT orderIn, uint32_t  flashAddress)
 {
     flashMemReadBytes(flashAddress, (uint8_t*)orderIn->order, sizeof(orderIn->order));
-    /*
-    orderFlashBuffer *orderBuff = (orderFlashBuffer*)flashAddress;
-
-    if(orderBuff->dataValidator != ORDER_FLASH_DATA_VALIDATOR)
-    {
-        return false;
-    }
-    memcpy((uint8_t*)orderIn->order, orderBuff->readArray, sizeof(orderIn->order));
-    return true;
-   */
    return true;
 }
 
