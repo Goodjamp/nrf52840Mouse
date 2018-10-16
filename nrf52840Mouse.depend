@@ -1427,7 +1427,7 @@
 	"app_util.h"
 	"sdk_macros.h"
 
-1539213542 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
+1539363439 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\pca10056\s140\config\sdk_config.h
 	"app_config.h"
 
 1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\util\nordic_common.h
@@ -2744,7 +2744,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539215098 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539647762 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
@@ -2775,6 +2775,9 @@
 	"nrf_log.h"
 	"nrf_log_ctrl.h"
 	"nrf_log_default_backends.h"
+	"ble_flash.h"
+	"nrf_nvmc.h"
+	"fds.h"
 	"orderProcessing.h"
 	"systemTime.h"
 
@@ -2816,13 +2819,13 @@
 	"stdint.h"
 	"stdbool.h"
 
-1539278233 source:d:\private\programing\mcu\nordic\nrf52840mouse\orderprocessing.c
+1539432126 source:d:\private\programing\mcu\nordic\nrf52840mouse\orderprocessing.c
 	"stdint.h"
 	"string.h"
 	"stdbool.h"
 	"orderProcessing.h"
 
-1539105215 d:\private\programing\mcu\nordic\nrf52840mouse\orderprocessing.h
+1539432262 d:\private\programing\mcu\nordic\nrf52840mouse\orderprocessing.h
 	"stdint.h"
 	"stdbool.h"
 
@@ -2945,6 +2948,31 @@
 	<stdlib.h>
 
 1510697631 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.c
+	"sdk_common.h"
+	"nrf_fstorage_nvmc.h"
+	<stdint.h>
+	<string.h>
+	<stdbool.h>
+	"nrf_nvmc.h"
+	"nrf_atomic.h"
+
+1538513111 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.c
+	<stdbool.h>
+	"nrf.h"
+	"nrf_nvmc.h"
+
+1538513111 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\drivers_nrf\hal\nrf_nvmc.h
+	<stdint.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fifo\app_fifo.c
+	"sdk_common.h"
+	"app_fifo.h"
+
+1538513112 d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fifo\app_fifo.h
+	<stdint.h>
+	<stdlib.h>
+
+1538513112 source:d:\private\programing\mcu\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\libraries\fstorage\nrf_fstorage_nvmc.c
 	"sdk_common.h"
 	"nrf_fstorage_nvmc.h"
 	<stdint.h>

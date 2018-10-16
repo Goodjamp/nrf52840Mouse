@@ -113,6 +113,11 @@ bool orderGetPos(const orderT orderIn, uint8_t deviceID, uint8_t *pos)
     return false;
 }
 
+uint16_t orderGetItem(const orderT orderIn, uint8_t pos)
+{
+    return orderIn->order[pos];
+}
+
 
 uint8_t orderGetQuantity(const orderT orderIn)
 {
