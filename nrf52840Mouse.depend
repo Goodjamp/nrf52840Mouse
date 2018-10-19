@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1539713111 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
+1539857074 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\components\ble\ble_advertising\ble_advertising.c
 	"sdk_common.h"
 	"ble_advdata.h"
 	"ble_advertising.h"
@@ -1339,7 +1339,7 @@
 	"nrf.h"
 	"system_nrf52840.h"
 
-1539718799 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
+1539861897 source:c:\private\programing\nordic\nrf52840mouse\nrf5_sdk_14.2.0_17b948a\examples\ble_peripheral\ble_app_hids_mouse\main.c
 	<stdint.h>
 	<string.h>
 	"nordic_common.h"
