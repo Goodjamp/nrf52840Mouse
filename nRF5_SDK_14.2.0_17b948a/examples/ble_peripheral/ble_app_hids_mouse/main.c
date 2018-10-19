@@ -245,9 +245,9 @@ typedef enum
 
 typedef enum
 {
-    CONNECT          = 0x0,
-    START_DISCONNECT = 0x1,
-    DISCONNECTED     = 0x2,
+    CONNECTION_CONNECT          = 0x0,
+    CONNECTION_START_DISCONNECT = 0x1,
+    CONNECTION_DISCONNECT       = 0x2,
 }connectionStateT;
 
 
@@ -263,55 +263,80 @@ struct
     .listDetectedDev = {[0 ... BLE_GAP_WHITELIST_ADDR_MAX_COUNT-1] = DETECTED_DEV_FREE}
 };
 
-orderT   deviceOrder;
+orderT        deviceOrder;
 timerCallbacT stopScanAdvTimerCallback;
 timerCallbacT switchToConnAdvTimerCallback;
 struct{
-    bool     clearBonds;
-    bool     isAdv;
-    bool     isConn;
-    advTypeT currentAdv;
+    bool             clearBonds;
+    bool             isRealAdv;
+    bool             isAppAdv;
+    advTypeT         currentAdvType;
+    connectionStateT connectState;
 } appState =
 {
-    .clearBonds = false,
-    .isAdv      = false,
-    .isConn     = false,
-    .currentAdv = ADV_IDLE,
+    .clearBonds     = false,                  // do we need clear bonds
+    .isRealAdv      = false,                  // real state of advertising
+    .isAppAdv       = false,                  // is advertising: true, false
+    .currentAdvType = ADV_IDLE,               // current advertising state
+    .connectState   = CONNECTION_DISCONNECT,  // current connection state
 };
 uint32_t scaningTimeout;
 
 
-advTypeT getAppCurrentAdv(void)
+advTypeT getAppcurrentAdvType(void)
 {
-    return appState.currentAdv;
+    return appState.currentAdvType;
 }
 
+
+void appDisconnect(void)
+{
+    if(appState.connectState != CONNECTION_CONNECT)
+    {
+        return;
+    }
+    appState.connectState = CONNECTION_START_DISCONNECT;
+    sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+
+}
 
 
 void appAdvStop(void)
 {
+    appState.isAppAdv = false;
+    if(!appState.isRealAdv)
+    {
+        return;
+    }
     sd_ble_gap_adv_stop();
-    appState.isAdv = false;
 }
 
-/*
+
 void appAdvStart(void)
 {
-    if(m_conn_handle != BLE_CONN_HANDLE_INVALID) // device connect
+    switch(appState.connectState)
     {
-        sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+        case CONNECTION_CONNECT:
+            // after disconnect nrf automatically start advertising
+            appState.isAppAdv = true;
+            sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            break;
+        case CONNECTION_START_DISCONNECT:
+            appState.isAppAdv = true;
+            break;
+        case CONNECTION_DISCONNECT:
+            if(!appState.isAppAdv)
+            {
+                break;
+            }
+            appState.isAppAdv = true;
+            ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+            break;
+        default: break;
     }
-    else
-    {
-        ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-    }
-    APP_ERROR_CHECK(ret);
-    appState.isAdv = true;
 }
-*/
 
-/**@brief Function for initializing the Advertising functionality.
- */
+
 static void advertising_init(uint16_t intervalMSeconds, uint16_t periodSeconds, bool whitelistEnabled)
 {
     ret_code_t err_code;
@@ -373,7 +398,7 @@ bool peerIdInList(pm_peer_id_t peerIdIn)
 static void advertisingApStart(advTypeT advType, uint16_t peerId)
 {
     ret_code_t ret;
-    if(appState.currentAdv != ADV_IDLE)
+    if(appState.currentAdvType != ADV_IDLE)
     {
         sd_ble_gap_adv_stop();
     }
@@ -390,7 +415,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         APP_ERROR_CHECK(ret);
         ret = pm_device_identities_list_set(NULL, 0);
 
-        appState.currentAdv = ADV_GENERAL;
+        appState.currentAdvType = ADV_GENERAL;
 
         if(m_conn_handle != BLE_CONN_HANDLE_INVALID)
         {
@@ -401,7 +426,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         else
         {
             NRF_LOG_INFO("----start adv ADV-----");
-            appState.isAdv = true;
+            appState.isAppAdv = true;
             sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
             ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
             APP_ERROR_CHECK(ret);
@@ -417,7 +442,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         // set timeout and period of advertising
         //advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
         // scanning without white list, but REJECT connection all current peers
-        appState.currentAdv = ADV_ADD_NEW;
+        appState.currentAdvType = ADV_ADD_NEW;
 
 
         //NRF_LOG_INFO("Config Ok");
@@ -440,7 +465,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         else
         {
             NRF_LOG_INFO("----start adv ADV-----");
-            appState.isAdv = true;
+            appState.isAppAdv = true;
             sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
             ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
             APP_ERROR_CHECK(ret);
@@ -464,13 +489,13 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
             // set timeout and period of advertising
             //advertising_init(APP_ADV_FAST_SEARCH_INTERVAL, APP_ADV_FAST_SEARCH_TIMEOUT, false);
             ble_advertising_restart_without_whitelist(&m_advertising);
-            appState.currentAdv = ADV_GENERAL;
+            appState.currentAdvType = ADV_GENERAL;
         }
         else
         {
             // set timeout and period of advertising
             //advertising_init(APP_ADV_FAST_SCANING_INTERVAL, APP_ADV_FAST_SCANING_TIMEOUT, true);
-            appState.currentAdv = ADV_RECONNECT_SCAN;
+            appState.currentAdvType = ADV_RECONNECT_SCAN;
             timerRun(stopScanAdvTimerCallback, ADV_RECONNECT_SCAN_TIMEOUT);
             scaningTimeout = getTime();
         }
@@ -485,7 +510,7 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
         m_whitelist_peers[0] = peerId;
         m_whitelist_peer_cnt = 1;
 
-        appState.currentAdv = ADV_RECONNECT_SCAN;
+        appState.currentAdvType = ADV_RECONNECT_SCAN;
         break;
     default:
         break;
@@ -500,8 +525,8 @@ static void advertisingApStart(advTypeT advType, uint16_t peerId)
     {
         APP_ERROR_CHECK(ret);
     }
-    NRF_LOG_INFO("------start adv1-------");
-    appState.isAdv = true;
+    NRF_LOG_INFO("------stagit add --allt adv1-------");
+    appState.isAppAdv = true;
     //sd_ble_gap_adv_stop();  // use this stop adv for activate white list with new devices
     ret = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(ret);
@@ -593,7 +618,7 @@ void advertisingDirectProc(nrfBLEAdvEvT inEv, uint16_t connHandle, pm_peer_id_t 
             {
                 NRF_LOG_INFO("---------SCANED TIME = %d", getTime() - scaningTimeout);
                 sd_ble_gap_adv_stop();
-                appState.isAdv = false;
+                appState.isAppAdv = false;
             }
 
         }
@@ -678,7 +703,7 @@ void advertisingDirectProc(nrfBLEAdvEvT inEv, uint16_t connHandle, pm_peer_id_t 
 
 void advertisingProcessing(nrfBLEAdvEvT inEv, uint16_t connHandle, pm_peer_id_t peerId)
 {
-    switch(appState.currentAdv)
+    switch(appState.currentAdvType)
     {
     case ADV_GENERAL:
         NRF_LOG_INFO("ADV_GENERAL");
@@ -704,9 +729,8 @@ void advertisingProcessing(nrfBLEAdvEvT inEv, uint16_t connHandle, pm_peer_id_t 
 void advScanStop(void)
 {
     NRF_LOG_INFO("Stop Scan");
-    appState.isAdv   = false;
+    appState.isAppAdv   = false;
     advertisingProcessing(ADV_PROC_STOP_ADV, 0, 0);
-
 }
 
 
@@ -1453,7 +1477,7 @@ static void mouse_movement_send(int16_t x_delta, int16_t y_delta)
 
 
 
-bool genisAdv = false;
+bool genisAppAdv = false;
 
 /**@brief Function for handling events from the BSP module.
  *
@@ -1851,7 +1875,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
         case PM_EVT_CONN_SEC_FAILED:
         {
             sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            //advertisingApStart(getAppCurrentAdv(), 0);
+            //advertisingApStart(getAppcurrentAdvType(), 0);
             /* Often, when securing fails, it shouldn't be restarted, for security reasons.
              * Other times, it can be restarted directly.
              * Sometimes it can be restarted, but only after changing some Security Parameters.
@@ -1975,7 +1999,7 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 
     NRF_LOG_INFO("ADV_EV %d", ble_adv_evt);
 
-    if( (appState.isAdv == false) && (ble_adv_evt != BLE_ADV_EVT_IDLE))
+    if( (appState.isAppAdv == false) && (ble_adv_evt != BLE_ADV_EVT_IDLE))
     {
         NRF_LOG_INFO("Stop Adv");
         sd_ble_gap_adv_stop();
